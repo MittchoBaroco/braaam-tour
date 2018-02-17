@@ -24,6 +24,12 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# gem to work with money
+gem 'money-rails', '~> 1.10'
+
+# validates dates
+gem 'validates_timeliness', '~> 4.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -36,6 +42,8 @@ group :development, :test do
 end
 
 group :development do
+  # rails security checker gem
+  gem 'brakeman', :require => false
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -45,6 +53,7 @@ group :development do
 end
 
 group :test do
+  gem 'faker', '~> 1.8'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.15'
   gem 'selenium-webdriver'
