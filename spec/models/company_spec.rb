@@ -14,15 +14,11 @@ RSpec.describe Company, type: :model do
       end
       it "correctly detects duplicate_company" do
         expect( duplicate_company.valid? ).to be_falsey
-        # expect( duplicate_company.errors.details[:company_name][0][:error]).to eq( :taken )
         expect( duplicate_company.errors.messages).to eq(
                                   {:email=>["has already been taken"]} )
       end
       it "detects an invalid_company" do
         expect( invalid_company.valid? ).to be_falsey
-        # expect( invalid_company.errors.details).to eq(
-        #             {:name=>[{:error=>:blank},
-        #                               {:error=>:too_short, :count=>2}]})
         expect( invalid_company.errors.messages).to eq(
                     { :email=>[ "can't be blank",
                                 "is too short (minimum is 2 characters)"],

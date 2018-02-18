@@ -7,7 +7,6 @@ RSpec.describe Tour, type: :model do
   let(:negative_tour) { FactoryBot.build(:negative_tour) }
   let!(:award)        { FactoryBot.create(:award, tour: tour) }
 
-
   context "verify factory" do
     it "correctly builds tour" do
       expect( tour.valid? ).to be_truthy
@@ -16,7 +15,6 @@ RSpec.describe Tour, type: :model do
     end
     it "correctly detects negative_tour" do
       expect( negative_tour.valid? ).to be_falsey
-      # expect( duplicate_tour.errors.details[:tour_name][0][:error]).to eq( :taken )
       expect( negative_tour.errors.messages).to eq(
                   { :price_braaam=>["must be greater than or equal to 0"],
                     :price_normal=>["must be greater than or equal to 0"]
@@ -24,7 +22,6 @@ RSpec.describe Tour, type: :model do
     end
     it "detects an invalid_tour" do
       expect( invalid_tour.valid? ).to be_falsey
-      # pp invalid_tour.errors.messages
       expect( invalid_tour.errors.messages).to eq(
                   { :title=>["can't be blank", "is too short (minimum is 2 characters)"],
                     :description=>["can't be blank", "is too short (minimum is 2 characters)"],
