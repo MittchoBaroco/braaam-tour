@@ -9,6 +9,7 @@ class Award < ApplicationRecord
   validates :award_year,  presence: true,
                           format: { with: /\A20[0-2][0-9]\z/,
                                     message: "year must be numeric and greater than or equal to 2000" }
+  
   validates :caption, uniqueness: { scope: [:institution, :award_year],
                                     message: "award must be unique in fields: caption, award_year and institution"
                                   }

@@ -2,54 +2,43 @@ require 'rails_helper'
 
 RSpec.describe Award, type: :model do
 
-  let!(:tour)          { FactoryBot.create(:tour) }
-  let!(:award)         { FactoryBot.create(:award,tour: tour) }
-  let!(:double_award)  { FactoryBot.build(:award, tour: tour,
-                                                  award_year: 1940.5) }
-  let!(:too_old_award) { FactoryBot.build(:award, tour: tour,
-                                                  award_year: 1940) }
-  let(:invalid_award)  { FactoryBot.build(:invalid_award) }
-  let(:duplicate_award){ FactoryBot.build(:award,caption: award.caption,
-                                                institution: award.institution,
-                                                award_year: award.award_year
-                                          ) }
+  let!(:award) { FactoryBot.create(:award) }
+
   context "verify factory" do
-    it "correctly builds award" do
-      expect( award.valid? ).to be_truthy
-      expect( award.errors.details).to eq( {} )
-      expect( award.errors.messages).to eq( {} )
+    it 'has a valid Factory' do
+      expect(award).to be_valid
     end
-    it "correctly detects duplicate_award" do
-      expect( duplicate_award.valid? ).to be_falsey
-      expect( duplicate_award.errors.messages).to eq(
-                                {:caption=>["award must be unique in fields: caption, award_year and institution"]} )
+  end
+
+  context "Check award validations" do
+
+    it { should validate_presence_of(:caption) }
+    it { should validate_presence_of(:institution) }
+    it { should validate_presence_of(:award_year) }
+
+    it { should validate_length_of(:caption).is_at_least(2) }
+    it { should validate_length_of(:institution).is_at_least(2) }
+
+    it do
+      should allow_values("2000", "2018").
+        for(:award_year).
+        with_message('year must be numeric and greater than or equal to 2000')
     end
-    it "detects an invalid_award" do
-      expect( invalid_award.valid? ).to be_falsey
-      expect( invalid_award.errors.messages).to eq(
-                  { :tour=>["must exist"],
-                    :caption=>[   "can't be blank",
-                                  "is too short (minimum is 2 characters)"],
-                    :institution=>["can't be blank",
-                                  "is too short (minimum is 2 characters)"],
-                    :award_year=>["can't be blank",
-                                  "year must be numeric and greater than or equal to 2000"] } )
+
+    it do
+      should_not allow_values("1998", "18", "a", "xxxx").
+        for(:award_year).
+        with_message('year must be numeric and greater than or equal to 2000')
     end
-    it "detects an too_old_award" do
-      expect( too_old_award.valid? ).to be_falsey
-      expect( too_old_award.errors.messages).to eq(
-                  { :award_year=>["year must be numeric and greater than or equal to 2000"] } )
-    end
-    it "detects an double_award" do
-      expect( double_award.valid? ).to be_falsey
-      expect( double_award.errors.messages).to eq(
-                  { :award_year=>["year must be numeric and greater than or equal to 2000"] } )
+
+    it do
+      should validate_uniqueness_of(:caption).
+        scoped_to(:institution, :award_year).
+        with_message('award must be unique in fields: caption, award_year and institution')
     end
   end
 
   context "Check award Relationships" do
-    it "award can find their associated tour" do
-      expect( award.tour ).to eq( tour )
-    end
+    it { should belong_to(:tour) }
   end
 end

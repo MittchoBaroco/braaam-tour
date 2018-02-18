@@ -2,16 +2,16 @@ module FactoryHelpers
   extend self
 
   def get_tour
-    # make a new organizer if less than 3 organizers in db
+    # make a new toor if less than 3 organizers in db
     return FactoryBot.create :tour if Tour.count <= 3
 
     # Generate a random number between 1 and 100
     random_number = Faker::Number.between(1, 100)
 
-    # 25% of the time just make a n new organizer anyway
+    # 25% of the time just make a n new tour anyway
     return FactoryBot.create :tour if random_number <= 25
 
-    # 75 percent of the time return an existing organizer (not CMB4)
+    # 75 percent of the time return an existing tour (not CMB4)
     return Tour.find( rand(1..Tour.count) )
   end
 
