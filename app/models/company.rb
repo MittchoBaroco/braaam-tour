@@ -5,6 +5,6 @@ class Company < ApplicationRecord
 
   # validate email & name not empty
   validates :name,  presence: true, length: { minimum: 2 }
-  validates :email, presence: true, length: { minimum: 2 }, uniqueness: true
+  validates :email, presence: true, length: { minimum: 2 }, uniqueness: { case_sensitive: true }
 
 end
