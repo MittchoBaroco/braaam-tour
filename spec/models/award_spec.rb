@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe Award, type: :model do
 
   let!(:tour)          { FactoryBot.create(:tour) }
-  let!(:award)         { FactoryBot.create(:award, tour: tour) }
+  let!(:award)         { FactoryBot.create(:award,tour: tour) }
+  let!(:double_award)  { FactoryBot.build(:award, tour: tour,
+                                                  award_year: 1940.5) }
+  let!(:too_old_award) { FactoryBot.build(:award, tour: tour,
+                                                  award_year: 1940) }
   let(:invalid_award)  { FactoryBot.build(:invalid_award) }
   let(:duplicate_award){ FactoryBot.build(:award,caption: award.caption,
                                                 institution: award.institution,
@@ -28,9 +32,17 @@ RSpec.describe Award, type: :model do
                                   "is too short (minimum is 2 characters)"],
                     :institution=>["can't be blank",
                                   "is too short (minimum is 2 characters)"],
-                    :award_year=>["can't be blank",
-                                  "is too short (minimum is 2 characters)"]
-                  } )
+                    :award_year=>["is not a number"] } )
+    end
+    it "detects an too_old_award" do
+      expect( too_old_award.valid? ).to be_falsey
+      expect( too_old_award.errors.messages).to eq(
+                  { :award_year=>["must be greater than or equal to 1950"] } )
+    end
+    it "detects an double_award" do
+      expect( double_award.valid? ).to be_falsey
+      expect( double_award.errors.messages).to eq(
+                  { :award_year=>["must be an integer"] } )
     end
   end
 
