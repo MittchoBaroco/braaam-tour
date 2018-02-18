@@ -40,10 +40,11 @@ ActiveRecord::Schema.define(version: 2018_02_18_084710) do
   create_table "awards", force: :cascade do |t|
     t.string "caption"
     t.string "institution"
-    t.integer "award_year"
+    t.string "award_year"
     t.bigint "tour_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["award_year"], name: "index_awards_on_award_year"
     t.index ["caption", "institution", "award_year"], name: "index_awards_on_caption_and_institution_and_award_year", unique: true
     t.index ["tour_id"], name: "index_awards_on_tour_id"
   end
