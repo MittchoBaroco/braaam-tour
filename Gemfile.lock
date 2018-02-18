@@ -85,6 +85,8 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    komponent (1.1.1)
+      webpacker (>= 3.0.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -221,6 +223,7 @@ DEPENDENCIES
   factory_bot_rails
   faker (~> 1.8)
   jbuilder (~> 2.5)
+  komponent
   listen (>= 3.0.5, < 3.2)
   money-rails (~> 1.10)
   pg (>= 0.18, < 2.0)
