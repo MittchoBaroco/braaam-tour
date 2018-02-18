@@ -6,11 +6,4 @@ FactoryBot.define do
     award_year  { Faker::Number.between(2015, this_year) }
     tour        { FactoryHelpers.get_tour() }
   end
-  factory :invalid_award, parent: :award do
-    caption     { nil }
-    institution { nil }
-    award_year  { nil }
-    tour        { nil }
-  end
-
 end
