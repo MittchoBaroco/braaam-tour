@@ -1,1 +1,7 @@
-.hero-picture {}
+.hero-picture {
+  &--image {
+    max-width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
