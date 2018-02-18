@@ -6,6 +6,7 @@ RSpec.describe TourDate, type: :model do
   let!(:company)            { FactoryBot.create(:company) }
   let(:tour_date)           { FactoryBot.create(:tour_date, tour: tour,
                                                             company: company) }
+  let(:booked_date)         { FactoryBot.create(:tour_date, :booked)}
   let(:invalid_tour_date)   { FactoryBot.build(:invalid_tour_date) }
   let(:no_past_tour_date)   { FactoryBot.build(:no_past_tour_date) }
   let(:duplicate_tour_date) { FactoryBot.build(:tour_date,day: tour_date.day,
@@ -14,6 +15,11 @@ RSpec.describe TourDate, type: :model do
   context "verify factory" do
     it 'has a valid Factory' do
       expect(tour_date).to be_valid
+    end
+
+    it 'has a valid booked factory' do
+      expect(booked_date).to be_valid
+      expect(booked_date.company).to_not be_nil
     end
   end
 
