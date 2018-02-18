@@ -1,5 +1,10 @@
 # README
 
+## TODO:
+* get rails credentil key
+* create .rbenv-vars file with key
+* configure amazon uploads for production - in credentials enc
+
 ## Start your development servers
 
 * with Forman
