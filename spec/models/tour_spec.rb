@@ -5,6 +5,8 @@ RSpec.describe Tour, type: :model do
   let!(:tour)         { FactoryBot.create(:tour) }
   let(:invalid_tour)  { FactoryBot.build(:invalid_tour) }
   let(:negative_tour) { FactoryBot.build(:negative_tour) }
+  let!(:award)        { FactoryBot.create(:award, tour: tour) }
+
 
   context "verify factory" do
     it "correctly builds tour" do
@@ -35,14 +37,14 @@ RSpec.describe Tour, type: :model do
     end
   end
 
-  xcontext "Check tour Relationships" do
+  context "Check tour Relationships" do
     it "tour can find their associated awards" do
-      expect( tour.awards ).to eq( [awards] )
+      expect( tour.awards ).to eq( [award] )
     end
-    it "tour can find their associated tour_dates" do
+    xit "tour can find their associated tour_dates" do
       expect( tour.tour_dates ).to eq( [tour_dates] )
     end
-    it "tour can find their associated companies (through dates)" do
+    xit "tour can find their associated companies (through dates)" do
       expect( tour.companies ).to eq( [companies] )
     end
   end

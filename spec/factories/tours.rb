@@ -16,7 +16,7 @@ FactoryBot.define do
     title        { Faker::Book.title }
     description  { Faker::ChuckNorris.fact }
     # image        { nil }
-    video_uri   { video_samples.sample }
+    video_uri    { video_samples.sample }
     tech_help    { ['true', 'false'].sample }
     housing      { Faker::Boolean.boolean }
     catering     { Faker::Boolean.boolean }
@@ -28,10 +28,19 @@ FactoryBot.define do
     price_normal { Money.new(base_cents, currency) }
     price_braaam { Money.new(braaam_amt, currency) }
   end
+  # factory :award_tour, parent: :tour do
+  #   after :build do |tour|
+  #     # GENERATE Awards
+  #     (0..rand(0..3)).each do |count|
+  #       next if count == 0
+  #       tour_award = return FactoryBot.build(:award, tour: tour)
+  #     end
+  #   end
+  # end
   factory :invalid_tour, parent: :tour do
     title        { nil }
     description  { nil }
-    video_uri   { nil }
+    video_uri    { nil }
     tech_help    { nil }
     housing      { nil }
     catering     { nil }

@@ -18,7 +18,7 @@ RSpec.describe Award, type: :model do
       # pp award
       # pp duplicate_award
       expect( duplicate_award.valid? ).to be_falsey
-      pp duplicate_award.errors.messages
+      # pp duplicate_award.errors.messages
       # expect( duplicate_award.errors.details[:award_name][0][:error]).to eq( :taken )
       expect( duplicate_award.errors.messages).to eq(
                                 {:caption=>["award must be unique in fields: caption, award_year and institution"]} )
