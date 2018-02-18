@@ -27,6 +27,8 @@ gem 'jbuilder', '~> 2.5'
 # gem to work with money
 gem 'money-rails', '~> 1.10'
 
+# validate file attachments
+# gem 'file_validators', '~> 2.2.0.beta1'
 # validates dates
 gem 'validates_timeliness', '~> 4.0'
 
@@ -34,6 +36,7 @@ gem 'validates_timeliness', '~> 4.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'faker', '~> 1.8'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.7'
@@ -53,7 +56,6 @@ group :development do
 end
 
 group :test do
-  gem 'faker', '~> 1.8'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.15'
   gem 'selenium-webdriver'
