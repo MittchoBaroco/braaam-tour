@@ -12,21 +12,24 @@ RSpec.describe TourDate, type: :model do
                                                           tour: tour_date.tour)}
 
   context "verify factory" do
-    it "correctly builds tour_date" do
-      expect( tour_date.valid? ).to be_truthy
-      expect( tour_date.errors.details).to eq( {} )
-      expect( tour_date.errors.messages).to eq( {} )
+    it 'has a valid Factory' do
+      expect(tour_date).to be_valid
     end
+  end
+
+  context "Check tour_date validations" do
     it "correctly detects duplicate_tour_date" do
       expect( duplicate_tour_date.valid? ).to be_falsey
       expect( duplicate_tour_date.errors.messages).to eq(
                   {:tour=>["tours may only have one event per-day"]} )
     end
+
     it "detects an invalid_tour_date" do
       expect( invalid_tour_date.valid? ).to be_falsey
       expect( invalid_tour_date.errors.messages).to eq(
                   {:tour=>["must exist"], :day=>["is not a valid date"]} )
     end
+
     it "detects an no_past_tour_date" do
       expect( no_past_tour_date.valid? ).to be_falsey
       expect( no_past_tour_date.errors.messages).to eq(
@@ -35,12 +38,8 @@ RSpec.describe TourDate, type: :model do
   end
 
   context "Check tour_date Relationships" do
-    it "tour_date can find their associated tour" do
-      expect( tour_date.tour ).to eq( tour )
-    end
-    it "tour_date can find their associated company" do
-      expect( tour_date.company ).to eq( company )
-    end
+    it { should belong_to(:tour) }
+    it { should belong_to(:company).optional }
   end
 
 end
