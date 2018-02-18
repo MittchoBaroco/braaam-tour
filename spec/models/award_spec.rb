@@ -19,13 +19,16 @@ RSpec.describe Award, type: :model do
     it { should validate_length_of(:caption).is_at_least(2) }
     it { should validate_length_of(:institution).is_at_least(2) }
 
-    # The validate_length_of matcher doesn't support integer columns, only string columns.
-    # it { should validate_length_of(:award_year).is_at_least(4) }
+    it do
+      should allow_values("2000", "2018").
+        for(:award_year).
+        with_message('year must be numeric and greater than or equal to 2000')
+    end
 
-    it "validate length of award_year" do
-      invalid_award = award.dup
-      invalid_award.award_year = 3
-      expect(invalid_award).to_not be_valid
+    it do
+      should_not allow_values("1998", "18", "a", "xxxx").
+        for(:award_year).
+        with_message('year must be numeric and greater than or equal to 2000')
     end
 
     it do
