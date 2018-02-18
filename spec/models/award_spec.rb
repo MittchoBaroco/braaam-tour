@@ -32,17 +32,18 @@ RSpec.describe Award, type: :model do
                                   "is too short (minimum is 2 characters)"],
                     :institution=>["can't be blank",
                                   "is too short (minimum is 2 characters)"],
-                    :award_year=>["is not a number"] } )
+                    :award_year=>["can't be blank",
+                                  "year must be numeric and greater than or equal to 2000"] } )
     end
     it "detects an too_old_award" do
       expect( too_old_award.valid? ).to be_falsey
       expect( too_old_award.errors.messages).to eq(
-                  { :award_year=>["must be greater than or equal to 1950"] } )
+                  { :award_year=>["year must be numeric and greater than or equal to 2000"] } )
     end
     it "detects an double_award" do
       expect( double_award.valid? ).to be_falsey
       expect( double_award.errors.messages).to eq(
-                  { :award_year=>["must be an integer"] } )
+                  { :award_year=>["year must be numeric and greater than or equal to 2000"] } )
     end
   end
 

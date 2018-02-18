@@ -7,11 +7,12 @@ class CreateAwards < ActiveRecord::Migration[5.2]
     create_table :awards do |t|
       t.string  :caption
       t.string  :institution
-      t.integer :award_year
+      t.string  :award_year
       t.references :tour, foreign_key: true
 
       t.timestamps
     end
+    add_index :awards, :award_year, algorithm: :concurrently
     add_index :awards, [:caption, :institution, :award_year], unique: true, algorithm: :concurrently
   end
 end
