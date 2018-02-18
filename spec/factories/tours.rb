@@ -28,33 +28,10 @@ FactoryBot.define do
     price_normal { Money.new(base_cents, currency) }
     price_braaam { Money.new(braaam_amt, currency) }
   end
-  # factory :award_tour, parent: :tour do
-  #   after :build do |tour|
-  #     # GENERATE Awards
-  #     (0..rand(0..3)).each do |count|
-  #       next if count == 0
-  #       tour_award = return FactoryBot.build(:award, tour: tour)
-  #     end
-  #   end
-  # end
-  factory :invalid_tour, parent: :tour do
-    title        { nil }
-    description  { nil }
-    video_uri    { nil }
-    tech_help    { nil }
-    housing      { nil }
-    catering     { nil }
-    transport    { nil }
-    price_normal { nil }
-    price_braaam { nil }
-  end
-  factory :negative_tour, parent: :tour do
-    currency     = Tour::CURRENCIES.sample
-    base_cents   = -1 * Faker::Number.between(500, 10000)
-    discount     = (base_cents * Faker::Number.between(75,90) / 100).round(2)
-    braaam_amt   = base_cents - discount
-    price_normal { Money.new(base_cents, currency) }
-    price_braaam { Money.new(braaam_amt, currency) }
-  end
 
+  trait :with_awards do
+    after :create do |tour|
+      create_list :award, 3, tour: tour   # has_many
+    end
+  end
 end
