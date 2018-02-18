@@ -1,5 +1,11 @@
 # README
 
+## TODO:
+* get rails credentil key
+* create .rbenv-vars file with key
+* validations for the Tour image (present and file types)
+* configure amazon uploads for production - in credentials enc
+
 ## Start your development servers
 
 * with Forman
