@@ -16,7 +16,7 @@ FactoryBot.define do
     title        { Faker::Book.title }
     description  { Faker::ChuckNorris.fact }
     # image        { nil }
-    video_link   { video_samples.sample }
+    video_uri   { video_samples.sample }
     tech_help    { ['true', 'false'].sample }
     housing      { Faker::Boolean.boolean }
     catering     { Faker::Boolean.boolean }
@@ -31,7 +31,7 @@ FactoryBot.define do
   factory :invalid_tour, parent: :tour do
     title        { nil }
     description  { nil }
-    video_link   { nil }
+    video_uri   { nil }
     tech_help    { nil }
     housing      { nil }
     catering     { nil }

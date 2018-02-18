@@ -14,7 +14,7 @@ class Tour < ApplicationRecord
   validates :title,      presence: true, length: { minimum: 2 }
   validates :description,presence: true, length: { minimum: 2 }
   # validates :image,      presence: true
-  validates :video_link, presence: true, length: { minimum: 2 }
+  validates :video_uri, presence: true, length: { minimum: 2 }
   validates :tech_help,  inclusion: { in: [ true, false ] }
   validates :housing,    inclusion: { in: [ true, false ] }
   validates :catering,   inclusion: { in: [ true, false ] }

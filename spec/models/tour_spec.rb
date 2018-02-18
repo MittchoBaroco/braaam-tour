@@ -26,7 +26,7 @@ RSpec.describe Tour, type: :model do
       expect( invalid_tour.errors.messages).to eq(
                   { :title=>["can't be blank", "is too short (minimum is 2 characters)"],
                     :description=>["can't be blank", "is too short (minimum is 2 characters)"],
-                    :video_link=>["can't be blank", "is too short (minimum is 2 characters)"],
+                    :video_uri=>["can't be blank", "is too short (minimum is 2 characters)"],
                     :tech_help=>["is not included in the list"],
                     :housing=>["is not included in the list"],
                     :catering=>["is not included in the list"],

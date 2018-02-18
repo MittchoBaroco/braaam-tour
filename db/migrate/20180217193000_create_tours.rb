@@ -8,7 +8,7 @@ class CreateTours < ActiveRecord::Migration[5.2]
       t.string   :title
       t.text     :description
       # t.file    :image
-      t.string   :video_link
+      t.string   :video_uri
       t.boolean  :tech_help
       t.boolean  :housing
       t.boolean  :catering
