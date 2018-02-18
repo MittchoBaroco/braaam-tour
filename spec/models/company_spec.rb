@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Company, type: :model do
 
-    let!(:company)          { FactoryBot.create(:company) }
+    let!(:tour)         { FactoryBot.create(:tour) }
+    let!(:company)      { FactoryBot.create(:company) }
+    let!(:tour_date)    { FactoryBot.create(:tour_date, tour: tour,
+                                                        company: company) }
+
     let(:invalid_company)   { FactoryBot.build(:invalid_company) }
     let(:duplicate_company) { FactoryBot.build(:company, email: company.email) }
 
@@ -28,12 +32,12 @@ RSpec.describe Company, type: :model do
       end
     end
 
-    xcontext "Check company Relationships" do
+    context "Check company Relationships" do
       it "company can find their associated dates" do
-        expect( company.event_dates ).to eq( [event_dates] )
+        expect( company.tour_dates ).to eq( [tour_date] )
       end
       it "company can find their associated events" do
-        expect( company.events ).to eq( [events] )
+        expect( company.tours ).to eq( [tour] )
       end
     end
 

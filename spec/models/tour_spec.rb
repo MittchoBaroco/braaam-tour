@@ -3,9 +3,19 @@ require 'rails_helper'
 RSpec.describe Tour, type: :model do
 
   let!(:tour)         { FactoryBot.create(:tour) }
+  let!(:company)      { FactoryBot.create(:company) }
+  let!(:award)        { FactoryBot.create(:award, tour: tour) }
+  let!(:tour_date)    { FactoryBot.create(:tour_date, tour: tour,
+                                                      company: company) }
+
   let(:invalid_tour)  { FactoryBot.build(:invalid_tour) }
   let(:negative_tour) { FactoryBot.build(:negative_tour) }
-  let!(:award)        { FactoryBot.create(:award, tour: tour) }
+
+  let!(:awarded_tour) {   FactoryBot.create(:tour) }
+  let!(:awards)       { [ FactoryBot.create(:award, tour: awarded_tour),
+                          FactoryBot.create(:award, tour: awarded_tour) ] }
+  let!(:tour_dates)   { [ FactoryBot.create(:tour_date, tour: awarded_tour),
+                          FactoryBot.create(:tour_date, tour: awarded_tour) ] }
 
   context "verify factory" do
     it "correctly builds tour" do
@@ -35,14 +45,20 @@ RSpec.describe Tour, type: :model do
   end
 
   context "Check tour Relationships" do
-    it "tour can find their associated awards" do
+    it "tour can find its associated award" do
       expect( tour.awards ).to eq( [award] )
     end
-    xit "tour can find their associated tour_dates" do
-      expect( tour.tour_dates ).to eq( [tour_dates] )
+    it "awarded_tour can find their associated awards" do
+      expect( awarded_tour.awards ).to eq( awards )
     end
-    xit "tour can find their associated companies (through dates)" do
-      expect( tour.companies ).to eq( [companies] )
+    it "tour can find its associated tour_date" do
+      expect( tour.tour_dates ).to eq( [tour_date] )
+    end
+    it "awarded_tour can find their associated tour_dates" do
+      expect( awarded_tour.tour_dates ).to eq( tour_dates )
+    end
+    it "tour can find their associated companies (through dates)" do
+      expect( tour.companies ).to eq( [company] )
     end
   end
 

@@ -3,7 +3,9 @@ class Tour < ApplicationRecord
   CURRENCIES = %w(CHF EUR)
 
   has_many :awards
-  has_many :event_dates
+  has_many :tour_dates
+  has_many :companies, through: :tour_dates
+
   has_one_attached :image
 
   monetize :price_braaam_cents, allow_nil: false,

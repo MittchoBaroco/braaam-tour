@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Award, type: :model do
 
-  let!(:award)         { FactoryBot.create(:award) }
+  let!(:tour)          { FactoryBot.create(:tour) }
+  let!(:award)         { FactoryBot.create(:award, tour: tour) }
   let(:invalid_award)  { FactoryBot.build(:invalid_award) }
   let(:duplicate_award){ FactoryBot.build(:award,caption: award.caption,
                                                 institution: award.institution,
@@ -33,12 +34,9 @@ RSpec.describe Award, type: :model do
     end
   end
 
-  xcontext "Check award Relationships" do
-    it "award can find their associated dates" do
-      expect( award.event_dates ).to eq( [event_dates] )
-    end
-    it "award can find their associated events" do
-      expect( award.events ).to eq( [events] )
+  context "Check award Relationships" do
+    it "award can find their associated tour" do
+      expect( award.tour ).to eq( tour )
     end
   end
 end
