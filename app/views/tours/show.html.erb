@@ -33,6 +33,9 @@
           <%= c "tour/section_side", type: "needs" do %>
           <% end %>
           <%= c "tour/section_side", type: "dates" do %>
+            <% @tour.tour_dates.each do |date| %>
+              <%= c "tour/booking_btn", date: date.day %>
+            <% end %>
           <% end %>
           <%= c "tour/section_side", type: "prices" do %>
             <div style="text-decoration: line-through">
