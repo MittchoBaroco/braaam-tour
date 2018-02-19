@@ -7,6 +7,8 @@ class CreateAwards < ActiveRecord::Migration[5.2]
     create_table :awards do |t|
       t.string  :caption
       t.string  :institution
+      # t.string  :city
+      t.string  :country
       t.string  :award_year
       t.references :tour, foreign_key: true
 

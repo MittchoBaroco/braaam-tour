@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2018_02_18_084710) do
   create_table "awards", force: :cascade do |t|
     t.string "caption"
     t.string "institution"
+    t.string "country"
     t.string "award_year"
     t.bigint "tour_id"
     t.datetime "created_at", null: false
