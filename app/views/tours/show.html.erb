@@ -35,6 +35,12 @@
           <%= c "tour/section_side", type: "dates" do %>
           <% end %>
           <%= c "tour/section_side", type: "prices" do %>
+            <div style="text-decoration: line-through">
+              Initial price: <%= @tour.price_normal %> <%= @tour.price_normal.currency %>
+            </div>
+            <div>
+              Braaamed price: <strong><%= @tour.price_braaam %> <%= @tour.price_braaam.currency %></strong>
+            </div>
           <% end %>
         <% end %>
       <% end %>
