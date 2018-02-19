@@ -30,7 +30,12 @@
 
       <%= c "column", size: 4 do %>
         <%= c "tour/side" do %>
-          "test"
+          <%= c "tour/section_side", type: "needs" do %>
+          <% end %>
+          <%= c "tour/section_side", type: "dates" do %>
+          <% end %>
+          <%= c "tour/section_side", type: "prices" do %>
+          <% end %>
         <% end %>
       <% end %>
 

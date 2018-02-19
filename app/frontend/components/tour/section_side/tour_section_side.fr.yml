@@ -1,0 +1,5 @@
+fr:
+  tour_section_side_component:
+    needs_title: Besoins
+    dates_title: Dates
+    prices_title: Prix
