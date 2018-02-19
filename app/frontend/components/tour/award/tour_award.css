@@ -1,0 +1,7 @@
+.tour-award {
+  margin-bottom: 10px;
+
+  &--caption {
+    font-weight: 700;
+  }
+}
