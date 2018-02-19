@@ -1,20 +1,37 @@
 <%= c "hero_picture", source: "https://www.braaam.com/images/sfondo2.png", alt: "Braaam image" %>
 <%= c "container" do %>
-  <%= c "tour/title", text: @tour.title %>
-  <%= c "tour/description", text: @tour.description %>
-  <%= c "tour/call_to_action" %>
 
-  <% unless @tour.awards.empty? %>
+  <div>
+    <%= c "row" do %>
 
-    <%= c "tour/section", type: "awards" do %>
-      <% @tour.awards.each do |award| %>
-        <%= c "tour/award",
-          caption: award.caption,
-          year: award.award_year,
-          institution: award.institution
-        %>
+      <%= c "column", size: 8 do %>
+
+        <%= c "tour/title", text: @tour.title %>
+        <%= c "tour/description", text: @tour.description %>
+        <%= c "tour/call_to_action" %>
+
+        <% unless @tour.awards.empty? %>
+
+          <%= c "tour/section", type: "awards" do %>
+
+            <% @tour.awards.each do |award| %>
+              <%= c "tour/award",
+                caption: award.caption,
+                year: award.award_year,
+                institution: award.institution
+              %>
+            <% end %>
+
+          <% end %>
+
+        <% end %>
+
       <% end %>
-    <% end %>
 
-  <% end %>
+      <%= c "column", size: 4 do %>
+      <% end %>
+
+    <% end %>
+  </div>
+
 <% end %>

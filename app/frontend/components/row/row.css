@@ -1,0 +1,17 @@
+.container .row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.row .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .row,
+  .container .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
