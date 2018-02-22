@@ -31,6 +31,12 @@
       <%= c "column", size: 4 do %>
         <%= c "tour/side" do %>
           <%= c "tour/section_side", type: "needs" do %>
+
+            <%= c "tour/need", value: @tour.tech_help, type: "independent" %>
+            <%= c "tour/need", value: @tour.housing, type: "housing" %>
+            <%= c "tour/need", value: @tour.catering, type: "catering" %>
+            <%= c "tour/need", value: @tour.transport, type: "transport" %>
+
           <% end %>
           <%= c "tour/section_side", type: "dates" do %>
             <% @tour.tour_dates.each do |date| %>

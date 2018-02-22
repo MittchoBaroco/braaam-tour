@@ -35,7 +35,7 @@ gem 'validates_timeliness', '~> 4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem "komponent"
+gem "komponent", git: "https://github.com/komposable/komponent"
 
 group :development, :test do
   gem 'faker', '~> 1.8'

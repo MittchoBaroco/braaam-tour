@@ -1,0 +1,15 @@
+.tour-need {
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  &--text {
+    display: inline-block;
+    margin-left: 6px;
+  }
+
+  &--icon {
+    vertical-align: middle;
+    display: inline-block;
+    width: 20px;
+  }
+}

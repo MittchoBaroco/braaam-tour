@@ -6,3 +6,4 @@ import "components/tour/award/tour_award";
 import "components/tour/side/tour_side";
 import "components/tour/section_side/tour_section_side";
 import "components/tour/booking_btn/tour_booking_btn";
+import "components/tour/need/tour_need";
