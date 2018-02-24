@@ -1,3 +1,5 @@
+[ ![Codeship Status for MittchoBaroco/braaam-tour](https://app.codeship.com/projects/5d31d5a0-fbdf-0135-72c9-66c5fb47d67c/status?branch=master)](https://app.codeship.com/projects/278996)
+
 # README
 
 ## TODO:
