@@ -5,7 +5,7 @@ class BookingMailer < ApplicationMailer
   #
   #   en.booking_mailer.creation_confirmation.subject
   #
-  def creation_confirmation(compagny, date, tour_name)
+  def booking_confirmation(compagny, date, tour_name)
     @company_name = compagny.name
     @company_email = compagny.email
     @booked_date = date

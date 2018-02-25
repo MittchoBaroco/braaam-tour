@@ -5,8 +5,8 @@ RSpec.describe BookingMailer, type: :mailer do
   let(:tour_name) { "Mr Banana" }
   let(:date) { Date.today }
 
-  describe "creation_confirmation" do
-    let(:mail) { BookingMailer.creation_confirmation(company, date, tour_name) }
+  describe "booking_confirmation" do
+    let(:mail) { BookingMailer.booking_confirmation(company, date, tour_name) }
 
     it "renders the headers" do
       expect(mail.subject).to eq("Confirmation de reservation pour #{tour_name}")
