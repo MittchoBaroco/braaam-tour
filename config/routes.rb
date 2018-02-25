@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :tours
+  resources :tours, only: [:show, :index]
 end
