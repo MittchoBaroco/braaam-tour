@@ -1,0 +1,10 @@
+fr:
+  tour_need_component:
+    true_independent: "100% autonome"
+    false_independent: "requiert assistance technique"
+    true_catering: "restauration requis"
+    false_catering: "restauration requis"
+    true_housing: "hébergement requis"
+    false_housing: "hébergement non requis"
+    true_transport: "transport inclus"
+    false_transport: "transport non inclus"

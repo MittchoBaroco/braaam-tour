@@ -1,0 +1,60 @@
+<%= c "hero_picture", source: "https://www.braaam.com/images/sfondo2.png", alt: "Braaam image" %>
+<%= c "container" do %>
+
+  <div>
+    <%= c "row" do %>
+
+      <%= c "column", size: 8 do %>
+
+        <%= c "tour/title", text: @tour.title %>
+        <%= c "tour/description", text: @tour.description %>
+        <%= c "tour/call_to_action" %>
+
+        <% unless @tour.awards.empty? %>
+
+          <%= c "tour/section", type: "awards" do %>
+
+            <% @tour.awards.each do |award| %>
+              <%= c "tour/award",
+                caption: award.caption,
+                year: award.award_year,
+                institution: award.institution
+              %>
+            <% end %>
+
+          <% end %>
+
+        <% end %>
+
+      <% end %>
+
+      <%= c "column", size: 4 do %>
+        <%= c "tour/side" do %>
+          <%= c "tour/section_side", type: "needs" do %>
+
+            <%= c "tour/need", value: @tour.tech_help, type: "independent" %>
+            <%= c "tour/need", value: @tour.housing, type: "housing" %>
+            <%= c "tour/need", value: @tour.catering, type: "catering" %>
+            <%= c "tour/need", value: @tour.transport, type: "transport" %>
+
+          <% end %>
+          <%= c "tour/section_side", type: "dates" do %>
+            <% @tour.tour_dates.each do |date| %>
+              <%= c "tour/booking_btn", date: date.day %>
+            <% end %>
+          <% end %>
+          <%= c "tour/section_side", type: "prices" do %>
+            <div style="text-decoration: line-through">
+              Initial price: <%= @tour.price_normal %> <%= @tour.price_normal.currency %>
+            </div>
+            <div>
+              Braaamed price: <strong><%= @tour.price_braaam %> <%= @tour.price_braaam.currency %></strong>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+
+    <% end %>
+  </div>
+
+<% end %>

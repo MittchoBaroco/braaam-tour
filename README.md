@@ -5,6 +5,7 @@
 * create .rbenv-vars file with key
 * validations for the Tour image (present and file types)
 * configure amazon uploads for production - in credentials enc
+* figure how to pass scss varaibles to components
 
 ## Start your development servers
 
