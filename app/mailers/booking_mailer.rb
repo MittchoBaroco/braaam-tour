@@ -19,9 +19,12 @@ class BookingMailer < ApplicationMailer
   #
   #   en.booking_mailer.admins_notification.subject
   #
-  def admins_notification
-    @greeting = "Hi"
+  def admins_notification(compagny, date, tour_name)
+    @company_name = compagny.name
+    @company_email = compagny.email
+    @booked_date = date
+    @tour_name = tour_name
 
-    mail to: "to@example.org"
+    mail to: "jd.zaccariotto@gmail.com", subject: "Notification de reservation pour #{tour_name}"
   end
 end

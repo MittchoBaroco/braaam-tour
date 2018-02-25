@@ -20,16 +20,16 @@ RSpec.describe BookingMailer, type: :mailer do
   end
 
   describe "admins_notification" do
-    let(:mail) { BookingMailer.admins_notification }
+    let(:mail) { BookingMailer.admins_notification(company, date, tour_name) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Admins notification")
-      expect(mail.to).to eq(["to@example.org"])
+      expect(mail.subject).to eq("Notification de reservation pour #{tour_name}")
+      expect(mail.to).to eq(["jd.zaccariotto@gmail.com"])
       expect(mail.from).to eq(["no-reply@braaam.com"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+      expect(mail.body.encoded).to match("Braaam")
     end
   end
 

@@ -16,7 +16,7 @@ class BookingMailerPreview < ActionMailer::Preview
     tour_name = "Mr Banana"
     date = Date.today
 
-    BookingMailer.admins_notification
+    BookingMailer.admins_notification(company, date, tour_name)
   end
 
 end

@@ -1,5 +1,9 @@
-<h1>Booking#admins_notification</h1>
+<h1><span style="font-size:14px">Une nouvelle réservation vient d'être effectué,</span></h1>
 
-<p>
-  <%= @greeting %>, find me in app/views/booking_mailer/admins_notification.html.erb
-</p>
+<ul>
+  <li>Tournée: <%= @tour_name %></li>
+  <li>Date résérvé: <%= @booked_date %></li>
+  <li>Client: <%= @company_name %> - <%= @company_email %></li>
+</ul>
+
+<p><span style="font-size:14px">Merci de prendre les mesures nécessaires.</span></p>
