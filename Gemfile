@@ -36,6 +36,11 @@ gem 'validates_timeliness', '~> 4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# authentication
+# https://gorails.com/episodes/user-authentication-with-devise
+gem 'devise'
+
+# separate views from ruby code
 gem "komponent"
 
 group :development, :test do
