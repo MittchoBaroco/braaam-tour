@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Tour, type: :model do
 
-  let!(:tour)       { FactoryBot.create(:tour) }
-  let!(:tour_with_awards)       { FactoryBot.create(:tour, :with_awards) }
+  let!(:tour)             { FactoryBot.create(:tour) }
+  let!(:tour_with_awards) { FactoryBot.create(:tour, :with_awards) }
 
   context "verify factories" do
     it 'has a valid Factory' do
