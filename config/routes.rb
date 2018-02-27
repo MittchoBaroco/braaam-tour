@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :managers
   resources :tours, only: [:show, :index]
-  scope 'admin', module: 'admin', as: 'admin' do
+  namespace :admin do
     resources :awards
     resources :companies
     resources :managers
