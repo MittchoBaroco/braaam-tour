@@ -62,7 +62,8 @@ RSpec.describe Admin::ToursController, type: :controller do
 
       it "redirects to the created admin_tour" do
         post :create, params: {admin_tour: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Tour.last)
+        # expect(response).to redirect_to(Tour.last)
+        expect(response).to redirect_to( admin_tour_path(Tour.last) )
       end
     end
 
@@ -88,7 +89,8 @@ RSpec.describe Admin::ToursController, type: :controller do
       it "redirects to the admin_tour" do
         tour = Tour.create! valid_attributes
         put :update, params: {id: tour.to_param, admin_tour: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(tour)
+        # expect(response).to redirect_to(tour)
+        expect(response).to redirect_to( admin_tour_path(tour) )
       end
     end
 
