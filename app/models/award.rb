@@ -1,6 +1,6 @@
 class Award < ApplicationRecord
 
-  belongs_to :tour
+  belongs_to :tour #, optional: true
 
   validates :caption,     presence: true, length: { minimum: 2 }
   validates :institution, presence: true, length: { minimum: 2 }
