@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admin Tour Dates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_tour_dates.each do |admin_tour_date| %>
+      <tr>
+        <td><%= link_to 'Show', admin_tour_date %></td>
+        <td><%= link_to 'Edit', edit_admin_tour_date_path(admin_tour_date) %></td>
+        <td><%= link_to 'Destroy', admin_tour_date, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Admin Tour Date', new_admin_tour_date_path %>
