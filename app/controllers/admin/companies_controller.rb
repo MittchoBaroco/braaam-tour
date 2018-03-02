@@ -31,6 +31,7 @@ class Admin::CompaniesController < ApplicationController
         # format.html { redirect_to @admin_company, notice: 'Company was successfully updated.' }
         # format.json { render :show, status: :ok, location: @admin_company }
         format.html { redirect_to admin_company_path(@admin_company), notice: 'Company was successfully created.' }
+        # TODO: not sure what location does - test (or Remove)
         format.json { render :show, status: :created, location: admin_company_path(@admin_company) }
       else
         format.html { render :new }
@@ -47,6 +48,7 @@ class Admin::CompaniesController < ApplicationController
         # format.html { redirect_to @admin_company, notice: 'Company was successfully updated.' }
         # format.json { render :show, status: :ok, location: @admin_company }
         format.html { redirect_to admin_company_path(@admin_company), notice: 'Company was successfully created.' }
+        # TODO: not sure what location does - test (or Remove)
         format.json { render :show, status: :ok, location: admin_company_path(@admin_company) }
       else
         format.html { render :edit }
@@ -73,7 +75,7 @@ class Admin::CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_company_params
-      # params.fetch(:admin_company, {})
-      params.require(:admin_company).permit(:email, :name)
+      params.fetch(:admin_company, {}).permit(:email, :name)
+      # params.require(:admin_company).permit(:email, :name)
     end
 end
