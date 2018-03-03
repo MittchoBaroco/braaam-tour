@@ -1,6 +1,7 @@
-# logged_in helper for devise access to controllers
-# https://github.com/plataformatec/devise/wiki/how-to:-stub-authentication-in-controller-specs
+# spec/support/controller_helpers.rb
 
+# sign_in helper for devise access to controllers
+# https://github.com/plataformatec/devise/wiki/how-to:-stub-authentication-in-controller-specs
 module ControllerHelpers
   # def sign_in( user = FactoryBot.create(:manager) )
   def sign_in( user )
