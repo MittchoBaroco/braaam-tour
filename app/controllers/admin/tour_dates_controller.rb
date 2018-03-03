@@ -1,4 +1,5 @@
 class Admin::TourDatesController < ApplicationController
+  # before_action :authenticate_manager!
   before_action :set_admin_tour_date, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/tour_dates
