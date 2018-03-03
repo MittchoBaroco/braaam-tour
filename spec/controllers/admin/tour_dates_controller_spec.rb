@@ -46,15 +46,15 @@ RSpec.describe Admin::TourDatesController, type: :controller do
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from POST #create to login page" do
-        post :create, params: {admin_tour: invalid_attributes}
+        post :create, params: {admin_tour_date: invalid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from PUT #show to login page" do
-        put :update, params: {id: tour_date.to_param, admin_tour: new_attributes}
+        put :update, params: {id: tour_date.to_param, admin_tour_date: new_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from PATCH #show to login page" do
-        patch :update, params: {id: tour_date.to_param, admin_tour: new_attributes}
+        patch :update, params: {id: tour_date.to_param, admin_tour_date: new_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from DELETE #destroy to login page" do
