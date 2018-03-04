@@ -48,4 +48,11 @@ RSpec.describe BookingDate, type: :model do
     it { should belong_to(:company).optional }
   end
 
+  context "test scopes" do
+    it "properly selects and orders future dates"
+    it "properly selects and orders past dates"
+    it "properly selects and orders dates after X"
+    it "properly selects and orders dates before X"
+  end
+
 end

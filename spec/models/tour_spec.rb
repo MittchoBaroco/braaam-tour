@@ -52,4 +52,18 @@ RSpec.describe Tour, type: :model do
     it { should have_many(:companies).through(:booking_dates) }
   end
 
+  context "test scopes" do
+    it "properly selects and orders future tours"
+    it "properly selects and orders past tours"
+    it "properly selects and orders tours with events after X"
+    it "properly selects and orders tours with events before X"
+  end
+
+  context "test nested attributes" do
+    it "properly creates a tour with awards"
+    it "properly creates a tour with event_dates"
+    it "properly adds awards to an existing tour"
+    it "properly adds event_dates to an existing tour"
+  end
+
 end
