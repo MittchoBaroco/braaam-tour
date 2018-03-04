@@ -12,9 +12,11 @@
   <tbody>
     <% @admin_managers.each do |admin_manager| %>
       <tr>
-        <td><%= link_to 'Show', admin_manager %></td>
+        <td><%= link_to 'Show', admin_manager_path(admin_manager) %></td>
         <td><%= link_to 'Edit', edit_admin_manager_path(admin_manager) %></td>
-        <td><%= link_to 'Destroy', admin_manager, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', admin_manager_path(admin_manager),
+                                    method: :delete,
+                                    data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

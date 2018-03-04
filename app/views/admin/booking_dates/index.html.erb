@@ -12,9 +12,9 @@
   <tbody>
     <% @admin_booking_dates.each do |admin_booking_date| %>
       <tr>
-        <td><%= link_to 'Show', admin_booking_date %></td>
+        <td><%= link_to 'Show', admin_booking_date_path(admin_booking_date) %></td>
         <td><%= link_to 'Edit', edit_admin_booking_date_path(admin_booking_date) %></td>
-        <td><%= link_to 'Destroy', admin_booking_date, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', admin_booking_date_path(admin_booking_date), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

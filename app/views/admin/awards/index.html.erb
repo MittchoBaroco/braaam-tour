@@ -12,9 +12,9 @@
   <tbody>
     <% @admin_awards.each do |admin_award| %>
       <tr>
-        <td><%= link_to 'Show', admin_award %></td>
+        <td><%= link_to 'Show', admin_award_path(admin_award) %></td>
         <td><%= link_to 'Edit', edit_admin_award_path(admin_award) %></td>
-        <td><%= link_to 'Destroy', admin_award, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', admin_award_path(admin_award), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
