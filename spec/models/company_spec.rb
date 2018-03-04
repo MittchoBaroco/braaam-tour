@@ -25,8 +25,8 @@ RSpec.describe Company, type: :model do
     end
 
     context "Check company Relationships" do
-      it { should have_many(:tour_dates) }
-      it { should have_many(:tours).through(:tour_dates) }
+      it { should have_many(:tour_booking_dates) }
+      it { should have_many(:tours).through(:tour_booking_dates) }
     end
 
 end

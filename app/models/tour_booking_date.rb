@@ -1,4 +1,4 @@
-class TourDate < ApplicationRecord
+class TourBookingDate < ApplicationRecord
 
   belongs_to :tour
   belongs_to :company, optional: true

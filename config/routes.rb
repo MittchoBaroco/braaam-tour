@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :awards
     resources :companies
     resources :managers
-    resources :tour_dates
+    resources :tour_booking_dates
     resources :tours
   end
   root to: "tours#index"

@@ -77,15 +77,15 @@ ActiveRecord::Schema.define(version: 2018_02_26_141355) do
     t.index ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true
   end
 
-  create_table "tour_dates", force: :cascade do |t|
+  create_table "tour_booking_dates", force: :cascade do |t|
     t.date "day"
     t.bigint "tour_id"
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_tour_dates_on_company_id"
-    t.index ["day", "tour_id"], name: "index_tour_dates_on_day_and_tour_id", unique: true
-    t.index ["tour_id"], name: "index_tour_dates_on_tour_id"
+    t.index ["company_id"], name: "index_tour_booking_dates_on_company_id"
+    t.index ["day", "tour_id"], name: "index_tour_booking_dates_on_day_and_tour_id", unique: true
+    t.index ["tour_id"], name: "index_tour_booking_dates_on_tour_id"
   end
 
   create_table "tours", force: :cascade do |t|
@@ -106,6 +106,6 @@ ActiveRecord::Schema.define(version: 2018_02_26_141355) do
   end
 
   add_foreign_key "awards", "tours"
-  add_foreign_key "tour_dates", "companies"
-  add_foreign_key "tour_dates", "tours"
+  add_foreign_key "tour_booking_dates", "companies"
+  add_foreign_key "tour_booking_dates", "tours"
 end

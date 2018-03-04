@@ -48,8 +48,8 @@ RSpec.describe Tour, type: :model do
 
   context "Check company Relationships" do
     it { should have_many(:awards) }
-    it { should have_many(:tour_dates) }
-    it { should have_many(:companies).through(:tour_dates) }
+    it { should have_many(:tour_booking_dates) }
+    it { should have_many(:companies).through(:tour_booking_dates) }
   end
 
 end

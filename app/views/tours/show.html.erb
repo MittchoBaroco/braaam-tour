@@ -39,7 +39,7 @@
 
           <% end %>
           <%= c "tour/section_side", type: "dates" do %>
-            <% @tour.tour_dates.each do |date| %>
+            <% @tour.tour_booking_dates.each do |date| %>
               <%= c "tour/booking_btn", date: date.day %>
             <% end %>
           <% end %>
