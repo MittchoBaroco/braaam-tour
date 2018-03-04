@@ -127,24 +127,18 @@ RSpec.describe Admin::AwardsController, type: :controller do
 
     describe "PUT #update" do
       context "with valid params" do
-        # let(:new_attributes) {
-        #   {caption: "GREAT"}
-        # }
         it "updates the requested admin_award" do
-          # award = Award.create! valid_attributes
           put :update, params: {id: award.to_param, admin_award: new_attributes}, session: valid_session
           award.reload
           expect(award.caption).to eq("GREAT")
         end
         it "redirects to the admin_award" do
-          # award = Award.create! valid_attributes
           put :update, params: {id: award.to_param, admin_award: valid_attributes}, session: valid_session
           expect(response).to redirect_to( admin_award_path(award) )
         end
       end
       context "with invalid params" do
         it "returns a success response (i.e. to display the 'edit' template)" do
-          # award = Award.create! valid_attributes
           put :update, params: {id: award.to_param, admin_award: invalid_attributes}, session: valid_session
           expect(response).to be_successful
         end
@@ -153,13 +147,11 @@ RSpec.describe Admin::AwardsController, type: :controller do
 
     describe "DELETE #destroy" do
       it "destroys the requested admin_award" do
-        # award = Award.create! valid_attributes
         expect {
           delete :destroy, params: {id: award.to_param}, session: valid_session
         }.to change(Award, :count).by(-1)
       end
       it "redirects to the admin_awards list" do
-        # award = Award.create! valid_attributes
         delete :destroy, params: {id: award.to_param}, session: valid_session
         expect(response).to redirect_to(admin_awards_url)
       end

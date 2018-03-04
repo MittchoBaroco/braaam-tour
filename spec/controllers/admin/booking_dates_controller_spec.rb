@@ -74,7 +74,6 @@ RSpec.describe Admin::BookingDatesController, type: :controller do
 
     describe "GET #index" do
       it "returns a success response" do
-        # booking_date = BookingDate.create! valid_attributes
         get :index, params: {}, session: valid_session
         expect(response).to be_successful
       end
@@ -82,7 +81,6 @@ RSpec.describe Admin::BookingDatesController, type: :controller do
 
     describe "GET #show" do
       it "returns a success response" do
-        # booking_date = BookingDate.create! valid_attributes
         get :show, params: {id: booking_date.to_param}, session: valid_session
         expect(response).to be_successful
       end
@@ -96,7 +94,6 @@ RSpec.describe Admin::BookingDatesController, type: :controller do
     end
     describe "GET #edit" do
       it "returns a success response" do
-        # booking_date = BookingDate.create! valid_attributes
         get :edit, params: {id: booking_date.to_param}, session: valid_session
         expect(response).to be_successful
       end
@@ -125,20 +122,17 @@ RSpec.describe Admin::BookingDatesController, type: :controller do
     describe "PUT #update" do
       context "with valid params" do
         it "updates the requested admin_booking_date" do
-          # booking_date = BookingDate.create! valid_attributes
           put :update, params: {id: booking_date.to_param, admin_booking_date: new_attributes}, session: valid_session
           booking_date.reload
           expect( booking_date.day ).to eq( Date.tomorrow )
         end
         it "redirects to the admin_booking_date" do
-          # booking_date = BookingDate.create! valid_attributes
           put :update, params: {id: booking_date.to_param, admin_booking_date: valid_attributes}, session: valid_session
           expect(response).to redirect_to( admin_booking_date_path(booking_date) )
         end
       end
       context "with invalid params" do
         it "returns a success response (i.e. to display the 'edit' template)" do
-          # booking_date = BookingDate.create! valid_attributes
           put :update, params: {id: booking_date.to_param, admin_booking_date: invalid_attributes}, session: valid_session
           expect(response).to be_successful
         end
@@ -147,13 +141,11 @@ RSpec.describe Admin::BookingDatesController, type: :controller do
 
     describe "DELETE #destroy" do
       it "destroys the requested admin_booking_date" do
-        # booking_date = BookingDate.create! valid_attributes
         expect {
           delete :destroy, params: {id: booking_date.to_param}, session: valid_session
         }.to change(BookingDate, :count).by(-1)
       end
       it "redirects to the admin_booking_dates list" do
-        # booking_date = BookingDate.create! valid_attributes
         delete :destroy, params: {id: booking_date.to_param}, session: valid_session
         expect(response).to redirect_to(admin_booking_dates_url)
       end
