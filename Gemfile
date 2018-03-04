@@ -55,6 +55,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry-rails' # , :require => false
   # rails security checker gem
   gem 'brakeman', :require => false
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
