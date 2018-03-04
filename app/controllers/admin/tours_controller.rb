@@ -85,7 +85,7 @@ class Admin::ToursController < ApplicationController
                                                               :institution,
                                                               :country,
                                                               :award_year],
-                                          tour_booking_dates_attributes: [:day,
+                                          booking_dates_attributes: [:day,
                                                                   :company]
                                         )
     end
