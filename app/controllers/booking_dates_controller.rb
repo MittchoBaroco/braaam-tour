@@ -12,11 +12,16 @@ class BookingDatesController < ApplicationController
         format.html { redirect_to @tour,
                       notice: 'Tour booking date was successfully updated.' }
         format.json { render :show, status: :ok, location: @tour }
-      else
+      elsif @company.blank?
         # format.html { render :edit }
         format.html { redirect_to @tour,
-                      notice: 'Tour booking failed.' }
-        format.json { render json: @tour.errors,
+                      notice: 'Tour booking failed - company not found' }
+        format.json { render json: @booking_date.errors,
+                      status: :unprocessable_entity }
+      else
+        format.html { redirect_to tours_path,
+                      notice: 'Tour booking failed - booking date not found' }
+        format.json { render json: @booking_date.errors,
                       status: :unprocessable_entity }
       end
     end
@@ -27,11 +32,16 @@ class BookingDatesController < ApplicationController
     def set_tour_booking_info
       @booking_date = BookingDate.find(params[:id])
       @tour         = @booking_date.tour
-      @company      = Company.find(params[:booking_date][:company_id])       if params[:booking_date][:company_id]
-      @company      = Company.find_by(email: params[:booking_date][:company_email]) if params[:booking_date][:company_email]
-      # byebug
-      # @company      = Company.find(params[:booking_date][:company_id])      if params[:booking_date][:company_id]
-      # @company      = Company.find_by(email: params[:booking_date][:email]) if params[:booking_date][:email]
+      begin
+        if params[:booking_date][:company_id]
+          @company      = Company.find(params[:booking_date][:company_id])
+        end
+        if params[:booking_date][:company_email]
+          @company      = Company.find_by(email: params[:booking_date][:company_email])
+        end
+      rescue ActiveRecord::RecordNotFound
+        @company = nil
+      end
     end
 
     # Never trust parameters from the scary internet, use the white list

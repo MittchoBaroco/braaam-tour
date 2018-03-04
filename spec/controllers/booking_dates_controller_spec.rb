@@ -20,10 +20,7 @@ RSpec.describe BookingDatesController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    {id: "john", company_id: "jane"}
-  }
-  let(:invalid_booking_id) {
-    {id: 0, company_id: company.id}
+    {id: booking_date.id, company_id: "jane"}
   }
   let(:invalid_company_id) {
     {id: booking_date.id, company_id: 0}
@@ -59,31 +56,28 @@ RSpec.describe BookingDatesController, type: :controller do
       end
     end
 
-    xcontext "with invalid params" do
+    context "with invalid params" do
       # test with bad: date_id, company_email
       it "returns error on tour page - with invalid_attributes" do
         #booking_date = BookingDate.create! valid_attributes
         put :commit, params: {id: booking_date.to_param,
                       booking_date: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
-      end
-      it "returns error on tour page - with bad booking_id" do
-        #booking_date = BookingDate.create! valid_attributes
-        put :commit, params: {id: booking_date.to_param,
-                      booking_date: invalid_booking_id}, session: valid_session
-        expect(response).to be_successful
+        # expect(response).to be_successful
+        expect(response).to redirect_to(booking_date.tour)
       end
       it "returns error on tour page - with bad company_id" do
         #booking_date = BookingDate.create! valid_attributes
         put :commit, params: {id: booking_date.to_param,
                       booking_date: invalid_company_id}, session: valid_session
-        expect(response).to be_successful
+        # expect(response).to be_successful
+        expect(response).to redirect_to(booking_date.tour)
       end
       it "returns error on tour page - with bad company_email" do
         #booking_date = BookingDate.create! valid_attributes
         put :commit, params: {id: booking_date.to_param,
                       booking_date: invalid_company_email}, session: valid_session
-        expect(response).to be_successful
+        # expect(response).to be_successful
+        expect(response).to redirect_to(booking_date.tour)
       end
     end
   end
