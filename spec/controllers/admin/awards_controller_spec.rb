@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Admin::AwardsController, type: :controller do
 
-  let(:valid_session) { {} }
   include Devise::Test::ControllerHelpers
 
   # test attributes

@@ -11,5 +11,9 @@ Rails.application.routes.draw do
     resources :tours
   end
   root to: "tours#index"
-  # add * route for bad pages
+  # default route for non-existent pages to avoid errors
+  # get "*path" => 'tours#index'
+  get '*path', to: redirect('/tours')
+  put '*path', to: redirect('/tours')
+  # patch '*', to: 'tours#index', to: redirect('/tours')
 end
