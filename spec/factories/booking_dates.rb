@@ -4,6 +4,10 @@ FactoryBot.define do
     tour    { FactoryHelpers.get_tour() }
   end
 
+  factory  :booked_date, parent: :booking_date do
+    company { FactoryHelpers.get_company() }
+  end
+
   trait :booked do
     company { FactoryHelpers.get_company() }
   end
