@@ -15,12 +15,12 @@ class BookingDatesController < ApplicationController
       elsif @company.blank?
         # format.html { render :edit }
         format.html { redirect_to @tour,
-                      notice: 'Tour booking failed - company not found' }
+                      alert: 'Tour booking failed - company not found' }
         format.json { render json: @booking_date.errors,
                       status: :unprocessable_entity }
       else
         format.html { redirect_to tours_path,
-                      notice: 'Tour booking failed - booking date not found' }
+                      alert: 'Tour booking failed - booking date not found' }
         format.json { render json: @booking_date.errors,
                       status: :unprocessable_entity }
       end
