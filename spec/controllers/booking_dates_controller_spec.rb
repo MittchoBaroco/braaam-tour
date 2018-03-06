@@ -34,7 +34,7 @@ RSpec.describe BookingDatesController, type: :controller do
   # BookingDatesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "PUT #commit" do
+  describe "PUT #signup" do
     context "with valid params" do
       it "updates the requested booking_date with company_id" do
         put :signup, params: {id: booking_date.to_param,

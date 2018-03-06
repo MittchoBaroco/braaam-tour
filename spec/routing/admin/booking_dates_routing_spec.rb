@@ -31,6 +31,22 @@ RSpec.describe Admin::BookingDatesController, type: :routing do
       expect(:patch => "/admin/booking_dates/1").to route_to("admin/booking_dates#update", :id => "1")
     end
 
+    it "routes to #signup via PUT" do
+      expect(:put => "/admin/booking_dates/signup/1").to route_to("admin/booking_dates#signup", :id => "1")
+    end
+
+    it "routes to #signup via PATCH" do
+      expect(:patch => "/admin/booking_dates/signup/1").to route_to("admin/booking_dates#signup", :id => "1")
+    end
+
+    it "routes to #cancel via PUT" do
+      expect(:put => "/admin/booking_dates/cancel/1").to route_to("admin/booking_dates#cancel", :id => "1")
+    end
+
+    it "routes to #cancel via PATCH" do
+      expect(:patch => "/admin/booking_dates/cancel/1").to route_to("admin/booking_dates#cancel", :id => "1")
+    end
+
     it "routes to #destroy" do
       expect(:delete => "/admin/booking_dates/1").to route_to("admin/booking_dates#destroy", :id => "1")
     end
