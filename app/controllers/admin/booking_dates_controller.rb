@@ -1,36 +1,27 @@
 class Admin::BookingDatesController < ApplicationController
   # before_action :authenticate_manager!
-  before_action :set_admin_booking_date, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_booking_date,
+                only: [:show, :edit, :update, :destroy, :signup, :cancel]
 
-  # GET /admin/booking_dates
-  # GET /admin/booking_dates.json
   def index
     @admin_booking_dates = BookingDate.all
   end
 
-  # GET /admin/booking_dates/1
-  # GET /admin/booking_dates/1.json
   def show
   end
 
-  # GET /admin/booking_dates/new
   def new
     @admin_booking_date = BookingDate.new
   end
 
-  # GET /admin/booking_dates/1/edit
   def edit
   end
 
-  # POST /admin/booking_dates
-  # POST /admin/booking_dates.json
   def create
     @admin_booking_date = BookingDate.new(admin_booking_date_params)
 
     respond_to do |format|
       if @admin_booking_date.save
-        # format.html { redirect_to @admin_booking_date, notice: 'Tour date was successfully created.' }
-        # format.json { render :show, status: :created, location: @admin_booking_date }
         format.html { redirect_to admin_booking_date_path(@admin_booking_date), notice: 'Tour date was successfully updated.' }
         format.json { render :show, status: :ok, location: admin_booking_date_path(@admin_booking_date) }
       else
@@ -45,13 +36,76 @@ class Admin::BookingDatesController < ApplicationController
   def update
     respond_to do |format|
       if @admin_booking_date.update(admin_booking_date_params)
-        # format.html { redirect_to @admin_booking_date, notice: 'Tour date was successfully updated.' }
-        # format.json { render :show, status: :ok, location: @admin_booking_date }
         format.html { redirect_to admin_booking_date_path(@admin_booking_date), notice: 'Tour date was successfully updated.' }
         format.json { render :show, status: :ok, location: admin_booking_date_path(@admin_booking_date) }
       else
         format.html { render :edit }
         format.json { render json: @admin_booking_date.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /admin/booking_dates/signup/1
+  # PATCH/PUT /admin/booking_dates/signup/1.json
+  def signup
+    respond_to do |format|
+      # TODO: add a company password check for commit?
+      tour = @admin_booking_date.tour
+
+      info =  { id: params[:id],
+                company_id: params[:admin_booking_date][:company_id],
+                company_email: params[:admin_booking_date][:company_email],
+              }
+      company, new_params = BookingStrategy.new(params: info,
+                                                action: :signup).run
+      if company and @admin_booking_date.update( new_params )
+        # TODO: email company of sucessful booking signup
+        format.html { redirect_to admin_booking_dates_path,
+                                  notice: 'Date was successfully booked.' }
+        format.json { render :show, status: :ok, location: tour }
+      elsif company.blank?
+        format.html { redirect_to admin_booking_dates_path,
+                                  alert: 'Booking failed - company not found' }
+        format.json { render json: @admin_booking_date.errors,
+                                  status: :unprocessable_entity }
+      else
+        format.html { redirect_to admin_booking_dates_path,
+                                  alert: 'Booking failed - unexpected error' }
+        format.json { render json: @admin_booking_date.errors,
+                                  status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /admin/booking_dates/signup/1
+  # PATCH/PUT /admin/booking_dates/signup/1.json
+  def cancel
+    respond_to do |format|
+      # TODO: add a company password check for commit?
+
+      tour = @admin_booking_date.tour
+
+      info =  { id: params[:id],
+                company_id: params[:admin_booking_date][:company_id],
+                company_email: params[:admin_booking_date][:company_email],
+              }
+      company, new_params = BookingStrategy.new(params: info,
+                                                action: :cancel).run
+      if company and @admin_booking_date.update( new_params )
+        # TODO: email company of sucessful booking signup
+        format.html { redirect_to admin_booking_dates_path,
+                                  notice: 'Date was successfully cancelled.' }
+        format.json { render :show, status: :ok, location: tour }
+      elsif company.blank?
+        format.html { redirect_to admin_booking_dates_path,
+                                  alert: 'cancellation failed - company not found' }
+        format.json { render json: @admin_booking_date.errors,
+                                  status: :unprocessable_entity }
+      else
+        format.html { redirect_to admin_booking_dates_path,
+                                  alert: 'cancellation failed - unexpected error' }
+        format.json { render json: @admin_booking_date.errors,
+                                  status: :unprocessable_entity }
       end
     end
   end
@@ -74,6 +128,6 @@ class Admin::BookingDatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_booking_date_params
-      params.fetch(:admin_booking_date, {}).permit(:day, :tour_id)
+      params.fetch(:admin_booking_date, {}).permit(:id, :day, :tour_id)
     end
 end
