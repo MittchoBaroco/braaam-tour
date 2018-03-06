@@ -37,20 +37,20 @@ RSpec.describe BookingDatesController, type: :controller do
   describe "PUT #commit" do
     context "with valid params" do
       it "updates the requested booking_date with company_id" do
-        put :commit, params: {id: booking_date.to_param,
+        put :signup, params: {id: booking_date.to_param,
                       booking_date: valid_attributes}, session: valid_session
         booking_date.reload
         expect(booking_date.company_id).to eq(company.id)
       end
       it "updates the requested booking_date with company_email" do
-        put :commit, params: {id: booking_date.to_param,
+        put :signup, params: {id: booking_date.to_param,
                       booking_date: valid_email}, session: valid_session
         booking_date.reload
         expect(booking_date.company_id).to eq(company.id)
       end
       it "redirects back to the tour" do
         # booking_date = BookingDate.create! valid_attributes
-        put :commit, params: {id: booking_date.to_param,
+        put :signup, params: {id: booking_date.to_param,
                       booking_date: valid_attributes}, session: valid_session
         expect(response).to redirect_to(booking_date.tour)
       end
@@ -60,21 +60,21 @@ RSpec.describe BookingDatesController, type: :controller do
       # test with bad: date_id, company_email
       it "returns error on tour page - with invalid_attributes" do
         #booking_date = BookingDate.create! valid_attributes
-        put :commit, params: {id: booking_date.to_param,
+        put :signup, params: {id: booking_date.to_param,
                       booking_date: invalid_attributes}, session: valid_session
         # expect(response).to be_successful
         expect(response).to redirect_to(booking_date.tour)
       end
       it "returns error on tour page - with bad company_id" do
         #booking_date = BookingDate.create! valid_attributes
-        put :commit, params: {id: booking_date.to_param,
+        put :signup, params: {id: booking_date.to_param,
                       booking_date: invalid_company_id}, session: valid_session
         # expect(response).to be_successful
         expect(response).to redirect_to(booking_date.tour)
       end
       it "returns error on tour page - with bad company_email" do
         #booking_date = BookingDate.create! valid_attributes
-        put :commit, params: {id: booking_date.to_param,
+        put :signup, params: {id: booking_date.to_param,
                       booking_date: invalid_company_email}, session: valid_session
         # expect(response).to be_successful
         expect(response).to redirect_to(booking_date.tour)

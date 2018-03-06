@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :managers
   resources :tours, only: [:show, :index]
-  put 'booking_dates/commit/:id',   to: 'booking_dates#commit'
-  patch 'booking_dates/commit/:id', to: 'booking_dates#commit'
+  put 'booking_dates/signup/:id',   to: 'booking_dates#signup'
+  patch 'booking_dates/signup/:id', to: 'booking_dates#signup'
   namespace :admin do
     resources :awards
     resources :companies
