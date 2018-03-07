@@ -2,16 +2,37 @@ require 'rails_helper'
 
 RSpec.describe Tour, type: :model do
 
-  let!(:tour)       { FactoryBot.create(:tour) }
-  let!(:tour_with_awards)       { FactoryBot.create(:tour, :with_awards) }
+  let!(:tour_in_week_awards){ FactoryBot.create(:tour, title: "In Week") }
+  let!(:tour_today_tomorrow){ FactoryBot.create(:tour, title: "Today & Tomorrow") }
+  let!(:tour_tomorrow)      { FactoryBot.create(:tour, title: "Tomorrow") }
+  let!(:tour_today)         { FactoryBot.create(:tour, title: "Today") }
+  # let!(:tour_yesterday)   { FactoryBot.create(:tour, title: "Yesterday") }
 
+  let!(:date_in_week)       { FactoryBot.create(:booking_date,
+                                                day: (Date.today + 7),
+                                                tour_id: tour_in_week_awards.id) }
+  let!(:date_tt_tomorrow)   { FactoryBot.create(:booking_date,
+                                                day: (Date.tomorrow),
+                                                tour_id: tour_today_tomorrow.id) }
+  let!(:date_tt_today)      { FactoryBot.create(:booking_date,
+                                                day: (Date.today),
+                                                tour_id: tour_today_tomorrow.id) }
+  let!(:date_tomorrow)      { FactoryBot.create(:booking_date,
+                                                day: (Date.tomorrow),
+                                                tour_id: tour_tomorrow.id) }
+  let!(:date_today)         { FactoryBot.create(:booking_date,
+                                                day: (Date.today),
+                                                tour_id: tour_today.id) }
+  # let!(:date_yesterday)   { FactoryBot.create(:booking_date,
+  #                                             day: (Date.yesterday),
+  #                                             tour_id: tour_yesterday.id) }
   context "verify factories" do
     it 'has a valid Factory' do
-      expect(tour).to be_valid
+      expect(tour_today).to be_valid
     end
 
     it 'has a valid Factory with awards' do
-      expect(tour_with_awards).to be_valid
+      expect(tour_in_week_awards).to be_valid
     end
   end
 
@@ -33,13 +54,13 @@ RSpec.describe Tour, type: :model do
     # money is not working with shoulda
 
     it "invalidated normal_price with 0" do
-      invalid_tour = tour.dup
+      invalid_tour = tour_today.dup
       invalid_tour.price_normal = -1
       expect(invalid_tour).to_not be_valid
     end
 
     it "invalidated braaam_price with 0" do
-      invalid_tour = tour.dup
+      invalid_tour = tour_today.dup
       invalid_tour.price_braaam = -1
       expect(invalid_tour).to_not be_valid
     end
@@ -48,8 +69,39 @@ RSpec.describe Tour, type: :model do
 
   context "Check company Relationships" do
     it { should have_many(:awards) }
-    it { should have_many(:tour_dates) }
-    it { should have_many(:companies).through(:tour_dates) }
+    it { should have_many(:booking_dates) }
+    it { should have_many(:companies).through(:booking_dates) }
+  end
+
+  context "test scopes" do
+    it "properly selects and orders future tours" do
+      response = Tour.future.pluck(:title)
+      correct  = [tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week_awards.title ]
+      expect(response).to eq( correct )
+    end
+    it "properly selects and orders current (today or future) tours" do
+      response = Tour.current.pluck(:title)
+      correct  = [tour_today_tomorrow.title, tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
+      expect(response).to eq( correct )
+    end
+    it "properly selects and orders tours with events after TOMORROW" do
+      response = Tour.after(Date.tomorrow).pluck(:title)
+      correct  = [tour_in_week_awards.title ]
+      expect(response).to eq( correct )
+    end
+    it "properly selects and orders tours with events before TOMORROW" do
+      response = Tour.before(Date.tomorrow).pluck(:title)
+      correct  = [tour_today_tomorrow.title, tour_today.title]
+      expect(response).to eq( correct )
+    end
+    it "properly selects and orders past tours"
+  end
+
+  context "test nested attributes" do
+    it "properly creates a tour with awards"
+    it "properly creates a tour with event_dates"
+    it "properly adds awards to an existing tour"
+    it "properly adds event_dates to an existing tour"
   end
 
 end

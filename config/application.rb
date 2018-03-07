@@ -1,6 +1,8 @@
 require_relative 'boot'
 
 require "rails"
+require 'pry-rails'
+# require "devise"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
@@ -21,6 +23,11 @@ module BraaamTour
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    # config.autoload_paths += %W(#{config.root}/lib)
+    # config.autoload_paths += %W(#{config.root}/service)
+    # config.autoload_paths += %W(#{config.root}/workflow)
+    # config.autoload_paths += %W(#{config.root}/app/service)
+    # config.autoload_paths += %W(#{config.root}/app/workflow)
 
     config.generators do |g|
       g.stylesheets     false

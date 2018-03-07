@@ -36,6 +36,11 @@ gem 'validates_timeliness', '~> 4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# authentication
+# https://gorails.com/episodes/user-authentication-with-devise
+gem 'devise'
+
+# separate views from ruby code
 gem "komponent"
 
 group :development, :test do
@@ -50,6 +55,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry-rails' # , :require => false
   # rails security checker gem
   gem 'brakeman', :require => false
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

@@ -1,4 +1,5 @@
 class ToursController < ApplicationController
+  skip_before_action :authenticate_manager!
   before_action :set_tour, only: [:show]
 
   # GET /tours
