@@ -2,9 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Tour, type: :model do
 
-  # let!(:tour)             { FactoryBot.create(:tour) }
-  # let!(:tour_with_awards) { FactoryBot.create(:tour, :with_awards) }
-
   let!(:tour_in_week_awards){ FactoryBot.create(:tour, title: "In Week") }
   let!(:tour_today_tomorrow){ FactoryBot.create(:tour, title: "Today & Tomorrow") }
   let!(:tour_tomorrow)      { FactoryBot.create(:tour, title: "Tomorrow") }
@@ -87,12 +84,12 @@ RSpec.describe Tour, type: :model do
       correct  = [tour_today_tomorrow.title, tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
       expect(response).to eq( correct )
     end
-    it "properly selects and orders tours with events after tomorrow" do
+    it "properly selects and orders tours with events after TOMORROW" do
       response = Tour.after(Date.tomorrow).pluck(:title)
       correct  = [tour_in_week_awards.title ]
       expect(response).to eq( correct )
     end
-    it "properly selects and orders tours with events before X" do
+    it "properly selects and orders tours with events before TOMORROW" do
       response = Tour.before(Date.tomorrow).pluck(:title)
       correct  = [tour_today_tomorrow.title, tour_today.title]
       expect(response).to eq( correct )
