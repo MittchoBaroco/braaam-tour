@@ -51,12 +51,7 @@ class Admin::BookingDatesController < ApplicationController
     respond_to do |format|
       # TODO: add a company password check for commit?
       tour = @admin_booking_date.tour
-
-      info =  { id: params[:id],
-                company_id: params[:admin_booking_date][:company_id],
-                company_email: params[:admin_booking_date][:company_email],
-              }
-      company, new_params = BookingStrategy.new(params: info,
+      company, new_params = BookingStrategy.new(params: get_booking_info,
                                                 action: :signup).run
       if company and @admin_booking_date.update( new_params )
         # TODO: email company of sucessful booking signup
@@ -82,14 +77,8 @@ class Admin::BookingDatesController < ApplicationController
   def cancel
     respond_to do |format|
       # TODO: add a company password check for commit?
-
       tour = @admin_booking_date.tour
-
-      info =  { id: params[:id],
-                company_id: params[:admin_booking_date][:company_id],
-                company_email: params[:admin_booking_date][:company_email],
-              }
-      company, new_params = BookingStrategy.new(params: info,
+      company, new_params = BookingStrategy.new(params: get_booking_info,
                                                 action: :cancel).run
       if company and @admin_booking_date.update( new_params )
         # TODO: email company of sucessful booking signup
@@ -124,6 +113,13 @@ class Admin::BookingDatesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_booking_date
       @admin_booking_date = BookingDate.find(params[:id])
+    end
+
+    def get_booking_info
+      { id: params[:id],
+        company_id: params[:admin_booking_date][:company_id],
+        company_email: params[:admin_booking_date][:company_email],
+      }
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

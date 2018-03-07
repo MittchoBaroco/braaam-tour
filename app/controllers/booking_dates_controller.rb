@@ -7,14 +7,8 @@ class BookingDatesController < ApplicationController
   def signup
     respond_to do |format|
       # TODO: add a company password check for commit?
-
       tour = @booking_date.tour
-
-      info =  { id: params[:id],
-                company_id: params[:booking_date][:company_id],
-                company_email: params[:booking_date][:company_email],
-              }
-      company, new_params = BookingStrategy.new(params: info,
+      company, new_params = BookingStrategy.new(params: get_booking_info,
                                                 action: :signup).run
       if company and @booking_date.update( new_params )
         # TODO: email company of sucessful booking signup
@@ -40,6 +34,13 @@ class BookingDatesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_booking_date
       @booking_date = BookingDate.find(params[:id])
+    end
+
+    def get_booking_info
+      { id: params[:id],
+        company_id: params[:booking_date][:company_id],
+        company_email: params[:booking_date][:company_email],
+      }
     end
 
     # Never trust parameters from the scary internet, use the white list
