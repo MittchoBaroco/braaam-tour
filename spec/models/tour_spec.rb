@@ -5,20 +5,27 @@ RSpec.describe Tour, type: :model do
   # let!(:tour)             { FactoryBot.create(:tour) }
   # let!(:tour_with_awards) { FactoryBot.create(:tour, :with_awards) }
 
-  let!(:tour_tomorrow)    { FactoryBot.create(:tour, title: "Tomorrow") }
-  let!(:tour_today)       { FactoryBot.create(:tour, title: "Today") }
-  let!(:tour_yesterday)   { FactoryBot.create(:tour, title: "Yesterday") }
   let!(:tour_in_week_awards){ FactoryBot.create(:tour, title: "In Week") }
+  let!(:tour_today_tomorrow){ FactoryBot.create(:tour, title: "Today & Tomorrow") }
+  let!(:tour_tomorrow)      { FactoryBot.create(:tour, title: "Tomorrow") }
+  let!(:tour_today)         { FactoryBot.create(:tour, title: "Today") }
+  # let!(:tour_yesterday)   { FactoryBot.create(:tour, title: "Yesterday") }
 
-  let!(:date_in_week)     { FactoryBot.create(:booking_date,
-                                              day: (Date.today + 7),
-                                              tour_id: tour_in_week_awards.id) }
-  let!(:date_tomorrow)    { FactoryBot.create(:booking_date,
-                                              day: (Date.tomorrow),
-                                              tour_id: tour_tomorrow.id) }
-  let!(:date_today)       { FactoryBot.create(:booking_date,
-                                              day: (Date.today),
-                                              tour_id: tour_today.id) }
+  let!(:date_in_week)       { FactoryBot.create(:booking_date,
+                                                day: (Date.today + 7),
+                                                tour_id: tour_in_week_awards.id) }
+  let!(:date_tt_tomorrow)   { FactoryBot.create(:booking_date,
+                                                day: (Date.tomorrow),
+                                                tour_id: tour_today_tomorrow.id) }
+  let!(:date_tt_today)      { FactoryBot.create(:booking_date,
+                                                day: (Date.today),
+                                                tour_id: tour_today_tomorrow.id) }
+  let!(:date_tomorrow)      { FactoryBot.create(:booking_date,
+                                                day: (Date.tomorrow),
+                                                tour_id: tour_tomorrow.id) }
+  let!(:date_today)         { FactoryBot.create(:booking_date,
+                                                day: (Date.today),
+                                                tour_id: tour_today.id) }
   # let!(:date_yesterday)   { FactoryBot.create(:booking_date,
   #                                             day: (Date.yesterday),
   #                                             tour_id: tour_yesterday.id) }
@@ -72,12 +79,12 @@ RSpec.describe Tour, type: :model do
   context "test scopes" do
     it "properly selects and orders future tours" do
       response = Tour.future.pluck(:title)
-      correct  = [tour_tomorrow.title, tour_in_week_awards.title ]
+      correct  = [tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week_awards.title ]
       expect(response).to eq( correct )
     end
     it "properly selects and orders current (today or future) tours" do
       response = Tour.current.pluck(:title)
-      correct  = [tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
+      correct  = [tour_today_tomorrow.title, tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
       expect(response).to eq( correct )
     end
     it "properly selects and orders tours with events after tomorrow" do
@@ -87,7 +94,7 @@ RSpec.describe Tour, type: :model do
     end
     it "properly selects and orders tours with events before X" do
       response = Tour.before(Date.tomorrow).pluck(:title)
-      correct  = [tour_today.title]
+      correct  = [tour_today_tomorrow.title, tour_today.title]
       expect(response).to eq( correct )
     end
     it "properly selects and orders past tours"

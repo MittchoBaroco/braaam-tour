@@ -29,9 +29,9 @@ class Tour < ApplicationRecord
   # https://stackoverflow.com/questions/9197649/rails-sort-by-join-table-data
   scope :after,  -> (date) { joins(:booking_dates).
                               where('booking_dates.day > ?', date).
-                              order('booking_dates.day ASC') }
+                              order('booking_dates.day ASC').uniq }
   scope :before, -> (date) { joins(:booking_dates).
                               where('booking_dates.day < ?', date).
-                              order('booking_dates.day DESC') }
+                              order('booking_dates.day DESC').uniq }
 
 end
