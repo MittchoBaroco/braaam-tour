@@ -2,16 +2,33 @@ require 'rails_helper'
 
 RSpec.describe Tour, type: :model do
 
-  let!(:tour)             { FactoryBot.create(:tour) }
-  let!(:tour_with_awards) { FactoryBot.create(:tour, :with_awards) }
+  # let!(:tour)             { FactoryBot.create(:tour) }
+  # let!(:tour_with_awards) { FactoryBot.create(:tour, :with_awards) }
 
+  let!(:tour_tomorrow)    { FactoryBot.create(:tour, title: "Tomorrow") }
+  let!(:tour_today)       { FactoryBot.create(:tour, title: "Today") }
+  let!(:tour_yesterday)   { FactoryBot.create(:tour, title: "Yesterday") }
+  let!(:tour_in_week_awards){ FactoryBot.create(:tour, title: "In Week") }
+
+  let!(:date_in_week)     { FactoryBot.create(:booking_date,
+                                              day: (Date.today + 7),
+                                              tour_id: tour_in_week_awards.id) }
+  let!(:date_tomorrow)    { FactoryBot.create(:booking_date,
+                                              day: (Date.tomorrow),
+                                              tour_id: tour_tomorrow.id) }
+  let!(:date_today)       { FactoryBot.create(:booking_date,
+                                              day: (Date.today),
+                                              tour_id: tour_today.id) }
+  # let!(:date_yesterday)   { FactoryBot.create(:booking_date,
+  #                                             day: (Date.yesterday),
+  #                                             tour_id: tour_yesterday.id) }
   context "verify factories" do
     it 'has a valid Factory' do
-      expect(tour).to be_valid
+      expect(tour_today).to be_valid
     end
 
     it 'has a valid Factory with awards' do
-      expect(tour_with_awards).to be_valid
+      expect(tour_in_week_awards).to be_valid
     end
   end
 
@@ -33,13 +50,13 @@ RSpec.describe Tour, type: :model do
     # money is not working with shoulda
 
     it "invalidated normal_price with 0" do
-      invalid_tour = tour.dup
+      invalid_tour = tour_today.dup
       invalid_tour.price_normal = -1
       expect(invalid_tour).to_not be_valid
     end
 
     it "invalidated braaam_price with 0" do
-      invalid_tour = tour.dup
+      invalid_tour = tour_today.dup
       invalid_tour.price_braaam = -1
       expect(invalid_tour).to_not be_valid
     end
@@ -53,10 +70,27 @@ RSpec.describe Tour, type: :model do
   end
 
   context "test scopes" do
-    it "properly selects and orders future tours"
+    it "properly selects and orders future tours" do
+      response = Tour.future.pluck(:title)
+      correct  = [tour_tomorrow.title, tour_in_week_awards.title ]
+      expect(response).to eq( correct )
+    end
+    it "properly selects and orders current (today or future) tours" do
+      response = Tour.current.pluck(:title)
+      correct  = [tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
+      expect(response).to eq( correct )
+    end
+    it "properly selects and orders tours with events after tomorrow" do
+      response = Tour.after(Date.tomorrow).pluck(:title)
+      correct  = [tour_in_week_awards.title ]
+      expect(response).to eq( correct )
+    end
+    it "properly selects and orders tours with events before X" do
+      response = Tour.before(Date.tomorrow).pluck(:title)
+      correct  = [tour_today.title]
+      expect(response).to eq( correct )
+    end
     it "properly selects and orders past tours"
-    it "properly selects and orders tours with events after X"
-    it "properly selects and orders tours with events before X"
   end
 
   context "test nested attributes" do
