@@ -5,7 +5,7 @@ class Admin::BookingDatesController < ApplicationController
   layout "admin"
 
   def index
-    @admin_booking_dates = BookingDate.all
+    @bookings = BookingDate.all.close
   end
 
   def show

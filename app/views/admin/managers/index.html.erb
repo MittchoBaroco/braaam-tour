@@ -1,17 +1,23 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Admin Managers</h1>
+
+<%= link_to 'New Manager', new_admin_manager_path %>
+
+<br>
 
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Full name</th>
+      <th>Email</th>
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @admin_managers.each do |admin_manager| %>
       <tr>
+        <td><%= admin_manager.full_name %></td>
+        <td><%= admin_manager.email %></td>
         <td><%= link_to 'Show', admin_manager_path(admin_manager) %></td>
         <td><%= link_to 'Edit', edit_admin_manager_path(admin_manager) %></td>
         <td><%= link_to 'Destroy', admin_manager_path(admin_manager),
@@ -21,7 +27,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Admin Manager', new_admin_manager_path %>
