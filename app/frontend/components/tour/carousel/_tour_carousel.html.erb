@@ -1,9 +1,11 @@
-<div class="tour-carousel">
-  <%=
-    @tours.each do |tour|
-  	  #tour.whatever
-    end
-  %>
-
-
-</div>
+<% unless @tours_collection.empty? %>
+  <div class="tour-carousel">
+    <h2 class="tour-carousel--title">Next tours</h2>
+    <% @tours_collection.each do |tour| %>
+      <%= link_to tour, class: 'tour-carousel--item' do %>
+        <img src="https://www.braaam.com/images/sfondo2.png">
+        <p><%= tour.title %></p>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
