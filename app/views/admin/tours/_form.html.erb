@@ -1,4 +1,4 @@
-<%= form_with(model: admin_tour, local: true) do |form| %>
+<%= form_with(model: @admin_tour, url: admin_tours_path, local: true) do |form| %>
   <% if admin_tour.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(admin_tour.errors.count, "error") %> prohibited this admin_tour from being saved:</h2>
@@ -12,6 +12,51 @@
   <% end %>
 
   <div class="actions">
+    <div class="fields">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :video_uri %>
+      <%= form.text_field :video_uri %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :tech_help, "Tech help needed?" %>
+      <%= form.check_box :tech_help %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :housing, "Housing needed?" %>
+      <%= form.check_box :housing %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :catering, "Catering needed?" %>
+      <%= form.check_box :catering %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :transport, "Transport included ?" %>
+      <%= form.check_box :transport %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :price_normal %>
+      <%= form.number_field :price_normal, min: 0, step: 0.01 %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :price_braaam %>
+      <%= form.number_field :price_braaam, min: 0, step: 0.01 %>
+    </div>
+
     <%= form.submit %>
   </div>
 <% end %>

@@ -76,7 +76,7 @@ class Admin::ToursController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_tour_params
       # params.fetch(:admin_tour, {})
-      params.require(:admin_tour).permit( :title, :description,
+      params.require(:tour).permit( :title, :description,
                                           :image, :video_uri,
                                           :tech_help, :housing,
                                           :catering, :transport,
