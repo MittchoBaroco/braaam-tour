@@ -2,11 +2,14 @@ class Tour < ApplicationRecord
 
   CURRENCIES = %w(CHF EUR)
 
-  has_many :awards
-  has_many :booking_dates, dependent: :destroy
+  has_many :awards, inverse_of: :tour
+  has_many :booking_dates, inverse_of: :tour, dependent: :destroy
   has_many :companies,     through: :booking_dates
 
   has_one_attached :image
+
+  accepts_nested_attributes_for :booking_dates, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :awards, reject_if: :all_blank, allow_destroy: true
 
   monetize :price_braaam_cents, numericality: { greater_than_or_equal_to: 0 }
   monetize :price_normal_cents, numericality: { greater_than_or_equal_to: 0 }
