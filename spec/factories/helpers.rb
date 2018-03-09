@@ -48,6 +48,7 @@ module FactoryHelpers
     return FactoryBot.create :award    if random_number <= 25
     # 75% of the time return an existing artist
     # return Award.find(rand(1..Award.count))
+    # return Award.limit(1).order("RAND()")   # mysql (but also works with psql)
     return Award.limit(1).order("RANDOM()")
   end
 end
