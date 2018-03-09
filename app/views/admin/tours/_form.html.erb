@@ -56,6 +56,15 @@
     <%= form.number_field :price_braaam, min: 0, step: 0.01 %>
   </div>
 
+  <div id="dates">
+    <%= form.fields_for :booking_dates do |date| %>
+      <%= render "booking_date_fields", f: date %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add date', form, :booking_dates %>
+    </div>
+  </div>
+
   <div id="awards">
     <%= form.fields_for :awards do |award| %>
       <%= render "award_fields", f: award %>
