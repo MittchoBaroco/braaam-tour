@@ -1,6 +1,7 @@
 class Admin::AwardsController < ApplicationController
   # before_action :authenticate_manager!
   before_action :set_admin_award, only: [:show, :edit, :update, :destroy]
+  layout "admin"
 
   # GET /admin/awards
   # GET /admin/awards.json

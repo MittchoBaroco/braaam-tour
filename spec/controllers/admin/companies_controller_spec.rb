@@ -41,15 +41,15 @@ RSpec.describe Admin::CompaniesController, type: :controller do
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from POST #create to login page" do
-        post :create, params: {admin_company: invalid_attributes}
+        post :create, params: {company: invalid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from PUT #show to login page" do
-        put :update, params: {id: company.to_param, admin_company: new_attributes}
+        put :update, params: {id: company.to_param, company: new_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from PATCH #show to login page" do
-        patch :update, params: {id: company.to_param, admin_company: new_attributes}
+        patch :update, params: {id: company.to_param, company: new_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from DELETE #destroy to login page" do
@@ -98,17 +98,17 @@ RSpec.describe Admin::CompaniesController, type: :controller do
       context "with valid params" do
         it "creates a new Admin::Company" do
           expect {
-            post :create, params: {admin_company: valid_attributes}, session: valid_session
+            post :create, params: {company: valid_attributes}, session: valid_session
           }.to change(Company, :count).by(1)
         end
         it "redirects to the created admin_company" do
-          post :create, params: {admin_company: valid_attributes}, session: valid_session
+          post :create, params: {company: valid_attributes}, session: valid_session
           expect(response).to redirect_to( admin_company_path(Company.last) )
         end
       end
       context "with invalid params" do
         it "returns a success response (i.e. to display the 'new' template)" do
-          post :create, params: {admin_company: invalid_attributes}, session: valid_session
+          post :create, params: {company: invalid_attributes}, session: valid_session
           expect(response).to be_successful
         end
       end
@@ -117,18 +117,18 @@ RSpec.describe Admin::CompaniesController, type: :controller do
     describe "PUT #update" do
       context "with valid params" do
         it "updates the requested admin_company" do
-          put :update, params: {id: company.to_param, admin_company: new_attributes}, session: valid_session
+          put :update, params: {id: company.to_param, company: new_attributes}, session: valid_session
           company.reload
           expect( company.name ).to eq( "BigCo" )
         end
         it "redirects to the admin_company" do
-          put :update, params: {id: company.to_param, admin_company: new_attributes}, session: valid_session
+          put :update, params: {id: company.to_param, company: new_attributes}, session: valid_session
           expect(response).to redirect_to( admin_company_path(company) )
         end
       end
       context "with invalid params" do
         it "returns a success response (i.e. to display the 'edit' template)" do
-          put :update, params: {id: company.to_param, admin_company: invalid_attributes}, session: valid_session
+          put :update, params: {id: company.to_param, company: invalid_attributes}, session: valid_session
           expect(response).to be_successful
         end
       end
