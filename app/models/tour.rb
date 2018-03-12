@@ -6,6 +6,10 @@ class Tour < ApplicationRecord
   has_many :booking_dates, dependent: :destroy
   has_many :companies,     through: :booking_dates
 
+  accepts_nested_attributes_for :awards,
+    :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :booking_dates,
+    :reject_if => :all_blank, :allow_destroy => true
   has_one_attached :image
 
   monetize :price_braaam_cents, numericality: { greater_than_or_equal_to: 0 }

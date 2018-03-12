@@ -51,8 +51,10 @@ RSpec.describe Tour, type: :model do
     it { should allow_value(%w(true false)).for(:catering) }
     it { should allow_value(%w(true false)).for(:transport) }
 
-    # money is not working with shoulda
+    it { should accept_nested_attributes_for(:awards) }
+    it { should accept_nested_attributes_for(:booking_dates) }
 
+    # money is not working with shoulda
     it "invalidated normal_price with 0" do
       invalid_tour = tour_today.dup
       invalid_tour.price_normal = -1
