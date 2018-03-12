@@ -1,6 +1,7 @@
 class Admin::ToursController < ApplicationController
   # before_action :authenticate_manager!
   before_action :set_admin_tour, only: [:show, :edit, :update, :destroy]
+  layout "admin"
 
   # GET /admin/tours
   # GET /admin/tours.json
@@ -74,8 +75,7 @@ class Admin::ToursController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_tour_params
-      # params.fetch(:admin_tour, {})
-      params.require(:admin_tour).permit(
+      params.require(:tour).permit(
         :title, :description, :image, :video_uri, :tech_help,
         :housing, :catering, :transport, :currency, :price_normal,
         :price_braaam, :tour_image,

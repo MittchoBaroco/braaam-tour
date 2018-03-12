@@ -21,4 +21,6 @@ class BookingDate < ApplicationRecord
   scope :before, -> (date) { where('day < ?', date).
                             order(day: :desc, tour_id: :desc) }
 
+  scope :close, -> { where.not(company_id: nil) }
+
 end

@@ -43,6 +43,10 @@ gem 'devise'
 # separate views from ruby code
 gem "komponent"
 
+gem "cocoon"
+
+gem 'pry-rails'
+
 group :development, :test do
   gem 'faker', '~> 1.8'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,8 +59,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'pry-rails' # , :require => false
-  # # rails security checker gem
+  # rails security checker gem
   # gem 'brakeman', :require => false
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'

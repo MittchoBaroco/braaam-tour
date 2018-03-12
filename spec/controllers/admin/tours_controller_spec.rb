@@ -40,15 +40,15 @@ RSpec.describe Admin::ToursController, type: :controller do
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from POST #create to login page" do
-        post :create, params: {admin_tour: invalid_attributes}
+        post :create, params: {tour: invalid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from PUT #show to login page" do
-        put :update, params: {id: tour.to_param, admin_tour: new_attributes}
+        put :update, params: {id: tour.to_param, tour: new_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from PATCH #show to login page" do
-        patch :update, params: {id: tour.to_param, admin_tour: new_attributes}
+        patch :update, params: {id: tour.to_param, tour: new_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from DELETE #destroy to login page" do
@@ -94,12 +94,12 @@ RSpec.describe Admin::ToursController, type: :controller do
       context "with valid params" do
         it "creates a new Tour from Admin" do
           expect {
-            post :create, params: {admin_tour: valid_attributes},
+            post :create, params: {tour: valid_attributes},
                           session: valid_session
           }.to change(Tour, :count).by(1)
         end
         it "redirects to the created admin_tour" do
-          post :create, params: {admin_tour: valid_attributes},
+          post :create, params: {tour: valid_attributes},
                         session: valid_session
           # expect(response).to redirect_to(Tour.last)
           expect(response).to redirect_to( admin_tour_path(Tour.last) )
@@ -107,7 +107,7 @@ RSpec.describe Admin::ToursController, type: :controller do
       end
       context "with invalid params" do
         it "returns a success response (displays the 'new' template)" do
-          post :create, params: {admin_tour: invalid_attributes},
+          post :create, params: {tour: invalid_attributes},
                         session: valid_session
           expect(response).to be_successful
         end
@@ -128,13 +128,13 @@ RSpec.describe Admin::ToursController, type: :controller do
     describe "PUT #update" do
       context "with valid params" do
         it "updates the requested admin_tour" do
-          put :update, params: {id: tour.to_param, admin_tour: new_attributes},
+          put :update, params: {id: tour.to_param, tour: new_attributes},
                         session: valid_session
           tour.reload
           expect( tour.title ).to eq( "Watch" )
         end
         it "redirects to the admin_tour" do
-          put :update, params: {id: tour.to_param, admin_tour: valid_attributes},
+          put :update, params: {id: tour.to_param, tour: valid_attributes},
                         session: valid_session
           # expect(response).to redirect_to(tour)
           expect(response).to redirect_to( admin_tour_path(tour) )
@@ -142,7 +142,7 @@ RSpec.describe Admin::ToursController, type: :controller do
       end
       context "with invalid params" do
         it "returns a success response (i.e. to display the 'edit' template)" do
-          put :update, params: {id: tour.to_param, admin_tour: invalid_attributes},
+          put :update, params: {id: tour.to_param, tour: invalid_attributes},
                         session: valid_session
           expect(response).to be_successful
         end

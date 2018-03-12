@@ -5,9 +5,9 @@ $light-blue: #118af4;
 $secondary-blue: #22649e;
 
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -18,4 +18,31 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: $primary-gray;
+}
+
+// this should probably be in a separate file
+.flex {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.flex-item {
+  flex: 0 0 auto;
+  margin: 0 20px;
+}
+
+// this doesn't work yet
+.fields {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  width: 100%;
+  label {
+    flex: 0 0 auto;
+  }
+  input {
+    flex: 0 0 auto;
+    align-self: flex-end;
+  }
 }

@@ -2,9 +2,10 @@ class Admin::BookingDatesController < ApplicationController
   # before_action :authenticate_manager!
   before_action :set_admin_booking_date,
                 only: [:show, :edit, :update, :destroy, :signup, :cancel]
+  layout "admin"
 
   def index
-    @admin_booking_dates = BookingDate.all
+    @bookings = BookingDate.all.close
   end
 
   def show

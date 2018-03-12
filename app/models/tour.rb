@@ -2,8 +2,8 @@ class Tour < ApplicationRecord
 
   CURRENCIES = %w(CHF EUR)
 
-  has_many :awards
-  has_many :booking_dates, dependent: :destroy
+  has_many :awards, inverse_of: :tour
+  has_many :booking_dates, inverse_of: :tour, dependent: :destroy
   has_many :companies,     through: :booking_dates
 
   # https://www.engineyard.com/blog/active-storage

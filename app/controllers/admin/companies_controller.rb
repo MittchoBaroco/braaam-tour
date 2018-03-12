@@ -1,6 +1,7 @@
 class Admin::CompaniesController < ApplicationController
   # before_action :authenticate_manager!
   before_action :set_admin_company, only: [:show, :edit, :update, :destroy]
+  layout "admin"
 
   # GET /admin/companies
   # GET /admin/companies.json
@@ -76,7 +77,7 @@ class Admin::CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_company_params
-      params.fetch(:admin_company, {}).permit(:email, :name)
+      params.fetch(:company, {}).permit(:email, :name)
       # params.require(:admin_company).permit(:email, :name)
     end
 end
