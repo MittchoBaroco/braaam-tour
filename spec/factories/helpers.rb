@@ -13,7 +13,8 @@ module FactoryHelpers
 
     # 75 percent of the time return an existing tour (not CMB4)
     # return Tour.find( rand(1..Tour.count) )
-    return Tour.limit(1).order("RAND()")
+    # return Tour.limit(1).order("RAND()")   # mysql (but also works with psql)
+    return Tour.limit(1).order("RANDOM()")   # postgresql
   end
 
 
@@ -26,7 +27,8 @@ module FactoryHelpers
     return FactoryBot.create :company    if random_number <= 25
     # 75% of the time return an existing artist
     # return Company.find(rand(1..Company.count))
-    return Company.limit(1).order("RAND()")
+    # return Company.limit(1).order("RAND()")   # mysql (but also works with psql)
+    return Company.limit(1).order("RANDOM()")   # postgresql
 
     # no admin account yet - same model?
     # # BE SURE NOT to return the management company "CMB4"
@@ -46,6 +48,7 @@ module FactoryHelpers
     return FactoryBot.create :award    if random_number <= 25
     # 75% of the time return an existing artist
     # return Award.find(rand(1..Award.count))
-    return Award.limit(1).order("RAND()")
+    # return Award.limit(1).order("RAND()")   # mysql (but also works with psql)
+    return Award.limit(1).order("RANDOM()")
   end
 end

@@ -30,14 +30,12 @@ RSpec.describe Tour, type: :model do
     it 'has a valid Factory' do
       expect(tour_today).to be_valid
     end
-
     it 'has a valid Factory with awards' do
       expect(tour_in_week_awards).to be_valid
     end
   end
 
   context "Check company validations" do
-
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:video_uri) }
@@ -52,25 +50,27 @@ RSpec.describe Tour, type: :model do
     it { should allow_value(%w(true false)).for(:transport) }
 
     # money is not working with shoulda
-
     it "invalidated normal_price with 0" do
       invalid_tour = tour_today.dup
       invalid_tour.price_normal = -1
       expect(invalid_tour).to_not be_valid
     end
-
     it "invalidated braaam_price with 0" do
       invalid_tour = tour_today.dup
       invalid_tour.price_braaam = -1
       expect(invalid_tour).to_not be_valid
     end
-
   end
 
   context "Check company Relationships" do
     it { should have_many(:awards) }
     it { should have_many(:booking_dates) }
     it { should have_many(:companies).through(:booking_dates) }
+  end
+
+  context "test nested attributes" do
+    it { should accept_nested_attributes_for(:awards) }
+    it { should accept_nested_attributes_for(:booking_dates) }
   end
 
   context "test scopes" do
@@ -94,14 +94,6 @@ RSpec.describe Tour, type: :model do
       correct  = [tour_today_tomorrow.title, tour_today.title]
       expect(response).to eq( correct )
     end
-    it "properly selects and orders past tours"
-  end
-
-  context "test nested attributes" do
-    it "properly creates a tour with awards"
-    it "properly creates a tour with event_dates"
-    it "properly adds awards to an existing tour"
-    it "properly adds event_dates to an existing tour"
   end
 
 end
