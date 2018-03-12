@@ -6,11 +6,15 @@ class Tour < ApplicationRecord
   has_many :booking_dates, dependent: :destroy
   has_many :companies,     through: :booking_dates
 
+  # https://www.engineyard.com/blog/active-storage
+  # https://evilmartians.com/chronicles/rails-5-2-active-storage-and-beyond
+  # https://gorails.com/episodes/file-uploading-with-activestorage-rails-5-2
+  has_one_attached :tour_image
+
   accepts_nested_attributes_for :awards,
     :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :booking_dates,
     :reject_if => :all_blank, :allow_destroy => true
-  has_one_attached :image
 
   monetize :price_braaam_cents, numericality: { greater_than_or_equal_to: 0 }
   monetize :price_normal_cents, numericality: { greater_than_or_equal_to: 0 }

@@ -113,6 +113,18 @@ RSpec.describe Admin::ToursController, type: :controller do
         end
       end
     end
+    # https://www.neontsunami.com/posts/testing-activestorage-uploads-in-rails-52
+    describe 'PUT #update - with ActiveStorage image' do
+      it 'attaches the uploaded file' do
+        file = fixture_file_upload(
+          Rails.root.join('public', 'apple-touch-icon.png'), 'image/png')
+        expect {
+          put :update, params: {id: tour.to_param,
+                                admin_tour: { tour_image: file } },
+                      session: valid_session
+        }.to change(ActiveStorage::Attachment, :count).by(1)
+      end
+    end
     describe "PUT #update" do
       context "with valid params" do
         it "updates the requested admin_tour" do
@@ -148,6 +160,7 @@ RSpec.describe Admin::ToursController, type: :controller do
         expect(response).to redirect_to(admin_tours_url)
       end
     end
+
   end
 
 end
