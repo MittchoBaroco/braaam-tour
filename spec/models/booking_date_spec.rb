@@ -48,13 +48,11 @@ RSpec.describe BookingDate, type: :model do
       expect( copy_booking_day_0.errors.messages).to eq(
                   {:tour=>["tours may only have one event per-day"]} )
     end
-
     it "detects an invalid_booking_date" do
       expect( invalid_booking_date.valid? ).to be_falsey
       expect( invalid_booking_date.errors.messages).to eq(
                   {:tour=>["must exist"], :day=>["is not a valid date"]} )
     end
-
     it "detects an no_past_booking_date" do
       expect( no_past_booking_date.valid? ).to be_falsey
       expect( no_past_booking_date.errors.messages).to eq(
@@ -90,8 +88,6 @@ RSpec.describe BookingDate, type: :model do
       correct  = [ booking_day_tt_0.id, booking_day_0.id ]
       expect(response).to eq( correct )
     end
-    it "properly selects and orders past dates"
-
   end
 
 end
