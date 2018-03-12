@@ -8,20 +8,12 @@
   </head>
 
   <body class="body">
-    <div>
-      <%= c "row" do %>
+    <div class="flex">
+      <%= render 'admin/nav' %>
 
-        <%= c "column", size: 2 do %>
-          <%= render 'admin/nav' %>
-        <% end %>
-
-        <%= c "column", size: 10 do %>
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-          <%= yield %>
-        <% end %>
-
-      <% end %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
     </div>
 
     <%= javascript_pack_tag "application" %>
