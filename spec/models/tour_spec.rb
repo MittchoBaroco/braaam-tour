@@ -96,4 +96,8 @@ RSpec.describe Tour, type: :model do
     end
   end
 
+  # https://www.neontsunami.com/posts/testing-activestorage-uploads-in-rails-52
+  # https://collectiveidea.com/blog/archives/2017/01/16/testing-an-uploaded-file-in-rspec
+  # https://stackoverflow.com/questions/1178587/how-do-i-test-a-file-upload-in-rails
+
 end
