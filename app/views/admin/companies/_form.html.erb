@@ -1,4 +1,4 @@
-<%= form_with(model: admin_company, local: true) do |form| %>
+<%= form_with(model: @admin_company, url: admin_companies_path, local: true) do |form| %>
   <% if admin_company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(admin_company.errors.count, "error") %> prohibited this admin_company from being saved:</h2>
@@ -12,6 +12,15 @@
   <% end %>
 
   <div class="actions">
+    <div class="fields">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+    </div>
     <%= form.submit %>
   </div>
 <% end %>

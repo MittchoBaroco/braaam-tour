@@ -1,6 +1,12 @@
 .container .row {
   margin-left: -10px;
   margin-right: -10px;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
 }
 
 .row .row {
@@ -11,6 +17,7 @@
 @media screen and (max-width: 767px) {
   .row,
   .container .row {
+    display: block;
     margin-left: 0;
     margin-right: 0;
   }
