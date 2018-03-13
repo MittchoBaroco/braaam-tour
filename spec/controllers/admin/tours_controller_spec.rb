@@ -90,6 +90,18 @@ RSpec.describe Admin::ToursController, type: :controller do
         expect(response).to be_successful
       end
     end
+    # https://www.neontsunami.com/posts/testing-activestorage-uploads-in-rails-52
+    describe 'POST #update - with ActiveStorage image' do
+      it 'attaches the uploaded file' do
+        file = fixture_file_upload(
+          Rails.root.join('public', 'apple-touch-icon.png'), 'image/png')
+        expect {
+          tour_params = FactoryBot.attributes_for(:tour, cover_image: file)
+          post :create, params: { tour: tour_params },
+                      session: valid_session
+        }.to change(ActiveStorage::Attachment, :count).by(1)
+      end
+    end
     describe "POST #create" do
       context "with valid params" do
         it "creates a new Tour from Admin" do
