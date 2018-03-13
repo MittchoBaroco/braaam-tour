@@ -120,7 +120,7 @@ RSpec.describe Admin::ToursController, type: :controller do
           Rails.root.join('public', 'apple-touch-icon.png'), 'image/png')
         expect {
           put :update, params: {id: tour.to_param,
-                                admin_tour: { cover_image: file } },
+                                tour: { cover_image: file } },
                       session: valid_session
         }.to change(ActiveStorage::Attachment, :count).by(1)
       end
