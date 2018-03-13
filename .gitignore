@@ -23,7 +23,10 @@
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
+.rbenv-vars
 /config/master.key
+
+# Ingore FE folders
 /public/packs
 /public/packs-test
 /node_modules
