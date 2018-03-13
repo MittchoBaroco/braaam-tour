@@ -3,6 +3,7 @@ import "components/tour/booking_btn/tour_booking_btn";
 import "components/tour/call_to_action/tour_call_to_action";
 import "components/tour/carousel/tour_carousel";
 import "components/tour/description/tour_description";
+import "components/tour/index/tour_index";
 import "components/tour/need/tour_need";
 import "components/tour/section/tour_section";
 import "components/tour/section_side/tour_section_side";

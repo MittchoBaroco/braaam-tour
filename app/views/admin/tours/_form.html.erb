@@ -1,4 +1,4 @@
-<%= form_with(model: @admin_tour, url: admin_tours_path, local: true) do |form| %>
+<%= form_with(model: @admin_tour, url: [:admin, @admin_tour], local: true) do |form| %>
   <% if admin_tour.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(admin_tour.errors.count, "error") %> prohibited this admin_tour from being saved:</h2>
