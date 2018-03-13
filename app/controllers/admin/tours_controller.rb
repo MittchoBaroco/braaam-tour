@@ -27,7 +27,6 @@ class Admin::ToursController < ApplicationController
   # POST /admin/tours.json
   def create
     @admin_tour = Tour.new(admin_tour_params)
-
     respond_to do |format|
       if @admin_tour.save
         # format.html { redirect_to @admin_tour, notice: 'Tour was successfully created.' }
@@ -75,11 +74,12 @@ class Admin::ToursController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_tour_params
+      # byebug
       params.require(:tour).permit(
         :title, :description, :video_uri, :tech_help, :housing, :catering,
         :transport, :currency, :price_normal, :price_braaam, :cover_image,
         awards_attributes: [:caption, :institution, :country, :award_year],
-        booking_dates_attributes: [:day, :company]
+        booking_dates_attributes: [:day, :company] # , carosel_images: []
       )
     end
 end
