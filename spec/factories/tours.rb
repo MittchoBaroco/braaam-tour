@@ -17,10 +17,10 @@ FactoryBot.define do
   factory :tour do
     title        { Faker::Book.title }
     description  { Faker::ChuckNorris.fact }
-    cover_image  { Rack::Test::UploadedFile.new(
-                        Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
-                        'image/png') }
-    video_uri    { video_samples.sample }
+    # cover_image  { Rack::Test::UploadedFile.new(
+    #                   Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
+    #                   'image/png') }
+    # video_uri    { video_samples.sample }
     tech_help    { ['true', 'false'].sample }
     housing      { Faker::Boolean.boolean }
     catering     { Faker::Boolean.boolean }
@@ -31,6 +31,20 @@ FactoryBot.define do
     braaam_amt   = base_cents - discount
     price_normal { Money.new(base_cents, currency) }
     price_braaam { Money.new(braaam_amt, currency) }
+  end
+
+  trait :with_cover_image do
+    after :create do |tour|
+      cover_image{ Rack::Test::UploadedFile.new(
+                      Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
+                      'image/png') }
+    end
+  end
+
+  trait :with_video do
+    after :create do |tour|
+      video_uri    { video_samples.sample }
+    end
   end
 
   trait :with_awards do

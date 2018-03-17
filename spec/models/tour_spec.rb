@@ -92,6 +92,7 @@ RSpec.describe Tour, type: :model do
       response = Tour.current.pluck(:title)
       correct  = [tour_today_tomorrow.title, tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
       expect(response).to eq( correct )
+      # expect(response).to match_array( correct )
     end
     it "properly selects and orders tours with events after TOMORROW" do
       response = Tour.after(Date.tomorrow).pluck(:title)
