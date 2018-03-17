@@ -77,9 +77,10 @@ class Admin::ToursController < ApplicationController
       # byebug
       params.require(:tour).permit(
         :title, :description, :video_uri, :tech_help, :housing, :catering,
-        :transport, :currency, :price_normal, :price_braaam, :cover_image,
+        :transport, :currency, :price_normal, :price_braaam,
+        :cover_image, # carosel_images: [],
         awards_attributes: [:caption, :institution, :country, :award_year],
-        booking_dates_attributes: [:day, :company] # , carosel_images: []
+        booking_dates_attributes: [:day, :company]
       )
     end
 end

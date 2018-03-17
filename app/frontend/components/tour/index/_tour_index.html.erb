@@ -6,7 +6,9 @@
         <% @tours_collection.each do |tour| %>
           <div class="tour-item">
             <%= link_to tour, class: "tour-item--link" do %>
-              <img src="https://www.braaam.com/images/sfondo2.png" alt="" class="tour-item--image">
+              <% if tour.cover_image.attached? %>
+                <%= image_tag tour.cover_image, class: 'tour-item--image' %>
+              <% end %>
               <p class="tour-item--title">
                 <%= tour.title %>
                   <br>

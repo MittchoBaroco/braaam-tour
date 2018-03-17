@@ -9,7 +9,7 @@ class Tour < ApplicationRecord
   # https://www.engineyard.com/blog/active-storage
   # https://evilmartians.com/chronicles/rails-5-2-active-storage-and-beyond
   # https://gorails.com/episodes/file-uploading-with-activestorage-rails-5-2
-  has_one_attached  :cover_image
+  has_one_attached :cover_image
   # has_many_attached :carosel_images
 
   accepts_nested_attributes_for :awards,
