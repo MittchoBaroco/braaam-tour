@@ -20,9 +20,6 @@ FactoryBot.define do
     cover_image  { Rack::Test::UploadedFile.new(
                         Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
                         'image/png') }
-    # cover_image  { fixture_file_upload(
-    #                     Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
-    #                     'image/png') }
     video_uri    { video_samples.sample }
     tech_help    { ['true', 'false'].sample }
     housing      { Faker::Boolean.boolean }

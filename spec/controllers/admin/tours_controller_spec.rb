@@ -19,7 +19,6 @@ RSpec.describe Admin::ToursController, type: :controller do
   let!(:tour) { FactoryBot.create(:tour) }
   let!(:manager) { FactoryBot.create(:manager) }
   let!(:valid_session) { {manager_id: manager.id} }
-  # let!(:valid_session) { {} }
 
   context "UNAUTHENTICATED" do
     describe "redirect" do
@@ -135,12 +134,6 @@ RSpec.describe Admin::ToursController, type: :controller do
                       session: valid_session
         tour.reload
         expect(tour.cover_image.filename ).to eq('RubyRules.png')
-        # expect {
-        #   put :update, params: {id: tour.to_param,
-        #                         tour: { cover_image: file } },
-        #               session: valid_session
-        # }.to change(ActiveStorage::Attachment, :attribute)
-        # }.to change(ActiveStorage::Attachment, :count).by(1)
       end
     end
     describe "PUT #update" do
@@ -154,7 +147,6 @@ RSpec.describe Admin::ToursController, type: :controller do
         it "redirects to the admin_tour" do
           put :update, params: {id: tour.to_param, tour: valid_attributes},
                         session: valid_session
-          # expect(response).to redirect_to(tour)
           expect(response).to redirect_to( admin_tour_path(tour) )
         end
       end
