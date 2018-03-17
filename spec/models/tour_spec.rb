@@ -38,11 +38,9 @@ RSpec.describe Tour, type: :model do
   context "Check company validations" do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }
-    # it { should validate_presence_of(:video_uri) }
 
     it { should validate_length_of(:title).is_at_least(2) }
     it { should validate_length_of(:description).is_at_least(2) }
-    # it { should validate_length_of(:video_uri).is_at_least(2) }
 
     it { should allow_value(%w(true false)).for(:tech_help) }
     it { should allow_value(%w(true false)).for(:housing) }
