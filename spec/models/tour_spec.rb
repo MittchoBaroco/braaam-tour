@@ -38,16 +38,25 @@ RSpec.describe Tour, type: :model do
   context "Check company validations" do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }
-    it { should validate_presence_of(:video_uri) }
+    # it { should validate_presence_of(:video_uri) }
 
     it { should validate_length_of(:title).is_at_least(2) }
     it { should validate_length_of(:description).is_at_least(2) }
-    it { should validate_length_of(:video_uri).is_at_least(2) }
+    # it { should validate_length_of(:video_uri).is_at_least(2) }
 
     it { should allow_value(%w(true false)).for(:tech_help) }
     it { should allow_value(%w(true false)).for(:housing) }
     it { should allow_value(%w(true false)).for(:catering) }
     it { should allow_value(%w(true false)).for(:transport) }
+
+    it { should allow_values('',  nil, 'http://foo.com',
+                                  'http://foo.com/',
+                                  'http://foo.com/sd_fgh?sdfg=ertyui').
+                                  for(:video_uri) }
+    it { should_not allow_values( 'http://foo.com/sd fgh?sdfg=ertyui',
+                                  'http://foo',
+                                  'buz', ).
+                                  for(:video_uri) }
 
     # money is not working with shoulda
     it "invalidated normal_price with 0" do
@@ -95,9 +104,5 @@ RSpec.describe Tour, type: :model do
       expect(response).to eq( correct )
     end
   end
-
-  # https://www.neontsunami.com/posts/testing-activestorage-uploads-in-rails-52
-  # https://collectiveidea.com/blog/archives/2017/01/16/testing-an-uploaded-file-in-rspec
-  # https://stackoverflow.com/questions/1178587/how-do-i-test-a-file-upload-in-rails
 
 end

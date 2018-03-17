@@ -7,7 +7,7 @@ class CreateTours < ActiveRecord::Migration[5.2]
     create_table :tours do |t|
       t.string   :title
       t.text     :description
-      # t.file    :image
+      # t.file    :cover_image
       t.string   :video_uri
       t.boolean  :tech_help
       t.boolean  :housing

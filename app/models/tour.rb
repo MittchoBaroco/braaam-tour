@@ -22,7 +22,10 @@ class Tour < ApplicationRecord
 
   validates :title,       presence: true, length: { minimum: 2 }
   validates :description, presence: true, length: { minimum: 2 }
-  validates :video_uri,   presence: true, length: { minimum: 2 }
+  # validate url
+  validates :video_uri,   allow_blank: true,
+                          format: { with: /\Ahttps?:\/\/[\S.-]+\.[\S.-]+\z/i,
+                                    message: "please enter a valid url" }
   validates :tech_help,   inclusion: { in: [ true, false ] }
   validates :housing,     inclusion: { in: [ true, false ] }
   validates :catering,    inclusion: { in: [ true, false ] }
