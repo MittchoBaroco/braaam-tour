@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :managers
     resources :booking_dates
     resources :tours
+    # admin dashboard root page (admin_tours)
+    root to: "tours#index"
   end
   put   'booking_dates/signup/:id',       to: 'booking_dates#signup'
   patch 'booking_dates/signup/:id',       to: 'booking_dates#signup'
@@ -17,7 +19,8 @@ Rails.application.routes.draw do
   root to: "tours#index"
   # default route for non-existent pages to avoid errors
   # get "*path" => 'tours#index'
-  get '*path', to: redirect('/tours')
-  put '*path', to: redirect('/tours')
+  # breaks active storage links - done to prevent 404 when mistype page
+  # get '*path', to: redirect('/tours')
+  # put '*path', to: redirect('/tours')
   # patch '*', to: 'tours#index', to: redirect('/tours')
 end

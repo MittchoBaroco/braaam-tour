@@ -9,6 +9,22 @@
 
 ## Start your development servers
 
+* getting started
+```bash
+bundle install
+yarn install
+bin/rails db:create
+bin/rails db:migrate
+bundle exec rails webpacker:binstubs
+rails c
+u = Manager.new(:email => "user@name.com", :full_name => "Bill", :password => 'password', :password_confirmation => 'password')
+u.save
+exit
+# now start the service using:
+foreman start -f Procfile.dev
+# or one of the other below services to start up
+```
+
 * with Forman
 ```
 foreman start -f Procfile.dev

@@ -1,3 +1,5 @@
+# include ActionDispatch::TestProcess
+
 video_samples = [
   # nil,
   'https://player.vimeo.com/video/228352232',
@@ -15,7 +17,12 @@ FactoryBot.define do
   factory :tour do
     title        { Faker::Book.title }
     description  { Faker::ChuckNorris.fact }
-    # image        { nil }
+    cover_image  { Rack::Test::UploadedFile.new(
+                        Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
+                        'image/png') }
+    # cover_image  { fixture_file_upload(
+    #                     Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
+    #                     'image/png') }
     video_uri    { video_samples.sample }
     tech_help    { ['true', 'false'].sample }
     housing      { Faker::Boolean.boolean }

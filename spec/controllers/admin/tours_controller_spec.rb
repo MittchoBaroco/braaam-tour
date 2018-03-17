@@ -129,12 +129,18 @@ RSpec.describe Admin::ToursController, type: :controller do
     describe 'PUT #update - with ActiveStorage image' do
       it 'attaches the uploaded file' do
         file = fixture_file_upload(
-          Rails.root.join('public', 'apple-touch-icon.png'), 'image/png')
-        expect {
-          put :update, params: {id: tour.to_param,
-                                tour: { cover_image: file } },
+          Rails.root.join('spec', 'photos', 'RubyRules.png'), 'image/png')
+        put :update, params: {id: tour.to_param,
+                              tour: { cover_image: file } },
                       session: valid_session
-        }.to change(ActiveStorage::Attachment, :count).by(1)
+        tour.reload
+        expect(tour.cover_image.filename ).to eq('RubyRules.png')
+        # expect {
+        #   put :update, params: {id: tour.to_param,
+        #                         tour: { cover_image: file } },
+        #               session: valid_session
+        # }.to change(ActiveStorage::Attachment, :attribute)
+        # }.to change(ActiveStorage::Attachment, :count).by(1)
       end
     end
     describe "PUT #update" do
