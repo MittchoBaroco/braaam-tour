@@ -5,14 +5,14 @@ class CreateTours < ActiveRecord::Migration[5.2]
 
   def change
     create_table :tours do |t|
-      t.string   :title
-      t.text     :description
+      t.string   :title,        null: false
+      t.text     :description,  null: false
       # t.file    :cover_image
       t.string   :video_uri
-      t.boolean  :tech_help
-      t.boolean  :housing
-      t.boolean  :catering
-      t.boolean  :transport
+      t.boolean  :tech_help,    null: false
+      t.boolean  :housing,      null: false
+      t.boolean  :catering,     null: false
+      t.boolean  :transport,    null: false
       t.monetize :price_braaam
       t.monetize :price_normal
 

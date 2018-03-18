@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 2018_02_26_141355) do
   end
 
   create_table "awards", force: :cascade do |t|
-    t.string "caption"
-    t.string "institution"
-    t.string "country"
-    t.string "award_year"
+    t.string "caption", null: false
+    t.string "institution", null: false
+    t.string "country", null: false
+    t.string "award_year", null: false
     t.bigint "tour_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2018_02_26_141355) do
   end
 
   create_table "booking_dates", force: :cascade do |t|
-    t.date "day"
+    t.date "day", null: false
     t.bigint "tour_id"
     t.bigint "company_id"
     t.datetime "created_at", null: false
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 2018_02_26_141355) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.citext "email"
-    t.string "name"
+    t.citext "email", null: false
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_companies_on_email", unique: true
@@ -89,13 +89,13 @@ ActiveRecord::Schema.define(version: 2018_02_26_141355) do
   end
 
   create_table "tours", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
+    t.string "title", null: false
+    t.text "description", null: false
     t.string "video_uri"
-    t.boolean "tech_help"
-    t.boolean "housing"
-    t.boolean "catering"
-    t.boolean "transport"
+    t.boolean "tech_help", null: false
+    t.boolean "housing", null: false
+    t.boolean "catering", null: false
+    t.boolean "transport", null: false
     t.integer "price_braaam_cents", default: 0, null: false
     t.string "price_braaam_currency", default: "USD", null: false
     t.integer "price_normal_cents", default: 0, null: false
