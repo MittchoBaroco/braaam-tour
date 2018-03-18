@@ -4,7 +4,8 @@
     <% @tours_collection.each do |tour| %>
       <%= link_to tour, class: 'tour-carousel--item' do %>
         <% if tour.cover_image.attached? %>
-          <%= image_tag tour.cover_image, class: 'tour-item--image' %>
+          <%= image_tag tour.cover_image.variant(resize: "400x400"),
+                        class: 'tour-item--image' %>
         <% end %>
         <p><%= tour.title %></p>
       <% end %>
