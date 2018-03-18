@@ -35,8 +35,10 @@ class Tour < ApplicationRecord
   # chaining scopes
   # http://dmitrypol.github.io/2016/10/14/rails-scope-inside-scope.html
   scope :future,  -> { after(Date.today) }
-  scope :current, -> { after(Date.today - 1) }
   scope :past,    -> { before(Date.today) }
+  scope :current, -> { after(Date.today - 1) }
+  scope :w_image, -> { select{ |t| t.cover_image.attached? } }
+  scope :wo_image, -> { select{ |t| not t.cover_image.attached? } }
   # https://ducktypelabs.com/using-scope-with-associations/
   # https://stackoverflow.com/questions/9197649/rails-sort-by-join-table-data
   scope :after,  -> (date) { joins(:booking_dates).
