@@ -5,7 +5,7 @@ RSpec.describe Tour, type: :model do
   let!(:tour_in_week_awards){ FactoryBot.create(:tour, title: "In Week") }
   let!(:tour_today_tomorrow){ FactoryBot.create(:tour, title: "Today & Tomorrow") }
   let!(:tour_tomorrow)      { FactoryBot.create(:tour, title: "Tomorrow") }
-  let!(:tour_today)         { FactoryBot.create(:tour, title: "Today") }
+  let!(:tour_today)         { FactoryBot.create(:tour_w_image, title: "Today") }
   # let!(:tour_yesterday)   { FactoryBot.create(:tour, title: "Yesterday") }
 
   let!(:date_in_week)       { FactoryBot.create(:booking_date,
@@ -100,7 +100,13 @@ RSpec.describe Tour, type: :model do
       correct  = [tour_today_tomorrow.title, tour_today.title]
       expect(response).to eq( correct )
     end
-    it "properly selects tours with image" do
+    it "properly selects a tour with image" do
+      # TODO: add image to tour and be sure its scopped
+      response = Tour.current.with_image.map{|t| t.title}
+      correct  = [tour_today.title]
+      expect(response).to eq( correct )
+    end
+    it "properly selects any tour with image" do
       # TODO: add image to tour and be sure its scopped
       response = Tour.with_image.map{|t| t.title}
       correct  = [tour_today.title]

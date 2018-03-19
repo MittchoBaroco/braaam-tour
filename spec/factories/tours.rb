@@ -33,12 +33,10 @@ FactoryBot.define do
     price_braaam { Money.new(braaam_amt, currency) }
   end
 
-  trait :with_cover_image do
-    after :create do |tour|
-      cover_image{ Rack::Test::UploadedFile.new(
+  factory :tour_w_image, parent: :tour do
+    cover_image{ Rack::Test::UploadedFile.new(
                       Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
                       'image/png') }
-    end
   end
 
   trait :with_video do
