@@ -1,5 +1,7 @@
 <div class="tour-booking-btn js-tour-booking-btn">
   <div class="tour-booking-btn--text">
-    <%= @date.strftime("%d %b %Y") %>
+    <%= link_to booking_path(@id) do %>
+      <%= @date.strftime("%d %b %Y") %>
+    <% end %>
   </div>
 </div>
