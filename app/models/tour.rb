@@ -37,17 +37,18 @@ class Tour < ApplicationRecord
   scope :future,  -> { after(Date.today) }
   scope :past,    -> { before(Date.today) }
   scope :current, -> { after(Date.today - 1) }
-  # scope :w_image, -> { select{ |t| t.cover_image.attached? } }
-  # scope :wo_image, -> { select{ |t| not t.cover_image.attached? } }
-  # https://ducktypelabs.com/using-scope-with-associations/
-  # https://stackoverflow.com/questions/9197649/rails-sort-by-join-table-data
+  scope :with_image, -> { includes(:booking_dates).
+                      where('active_storage_attachments.record_type = ?', 'Tour').
+                      where('active_storage_attachments.name = ?', 'cover_image') }
   scope :after,  -> (date) { distinct.includes(:booking_dates).
                               where('booking_dates.day > ?', date).
                               references(:booking_dates).
-                              order('booking_dates.day ASC') }
+                              order('booking_dates.day ASC').
+                              with_attached_cover_image }
   scope :before, -> (date) { distinct.includes(:booking_dates).
                               where('booking_dates.day < ?', date).
                               references(:booking_dates).
-                              order('booking_dates.day DESC') }
+                              order('booking_dates.day DESC').
+                              with_attached_cover_image }
 
 end
