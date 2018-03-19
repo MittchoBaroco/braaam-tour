@@ -6,9 +6,7 @@ class Tour < ApplicationRecord
   has_many :booking_dates, inverse_of: :tour, dependent: :destroy
   has_many :companies,     through: :booking_dates
 
-  # https://www.engineyard.com/blog/active-storage
   # https://evilmartians.com/chronicles/rails-5-2-active-storage-and-beyond
-  # https://gorails.com/episodes/file-uploading-with-activestorage-rails-5-2
   has_one_attached :cover_image
   # has_many_attached :carosel_images
 
@@ -32,8 +30,6 @@ class Tour < ApplicationRecord
   validates :transport,   inclusion: { in: [ true, false ] }
 
   # default_scope     { after(Date.today) }
-  # chaining scopes
-  # http://dmitrypol.github.io/2016/10/14/rails-scope-inside-scope.html
   scope :future,  -> { after(Date.today) }
   scope :past,    -> { before(Date.today) }
   scope :current, -> { after(Date.today - 1) }
@@ -41,14 +37,14 @@ class Tour < ApplicationRecord
                       where('active_storage_attachments.record_type = ?', 'Tour').
                       where('active_storage_attachments.name = ?', 'cover_image') }
   scope :after,  -> (date) { distinct.includes(:booking_dates).
-                              where('booking_dates.day > ?', date).
-                              references(:booking_dates).
-                              order('booking_dates.day ASC').
-                              with_attached_cover_image }
+                      where('booking_dates.day > ?', date).
+                      references(:booking_dates).
+                      order('booking_dates.day ASC').
+                      with_attached_cover_image }
   scope :before, -> (date) { distinct.includes(:booking_dates).
-                              where('booking_dates.day < ?', date).
-                              references(:booking_dates).
-                              order('booking_dates.day DESC').
-                              with_attached_cover_image }
+                      where('booking_dates.day < ?', date).
+                      references(:booking_dates).
+                      order('booking_dates.day DESC').
+                      with_attached_cover_image }
 
 end

@@ -5,13 +5,14 @@ class ToursController < ApplicationController
   # GET /tours
   # GET /tours.json
   def index
+    # today and in future with a cover_image
     @tours = Tour.current.with_image
   end
 
   # GET /tours/1
   # GET /tours/1.json
   def show
-    # component require a collection to show - for the bottom of the show page
+    # collection of today and future tours for the bottom of the show page
     @tours = (Tour.current.with_image - @tour)
   end
 
