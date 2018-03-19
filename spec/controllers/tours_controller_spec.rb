@@ -25,5 +25,13 @@ RSpec.describe ToursController, type: :controller do
       get :show, params: {id: tour.to_param}, session: valid_session
       expect(response).to be_successful
     end
+    it "returns the proper collection of other tours" do
+      tour1 = Tour.create! valid_attributes
+      tour2 = Tour.create! valid_attributes
+      # TODO: add booking dates to tour2
+      # TODO: add cover_image to tour2
+      get :show, params: {id: tour.to_param}, session: valid_session
+      expect(@tours).to eq( [tour2] )
+    end
   end
 end

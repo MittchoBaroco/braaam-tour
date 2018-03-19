@@ -9,20 +9,18 @@ RSpec.describe Tour, type: :model do
   # let!(:tour_yesterday)   { FactoryBot.create(:tour, title: "Yesterday") }
 
   let!(:date_in_week)       { FactoryBot.create(:booking_date,
-                                                day: (Date.today + 7),
-                                                tour_id: tour_in_week_awards.id) }
+                              day: (Date.today + 7),
+                              tour_id: tour_in_week_awards.id) }
   let!(:date_tt_tomorrow)   { FactoryBot.create(:booking_date,
-                                                day: (Date.tomorrow),
-                                                tour_id: tour_today_tomorrow.id) }
+                              day: (Date.tomorrow),
+                              tour_id: tour_today_tomorrow.id) }
   let!(:date_tt_today)      { FactoryBot.create(:booking_date,
-                                                day: (Date.today),
-                                                tour_id: tour_today_tomorrow.id) }
+                              day: (Date.today),
+                              tour_id: tour_today_tomorrow.id) }
   let!(:date_tomorrow)      { FactoryBot.create(:booking_date,
-                                                day: (Date.tomorrow),
-                                                tour_id: tour_tomorrow.id) }
+                              day: (Date.tomorrow), tour_id: tour_tomorrow.id) }
   let!(:date_today)         { FactoryBot.create(:booking_date,
-                                                day: (Date.today),
-                                                tour_id: tour_today.id) }
+                              day: (Date.today), tour_id: tour_today.id) }
   # let!(:date_yesterday)   { FactoryBot.create(:booking_date,
   #                                             day: (Date.yesterday),
   #                                             tour_id: tour_yesterday.id) }
@@ -47,14 +45,13 @@ RSpec.describe Tour, type: :model do
     it { should allow_value(%w(true false)).for(:catering) }
     it { should allow_value(%w(true false)).for(:transport) }
 
-    it { should allow_values('',  nil, 'http://foo.com',
-                                  'http://foo.com/',
+    it { should allow_values('',  nil, 'http://foo.com', 'http://foo.com/',
                                   'http://foo.com/sd_fgh?sdfg=ertyui').
-                                  for(:video_uri) }
+                                for(:video_uri) }
     it { should_not allow_values( 'http://foo.com/sd fgh?sdfg=ertyui',
                                   'http://foo',
                                   'buz', ).
-                                  for(:video_uri) }
+                                for(:video_uri) }
 
     # money is not working with shoulda
     it "invalidated normal_price with 0" do
@@ -82,24 +79,31 @@ RSpec.describe Tour, type: :model do
 
   context "test scopes" do
     it "properly selects and orders future tours" do
-      response = Tour.future.pluck(:title)
+      response = Tour.future.map{|t| t.title}
+      pp response
       correct  = [tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week_awards.title ]
       expect(response).to eq( correct )
     end
     it "properly selects and orders current (today or future) tours" do
-      response = Tour.current.pluck(:title)
+      response = Tour.current.map{|t| t.title}
       correct  = [tour_today_tomorrow.title, tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
       expect(response).to eq( correct )
       # expect(response).to match_array( correct )
     end
     it "properly selects and orders tours with events after TOMORROW" do
-      response = Tour.after(Date.tomorrow).pluck(:title)
+      response = Tour.after(Date.tomorrow).map{|t| t.title}
       correct  = [tour_in_week_awards.title ]
       expect(response).to eq( correct )
     end
     it "properly selects and orders tours with events before TOMORROW" do
-      response = Tour.before(Date.tomorrow).pluck(:title)
+      response = Tour.before(Date.tomorrow).map{|t| t.title}
       correct  = [tour_today_tomorrow.title, tour_today.title]
+      expect(response).to eq( correct )
+    end
+    it "properly selects tours with image" do
+      # TODO: add image to tour and be sure its scopped
+      response = Tour.with_image.map{|t| t.title}
+      correct  = [tour_today.title]
       expect(response).to eq( correct )
     end
   end

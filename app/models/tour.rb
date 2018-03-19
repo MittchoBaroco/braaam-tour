@@ -29,7 +29,7 @@ class Tour < ApplicationRecord
   validates :catering,    inclusion: { in: [ true, false ] }
   validates :transport,   inclusion: { in: [ true, false ] }
 
-  # default_scope     { after(Date.today) }
+  default_scope      { with_attached_cover_image }
   scope :future,  -> { after(Date.today) }
   scope :past,    -> { before(Date.today) }
   scope :current, -> { after(Date.today - 1) }
@@ -39,12 +39,10 @@ class Tour < ApplicationRecord
   scope :after,  -> (date) { distinct.includes(:booking_dates).
                       where('booking_dates.day > ?', date).
                       references(:booking_dates).
-                      order('booking_dates.day ASC').
-                      with_attached_cover_image }
+                      order('booking_dates.day ASC') }
   scope :before, -> (date) { distinct.includes(:booking_dates).
                       where('booking_dates.day < ?', date).
                       references(:booking_dates).
-                      order('booking_dates.day DESC').
-                      with_attached_cover_image }
+                      order('booking_dates.day DESC') }
 
 end
