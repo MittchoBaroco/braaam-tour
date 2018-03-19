@@ -5,20 +5,14 @@ class ToursController < ApplicationController
   # GET /tours
   # GET /tours.json
   def index
-    @tours = Tour.all
-    # by default tours happening today or in the futre (current) w a cover_image
-    # rails scope - with_attached_cover_image - not working - selects all tours
-    # @tours = Tour.current.with_attached_cover_image
-    #@tours = Tour.current.select{|t| t.cover_image.attached?}
+    @tours = Tour.current.with_attached_cover_image
   end
 
   # GET /tours/1
   # GET /tours/1.json
   def show
     # component require a collection to show - for the bottom of the show page
-    @tours = Tour.all
-    # @tours = Tour.current.with_attached_cover_image
-    # @tours = Tour.current.select{|t| t.cover_image.attached?}
+    @tours = (Tour.current.with_attached_cover_image - @tour)
   end
 
   private
