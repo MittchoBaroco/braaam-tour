@@ -7,13 +7,15 @@
           <div class="tour-item">
             <%= link_to tour, class: "tour-item--link" do %>
               <% if tour.cover_image.attached? %>
-                <%= image_tag tour.cover_image, class: 'tour-item--image' %>
+                <%= image_tag tour.cover_image.variant(resize: "400x400>"),
+                              class: 'tour-item--image' %>
               <% end %>
               <p class="tour-item--title">
                 <%= tour.title %>
                   <br>
                 <% unless tour.booking_dates.empty? %>
-                  <%= tour.booking_dates.first.day.strftime("%e %b") %> - <%= tour.booking_dates.last.day.strftime("%e %b") %>
+                  <%= tour.booking_dates.first.day.strftime("%e %b") %> -
+                  <%= tour.booking_dates.last.day.strftime("%e %b") %>
                 <% else %>
                   &nbsp;
                 <% end %>

@@ -3,7 +3,10 @@
     <h2 class="tour-carousel--title">Next tours</h2>
     <% @tours_collection.each do |tour| %>
       <%= link_to tour, class: 'tour-carousel--item' do %>
-        <img src="https://www.braaam.com/images/sfondo2.png">
+        <% if tour.cover_image.attached? %>
+          <%= image_tag tour.cover_image.variant(resize: "400x400>"),
+                        class: 'tour-item--image' %>
+        <% end %>
         <p><%= tour.title %></p>
       <% end %>
     <% end %>

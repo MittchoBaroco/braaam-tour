@@ -1,4 +1,4 @@
-<%= c "hero_picture", source: "https://www.braaam.com/images/sfondo2.png", alt: "Braaam image" %>
+<%= c "tour/cover_picture", tour: @tour %>
 <%= c "container" do %>
 
   <div>
@@ -56,6 +56,6 @@
 
     <% end %>
   </div>
-  
+
   <%= c "tour/carousel", tours_collection: @tours %>
 <% end %>

@@ -1,0 +1,5 @@
+<% if @tour.cover_image.attached? %>
+  <div class="tour-cover-picture">
+    <%= image_tag @tour.cover_image, class: 'tour-cover-picture--image' %>
+  </div>
+<% end %>

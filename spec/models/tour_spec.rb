@@ -38,11 +38,9 @@ RSpec.describe Tour, type: :model do
   context "Check company validations" do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }
-    # it { should validate_presence_of(:video_uri) }
 
     it { should validate_length_of(:title).is_at_least(2) }
     it { should validate_length_of(:description).is_at_least(2) }
-    # it { should validate_length_of(:video_uri).is_at_least(2) }
 
     it { should allow_value(%w(true false)).for(:tech_help) }
     it { should allow_value(%w(true false)).for(:housing) }
@@ -92,6 +90,7 @@ RSpec.describe Tour, type: :model do
       response = Tour.current.pluck(:title)
       correct  = [tour_today_tomorrow.title, tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
       expect(response).to eq( correct )
+      # expect(response).to match_array( correct )
     end
     it "properly selects and orders tours with events after TOMORROW" do
       response = Tour.after(Date.tomorrow).pluck(:title)
