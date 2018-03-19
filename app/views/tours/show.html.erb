@@ -1,8 +1,4 @@
-<!-- <%= c "hero_picture", source: "https://www.braaam.com/images/sfondo2.png", alt: "Braaam image" %> -->
-<% if @tour.cover_image.attached? %>
-  <%= image_tag @tour.cover_image.variant(resize: "400x400"),
-                class: 'tour-item--image' %>
-<% end %>
+<%= c "tour/cover_picture", tour: @tour %>
 <%= c "container" do %>
 
   <div>
