@@ -15,22 +15,22 @@ class BookingDatesController < ApplicationController
   def signup
     respond_to do |format|
       # TODO: add a company password check for commit?
-      tour = @booking_date.tour
+      @tour = @booking_date.tour
       company, new_params = BookingStrategy.new(params: get_booking_info,
                                                 action: :signup).run
       if company and @booking_date.update( new_params )
         # TODO: email company of sucessful booking signup
-        format.html { redirect_to tour,
+        format.html { redirect_to @tour,
                                   notice: 'Date was successfully booked.' }
-        format.json { render :show, status: :ok, location: tour }
+        format.json { render :show, status: :ok, location: @tour }
       elsif company.blank?
         # format.html { render :edit }
-        format.html { redirect_to tour,
+        format.html { render :book,
                                   alert: 'Booking failed - company not found' }
         format.json { render json: @booking_date.errors,
                                   status: :unprocessable_entity }
       else
-        format.html { redirect_to tours_path,
+        format.html { render :book,
                                   alert: 'Booking failed - unexpected error' }
         format.json { render json: @booking_date.errors,
                                   status: :unprocessable_entity }

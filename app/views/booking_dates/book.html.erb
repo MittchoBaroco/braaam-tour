@@ -1,3 +1,17 @@
-<% c "container" do %>
-  yollo
+<%= c "container" do %>
+  <p>Vous êtes sur le point de résérvé la date du <%= @booking_date.day %> pour la tournée <%= @tour.title %></p>
+  <p>Êtes vous sur?</p>
+  <button type="button" name="button">Oui</button>
+  <%= link_to "Non", @tour %>
+
+  <div class="">
+    Pour confirmé merci d'entrer votre email:
+    <%= form_with model: @booking_date, url: signup_path(@booking_date.id), method: :patch, local: true do |form| %>
+      <%= form.email_field :company_email %>
+      <%= form.submit %>
+    <% end %>
+    <%= alert %>
+
+  </div>
+
 <% end %>
