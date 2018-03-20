@@ -13,7 +13,8 @@ class ToursController < ApplicationController
   # GET /tours/1.json
   def show
     # collection of today and future tours for the bottom of the show page
-    @tours = (Tour.current.with_image - [@tour])
+    # @tours = Tour.current.with_image - [@tour]
+    @tours = Tour.current.with_image.where.not(id: @tour.id)
   end
 
   private
