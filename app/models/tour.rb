@@ -29,20 +29,23 @@ class Tour < ApplicationRecord
   validates :catering,    inclusion: { in: [ true, false ] }
   validates :transport,   inclusion: { in: [ true, false ] }
 
+  # TODO: distinct for uniq returns - find an better solution
   default_scope      { with_attached_cover_image }
   scope :future,  -> { after(Date.today) }
   scope :past,    -> { before(Date.today) }
   scope :current, -> { after(Date.today - 1) }
-  scope :with_image, -> { includes(:booking_dates).
-                      where('active_storage_attachments.record_type = ?', 'Tour').
-                      where('active_storage_attachments.name = ?', 'cover_image') }
+  # rails team wrong - my query does what's expected
+  # scope :img_join, -> { joins(:image_attachment) }
+  scope :with_image, -> { distinct.includes(:booking_dates).
+                    where('active_storage_attachments.record_type = ?', 'Tour').
+                    where('active_storage_attachments.name = ?', 'cover_image')
+                  }
   scope :after,  -> (date) { distinct.includes(:booking_dates).
-                      where('booking_dates.day > ?', date).
-                      references(:booking_dates).
-                      order('booking_dates.day ASC') }
+                    where('booking_dates.day > ?', date).
+                    references(:booking_dates).
+                    order('booking_dates.day ASC') }
   scope :before, -> (date) { distinct.includes(:booking_dates).
-                      where('booking_dates.day < ?', date).
-                      references(:booking_dates).
-                      order('booking_dates.day DESC') }
-
+                    where('booking_dates.day < ?', date).
+                    references(:booking_dates).
+                    order('booking_dates.day DESC') }
 end
