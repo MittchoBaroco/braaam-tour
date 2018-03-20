@@ -4,7 +4,7 @@ RSpec.describe Tour, type: :model do
 
   let!(:tour_in_week_awards){ FactoryBot.create(:tour, title: "In Week") }
   let!(:tour_today_tomorrow){ FactoryBot.create(:tour, title: "Today & Tomorrow") }
-  let!(:tour_tomorrow)      { FactoryBot.create(:tour, title: "Tomorrow") }
+  let!(:tour_tomorrow)      { FactoryBot.create(:tour_w_image, title: "Tomorrow") }
   let!(:tour_today)         { FactoryBot.create(:tour_w_image, title: "Today") }
   # let!(:tour_yesterday)   { FactoryBot.create(:tour, title: "Yesterday") }
 
@@ -79,6 +79,7 @@ RSpec.describe Tour, type: :model do
 
   context "test scopes" do
     it "properly selects and orders future tours" do
+      # response = Tour.future.pluck(:title)
       response = Tour.future.map{|t| t.title}
       pp response
       correct  = [tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week_awards.title ]
@@ -96,19 +97,20 @@ RSpec.describe Tour, type: :model do
       expect(response).to eq( correct )
     end
     it "properly selects and orders tours with events before TOMORROW" do
+      # response = Tour.before(Date.tomorrow).map{&:title}
       response = Tour.before(Date.tomorrow).map{|t| t.title}
       correct  = [tour_today_tomorrow.title, tour_today.title]
       expect(response).to eq( correct )
     end
-    it "properly selects a tour with image" do
+    it "properly selects index carousel tour - all in future with amage" do
       # TODO: add image to tour and be sure its scopped
-      response = Tour.current.with_image.map{|t| t.title}
-      correct  = [tour_today.title]
+      response = Tour.index_carousel.map{|t| t.title}
+      correct  = [tour_today.title, tour_tomorrow.title]
       expect(response).to eq( correct )
     end
-    it "properly selects any tour with image" do
+    it "properly selects only carousel tour - excluding (id)" do
       # TODO: add image to tour and be sure its scopped
-      response = Tour.with_image.map{|t| t.title}
+      response = Tour.show_carousel(tour_tomorrow.id).map{|t| t.title}
       correct  = [tour_today.title]
       expect(response).to eq( correct )
     end

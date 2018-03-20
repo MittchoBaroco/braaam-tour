@@ -36,6 +36,9 @@ class Tour < ApplicationRecord
   scope :current, -> { after(Date.today - 1) }
   # rails team wrong - my query does what's expected
   # scope :img_join, -> { joins(:image_attachment) }
+  scope :index_carousel, -> { current.with_image }
+  scope :show_carousel, -> (id){ current.with_image.where.not(id: id) }
+  # ONLY USE  BELOW SCOPE (:with_image) in combination with other scopes!
   scope :with_image, -> { distinct.includes(:booking_dates).
                     where('active_storage_attachments.record_type = ?', 'Tour').
                     where('active_storage_attachments.name = ?', 'cover_image')

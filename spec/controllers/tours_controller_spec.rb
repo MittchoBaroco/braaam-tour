@@ -1,14 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ToursController, type: :controller do
-  let!(:tour1)  { FactoryBot.create(:tour, title: "Tour1") }
-  let!(:tour2)  { FactoryBot.create(:tour_w_image, title: "Tour2") }
-  let!(:date_today)         { FactoryBot.create(:booking_date,
-                              day: (Date.today), tour_id: tour2.id) }
-
-  # let(:valid_attributes) {
-  #   FactoryBot.attributes_for(:tour)
-  # }
+  let!(:tour1)      { FactoryBot.create(:tour, title: "Tour1") }
+  let!(:tour2)      { FactoryBot.create(:tour_w_image, title: "Tour2") }
+  let!(:date_today) { FactoryBot.create(:booking_date,
+                                        day: (Date.today), tour_id: tour2.id) }
 
   let(:valid_session) { {} }
 
@@ -23,10 +19,6 @@ RSpec.describe ToursController, type: :controller do
     it "returns a success response" do
       get :show, params: {id: tour1.to_param}, session: valid_session
       expect(response).to be_successful
-    end
-    it "returns the proper collection of other tours" do
-      get :show, params: {id: tour1.to_param}, format: :json, session: valid_session
-      expect(@tours).to eq( [tour2] )
     end
   end
 end
