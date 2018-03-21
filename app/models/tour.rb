@@ -6,9 +6,7 @@ class Tour < ApplicationRecord
   has_many :booking_dates, inverse_of: :tour, dependent: :destroy
   has_many :companies,     through: :booking_dates
 
-  # https://www.engineyard.com/blog/active-storage
   # https://evilmartians.com/chronicles/rails-5-2-active-storage-and-beyond
-  # https://gorails.com/episodes/file-uploading-with-activestorage-rails-5-2
   has_one_attached :cover_image
   # has_many_attached :carosel_images
 
@@ -31,21 +29,26 @@ class Tour < ApplicationRecord
   validates :catering,    inclusion: { in: [ true, false ] }
   validates :transport,   inclusion: { in: [ true, false ] }
 
-  # default_scope     { after(Date.today) }
-  # chaining scopes
-  # http://dmitrypol.github.io/2016/10/14/rails-scope-inside-scope.html
+  # TODO: distinct for uniq returns - find an better solution
+  default_scope      { with_attached_cover_image }
   scope :future,  -> { after(Date.today) }
   scope :past,    -> { before(Date.today) }
   scope :current, -> { after(Date.today - 1) }
-  scope :w_image, -> { select{ |t| t.cover_image.attached? } }
-  scope :wo_image, -> { select{ |t| not t.cover_image.attached? } }
-  # https://ducktypelabs.com/using-scope-with-associations/
-  # https://stackoverflow.com/questions/9197649/rails-sort-by-join-table-data
-  scope :after,  -> (date) { joins(:booking_dates).
-                              where('booking_dates.day > ?', date).
-                              order('booking_dates.day ASC').uniq }
-  scope :before, -> (date) { joins(:booking_dates).
-                              where('booking_dates.day < ?', date).
-                              order('booking_dates.day DESC').uniq }
-
+  # rails team wrong - my query does what's expected
+  # scope :img_join, -> { joins(:image_attachment) }
+  scope :index_collection, -> { current.with_image }
+  scope :show_collection, -> (id){ current.with_image.where.not(id: id) }
+  # ONLY USE  BELOW SCOPE (:with_image) in combination with other scopes!
+  scope :with_image, -> { distinct.includes(:booking_dates).
+                    where('active_storage_attachments.record_type = ?', 'Tour').
+                    where('active_storage_attachments.name = ?', 'cover_image')
+                  }
+  scope :after,  -> (date) { distinct.includes(:booking_dates).
+                    where('booking_dates.day > ?', date).
+                    references(:booking_dates).
+                    order('booking_dates.day ASC') }
+  scope :before, -> (date) { distinct.includes(:booking_dates).
+                    where('booking_dates.day < ?', date).
+                    references(:booking_dates).
+                    order('booking_dates.day DESC') }
 end
