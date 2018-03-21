@@ -81,7 +81,7 @@ RSpec.describe Tour, type: :model do
     it "properly selects and orders future tours" do
       # response = Tour.future.pluck(:title)
       response = Tour.future.map{|t| t.title}
-      pp response
+      # pp response
       correct  = [tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week_awards.title ]
       expect(response).to eq( correct )
     end
@@ -104,13 +104,13 @@ RSpec.describe Tour, type: :model do
     end
     it "properly selects index carousel tour - all in future with amage" do
       # TODO: add image to tour and be sure its scopped
-      response = Tour.index_carousel.map{|t| t.title}
+      response = Tour.index_collection.map{|t| t.title}
       correct  = [tour_today.title, tour_tomorrow.title]
       expect(response).to eq( correct )
     end
     it "properly selects only carousel tour - excluding (id)" do
       # TODO: add image to tour and be sure its scopped
-      response = Tour.show_carousel(tour_tomorrow.id).map{|t| t.title}
+      response = Tour.show_collection(tour_tomorrow.id).map{|t| t.title}
       correct  = [tour_today.title]
       expect(response).to eq( correct )
     end

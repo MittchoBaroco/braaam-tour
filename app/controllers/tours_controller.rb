@@ -6,7 +6,7 @@ class ToursController < ApplicationController
   # GET /tours.json
   def index
     # today and in future with a cover_image
-    @tours = Tour.index_carousel
+    @tours = Tour.index_collection
   end
 
   # GET /tours/1
@@ -15,7 +15,7 @@ class ToursController < ApplicationController
     # collection of today and future tours for the bottom of the show page
     # @tours = Tour.current.with_image - [@tour]
     # @tours = Tour.current.with_image.where.not(id: @tour.id)
-    @tours = Tour.show_carousel(@tour.id)
+    @tours = Tour.show_collection(@tour.id).limit(4)
   end
 
   private
