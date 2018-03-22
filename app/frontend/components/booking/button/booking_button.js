@@ -29,7 +29,8 @@ document.addEventListener('click', function (event) {
 	// Make sure clicked element is our toggle
 	if (!event.target.classList.contains('booking-button-js')) return;
 
-	// Prevent default link behavior
+	// Prevent default link behavior unless it's a real link
+	if (!event.target.hash.includes('#')) return;
 	event.preventDefault();
 
 	// Get the content

@@ -1,7 +1,7 @@
 <div class="tour-booking-btn js-tour-booking-btn">
-  <div class="tour-booking-btn--text">
-    <%= link_to booking_path(@id) do %>
+  <%= link_to booking_path(@id) do %>
+    <div class="tour-booking-btn--text">
       <%= c "date", date: @date %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
