@@ -1,6 +1,6 @@
 <div class="booking-tour-caption">
   <% t "booking_tour_caption_component.component_name" %>
-  <%= image_tag @tour.cover_image, class: 'booking-tour-caption--image' %>
+  <%= image_tag @tour.cover_image, class: 'booking-tour-caption--image' if @tour.cover_image.attached? %>
   <div>
     <p class="booking-tour-caption--title"><%= @tour.title %></p>
     <p>

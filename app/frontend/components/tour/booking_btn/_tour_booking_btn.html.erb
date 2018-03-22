@@ -1,7 +1,9 @@
-<div class="tour-booking-btn js-tour-booking-btn">
-  <%= link_to booking_path(@id) do %>
-    <div class="tour-booking-btn--text">
-      <%= c "date", date: @date %>
-    </div>
-  <% end %>
-</div>
+<%= link_to booking_path(@date.id), class: "tour-booking-btn js-tour-booking-btn" do %>
+  <div class="tour-booking-btn--text">
+    <%= c "date", date: @date.day %>
+  </div>
+  <div class="tour-booking-btn--status">
+    <%= content_tag(:i, "", class: "fas fa-calendar-check fa-lg") if status.eql?("mine") %>
+    <%= content_tag(:i, "", class: "fas fa-calendar-times fa-lg") if status.eql?("booked") %>
+  </div>
+<% end %>
