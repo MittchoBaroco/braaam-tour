@@ -5,12 +5,12 @@ class CreateAwards < ActiveRecord::Migration[5.2]
 
   def change
     create_table :awards do |t|
-      t.string  :caption
-      t.string  :institution
-      # t.string  :city
-      t.string  :country
-      t.string  :award_year
-      t.references :tour, foreign_key: true
+      t.string  :caption,     null: false
+      t.string  :institution, null: false
+      # t.string  :city,        null: false
+      t.string  :country,     null: false
+      t.string  :award_year,  null: false
+      t.references :tour,     foreign_key: true
 
       t.timestamps
     end
