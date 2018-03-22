@@ -3,7 +3,7 @@
     <%= c "date", date: @date.day %>
   </div>
   <div class="tour-booking-btn--status">
-    <%= content_tag(:i, "", class: "fas fa-calendar-check fa-lg") if status.eql?("mine") %>
-    <%= content_tag(:i, "", class: "fas fa-calendar-times fa-lg") if status.eql?("booked") %>
+    <%= c "fontawesome_icon", icon: "fas fa-calendar-check fa-lg" if status.eql?("mine") %>
+    <%= c "fontawesome_icon", icon: "fas fa-calendar-times fa-lg" if status.eql?("booked") %>
   </div>
 <% end %>
