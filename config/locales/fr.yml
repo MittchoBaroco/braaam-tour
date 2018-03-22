@@ -1,8 +1,8 @@
 ---
 fr:
   tour: "Tournée"
-  tour_index_title: "Up-coming Tours"
-  no_tours: "No Tours Available"
+  tour_index_title: "Tournées à venir"
+  no_tours: "Pas de tournées disponible"
   date_reserved: "Date résérve"
   client: "Client"
   follow_up: "Merci de prendre les mesures nécessaires"
