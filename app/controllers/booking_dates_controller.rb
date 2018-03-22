@@ -21,13 +21,11 @@ class BookingDatesController < ApplicationController
         format.json { render :show, status: :ok, location: @tour }
       elsif company.blank?
         # format.html { render :edit }
-        format.html { render :book,
-                                  alert: 'Company not found' }
+        format.html { flash.now[:alert] = 'Company not found'; render :book }
         format.json { render json: @booking_date.errors,
                                   status: :unprocessable_entity }
       else
-        format.html { render :book,
-                                  alert: 'Unexpected error' }
+        format.html { flash.now[:alert] = 'Unexpected error'; render :book }
         format.json { render json: @booking_date.errors,
                                   status: :unprocessable_entity }
       end

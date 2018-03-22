@@ -12,7 +12,13 @@
     Non
   <% end %>
 
-  <%= alert %>
+  <% console %>
+
+  <% if alert %>
+    <%= c "booking/alert" do %>
+      <%= alert %>
+    <% end %>
+  <% end %>
 
   <%= c "toggleable_container", id: 'email' do %>
     <p>Pour confirmé merci d'entrer votre email:</p>
