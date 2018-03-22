@@ -1,17 +1,25 @@
 <%= c "container" do %>
-  <p>Vous êtes sur le point de résérvé la date du <%= @booking_date.day %> pour la tournée <%= @tour.title %></p>
-  <p>Êtes vous sur?</p>
-  <button type="button" name="button">Oui</button>
-  <%= link_to "Non", @tour %>
+  <%= c "tour/title", text: "Reservation" %>
+  <%= c "booking/tour_caption", tour: @tour, date: @booking_date.day %>
 
-  <div class="">
-    Pour confirmé merci d'entrer votre email:
+  <p><strong>Êtes vous sur de vouloir reservé?</strong></p>
+
+  <%= c "booking/button", href: "#email", color: "green" do %>
+    Oui
+  <% end %>
+
+  <%= c "booking/button", href: url_for(@tour), color: "red" do %>
+    Non
+  <% end %>
+
+  <%= alert %>
+
+  <%= c "toggleable_container", id: 'email' do %>
+    <p>Pour confirmé merci d'entrer votre email:</p>
     <%= form_with model: @booking_date, url: signup_path(@booking_date.id), method: :patch, local: true do |form| %>
-      <%= form.email_field :company_email %>
-      <%= form.submit %>
+      <%= form.email_field :company_email, class: 'input', style: "width: 350px;" %>
+      <%= form.submit "Reserver", class: "submit" %>
     <% end %>
-    <%= alert %>
-
-  </div>
+  <% end %>
 
 <% end %>

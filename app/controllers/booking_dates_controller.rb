@@ -6,10 +6,6 @@ class BookingDatesController < ApplicationController
     @tour = @booking_date.tour
   end
 
-  def confirmation
-
-  end
-
   # PATCH/PUT /booking_dates/signup/1
   # PATCH/PUT /booking_dates/signup/1.json
   def signup
@@ -26,12 +22,12 @@ class BookingDatesController < ApplicationController
       elsif company.blank?
         # format.html { render :edit }
         format.html { render :book,
-                                  alert: 'Booking failed - company not found' }
+                                  alert: 'Company not found' }
         format.json { render json: @booking_date.errors,
                                   status: :unprocessable_entity }
       else
         format.html { render :book,
-                                  alert: 'Booking failed - unexpected error' }
+                                  alert: 'Unexpected error' }
         format.json { render json: @booking_date.errors,
                                   status: :unprocessable_entity }
       end

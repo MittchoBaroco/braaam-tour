@@ -48,4 +48,8 @@ class Tour < ApplicationRecord
                               where('booking_dates.day < ?', date).
                               order('booking_dates.day DESC').uniq }
 
+  def booked_days_count
+    self.booking_dates.where.not(company_id: nil).count
+  end
+
 end
