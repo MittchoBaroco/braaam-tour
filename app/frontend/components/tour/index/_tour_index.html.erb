@@ -1,6 +1,6 @@
 <%= c "container" do %>
   <div class="tour-index">
-    <h1>Next Tours</h1>
+    <h1><%= t('tour_index_title') %></h1>
     <div class="tour-index--list">
       <% unless @tours_collection.empty? %>
         <% @tours_collection.each do |tour| %>
@@ -24,7 +24,7 @@
           </div>
         <% end %>
       <% else %>
-        There is no tours
+        <%= t('no_tours') %>
       <% end %>
     </div>
   </div>

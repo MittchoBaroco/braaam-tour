@@ -1,0 +1,12 @@
+---
+fr:
+  tour: "Tournée"
+  tour_index_title: "Up-coming Tours"
+  no_tours: "No Tours Available"
+  date_reserved: "Date résérve"
+  client: "Client"
+  follow_up: "Merci de prendre les mesures nécessaires"
+  reservation_added_admin: "Une nouvelle réservation vient d'être effectué"
+  reservation_confirmation_client: "Nous avons le plaisir de vous confirmer votre reservation du"
+  reservation_follow_up_client: "Un email vous serra envoyé sous peu avec le contract"
+  for_tour: "pour"
