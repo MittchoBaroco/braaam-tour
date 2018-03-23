@@ -4,7 +4,7 @@
   <div>
     <p class="booking-tour-caption--title"><%= @tour.title %></p>
     <p>
-      <%= c "date", date: @date %><br>
+      <%= c "date", date: l(@date) %><br>
       <%= c "price", money: @tour.price_braaam %>
     </p>
     <i>There is <%= @tour.booked_days_count %> other organisers that book this event</i>
