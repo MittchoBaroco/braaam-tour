@@ -1,10 +1,14 @@
----
 fr:
+  "yes": "Oui"
+  "no": "Non"
   tour: "Tournée"
+  book: "Réserver"
   tour_index_title: "Tournées à venir"
   no_tours: "Pas de tournées disponible"
   date_reserved: "Date résérve"
   client: "Client"
+  booking_confirmation: "Êtes vous sur de vouloir réserver?"
+  ask_email: "Pour confirmer merci d'entrer votre email"
   follow_up: "Merci de prendre les mesures nécessaires"
   reservation_added_admin: "Une nouvelle réservation vient d'être effectué"
   reservation_confirmation_client: "Nous avons le plaisir de vous confirmer votre reservation du"

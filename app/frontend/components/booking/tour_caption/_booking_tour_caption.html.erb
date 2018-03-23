@@ -1,5 +1,4 @@
 <div class="booking-tour-caption">
-  <% t "booking_tour_caption_component.component_name" %>
   <%= image_tag @tour.cover_image, class: 'booking-tour-caption--image' if @tour.cover_image.attached? %>
   <div>
     <p class="booking-tour-caption--title"><%= @tour.title %></p>
@@ -7,6 +6,6 @@
       <%= c "date", date: @date %><br>
       <%= c "price", money: @tour.price_braaam %>
     </p>
-    <i>There is <%= @tour.booked_days_count %> other organisers that book this event</i>
+    <i><%= t ".others_organisers", count: @tour.booked_days_count %></i>
   </div>
 </div>
