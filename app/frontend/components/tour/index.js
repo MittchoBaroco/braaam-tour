@@ -10,3 +10,4 @@ import "components/tour/section/tour_section";
 import "components/tour/section_side/tour_section_side";
 import "components/tour/side/tour_side";
 import "components/tour/title/tour_title";
+import "components/tour/youtube/tour_youtube";
