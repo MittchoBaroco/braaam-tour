@@ -40,15 +40,15 @@
           <% end %>
           <%= c "tour/section_side", type: "dates" do %>
             <% @tour.booking_dates.each do |date| %>
-              <%= c "tour/booking_btn", date: date.day %>
+              <%= c "tour/booking_btn", date: date %>
             <% end %>
           <% end %>
           <%= c "tour/section_side", type: "prices" do %>
             <div style="text-decoration: line-through">
-              Initial price: <%= @tour.price_normal %> <%= @tour.price_normal.currency %>
+              Initial price: <%= c "price", money: @tour.price_normal %>
             </div>
             <div>
-              Braaamed price: <strong><%= @tour.price_braaam %> <%= @tour.price_braaam.currency %></strong>
+              Braaamed price: <strong><%= c "price", money: @tour.price_braaam %></strong>
             </div>
           <% end %>
         <% end %>
