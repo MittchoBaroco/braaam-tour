@@ -10,14 +10,19 @@ Rails.application.routes.draw do
     # admin dashboard root page (admin_tours)
     root to: "tours#index"
   end
-  get   'booking_dates/book/:id',         to: 'booking_dates#book', as: "booking"
-  put   'booking_dates/signup/:id',       to: 'booking_dates#signup', as: "signup"
-  patch 'booking_dates/signup/:id',       to: 'booking_dates#signup'
-  put   'admin/booking_dates/signup/:id', to: 'admin/booking_dates#signup'
-  patch 'admin/booking_dates/signup/:id', to: 'admin/booking_dates#signup'
-  put   'admin/booking_dates/cancel/:id', to: 'admin/booking_dates#cancel'
-  patch 'admin/booking_dates/cancel/:id', to: 'admin/booking_dates#cancel'
-  root to: "tours#index"
+
+  scope "(:locale)", locale: /en|fr/ do
+
+    get   'booking_dates/book/:id',         to: 'booking_dates#book', as: "booking"
+    put   'booking_dates/signup/:id',       to: 'booking_dates#signup', as: "signup"
+    patch 'booking_dates/signup/:id',       to: 'booking_dates#signup'
+    put   'admin/booking_dates/signup/:id', to: 'admin/booking_dates#signup'
+    patch 'admin/booking_dates/signup/:id', to: 'admin/booking_dates#signup'
+    put   'admin/booking_dates/cancel/:id', to: 'admin/booking_dates#cancel'
+    patch 'admin/booking_dates/cancel/:id', to: 'admin/booking_dates#cancel'
+    root to: "tours#index"
+
+  end
   # default route for non-existent pages to avoid errors
   # get "*path" => 'tours#index'
   # breaks active storage links - done to prevent 404 when mistype page
