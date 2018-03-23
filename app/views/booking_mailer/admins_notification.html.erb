@@ -1,9 +1,9 @@
-<h1><span style="font-size:14px">Une nouvelle réservation vient d'être effectué,</span></h1>
+<h1><span style="font-size:14px"><%= t('reservation_added_admin') %>,</span></h1>
 
 <ul>
-  <li>Tournée: <%= @tour_name %></li>
-  <li>Date résérvé: <%= @booked_date %></li>
-  <li>Client: <%= @company_name %> - <%= @company_email %></li>
+  <li><%= t('tour') %>: <%= @tour_name %></li>
+  <li><%= t('date_reserved') %>: <%= @booked_date %></li>
+  <li><%= t('client') %>: <%= @company_name %> - <%= @company_email %></li>
 </ul>
 
-<p><span style="font-size:14px">Merci de prendre les mesures nécessaires.</span></p>
+<p><span style="font-size:14px"><%= t('follow_up_admin') %>.</span></p>

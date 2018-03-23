@@ -1,5 +1,5 @@
 Braaamjour <%= @company_name.to_s %>,
 
-Nous avons le plaisir de vous confirmer votre reservation du <%= @booked_date.to_s %> pour <%= @tour_name.to_s %>.
+<%= t('reservation_confirmation_client') %> <%= @booked_date.to_s %> <%= t('for_tour') %> <%= @tour_name.to_s %>.
 
-Un email vous serra envoyé sous peu avec le contract.
+<%= t('reservation_follow_up_client') %>.

@@ -1,6 +1,6 @@
 <%= link_to booking_path(@date.id), class: "tour-booking-btn js-tour-booking-btn" do %>
   <div class="tour-booking-btn--text">
-    <%= c "date", date: @date.day %>
+    <%= c "date", date: l(@date.day) %>
   </div>
   <div class="tour-booking-btn--status">
     <%= c "fontawesome_icon", icon: "fas fa-calendar-check fa-lg" if status.eql?("mine") %>

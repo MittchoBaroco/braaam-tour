@@ -1,7 +1,7 @@
-Une nouvelle réservation vient d'être effectué,
+<%= t('reservation_added_admin') %>,
 
-- Tournée: <%= @tour_name %>
-- Date résérvé: <%= @booked_date %>
-- Client: <%= @company_name %> - <%= @company_email %>
+- <%= t('tour') %>: <%= @tour_name %>
+- <%= t('date_reserved') %>: <%= @booked_date %>
+- <%= t('client') %>: <%= @company_name %> - <%= @company_email %>
 
-Merci de prendre les mesures nécessaires.
+<%= t('follow_up_admin') %>
