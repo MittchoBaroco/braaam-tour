@@ -1,5 +1,9 @@
-<div class="tour-booking-btn js-tour-booking-btn">
+<%= link_to booking_path(@date.id), class: "tour-booking-btn js-tour-booking-btn" do %>
   <div class="tour-booking-btn--text">
-    <%= @date.strftime("%d %b %Y") %>
+    <%= c "date", date: @date.day %>
   </div>
-</div>
+  <div class="tour-booking-btn--status">
+    <%= c "fontawesome_icon", icon: "fas fa-calendar-check fa-lg" if status.eql?("mine") %>
+    <%= c "fontawesome_icon", icon: "fas fa-calendar-times fa-lg" if status.eql?("booked") %>
+  </div>
+<% end %>

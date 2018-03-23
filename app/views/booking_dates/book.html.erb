@@ -1,0 +1,29 @@
+<%= c "container" do %>
+  <%= c "tour/title", text: "Reservation" %>
+  <%= c "booking/tour_caption", tour: @tour, date: @booking_date.day %>
+
+  <p><strong>Êtes vous sur de vouloir reservé?</strong></p>
+
+  <%= c "booking/button", href: "#email", color: "green" do %>
+    Oui
+  <% end %>
+
+  <%= c "booking/button", href: url_for(@tour), color: "red" do %>
+    Non
+  <% end %>
+
+  <% if alert %>
+    <%= c "booking/alert" do %>
+      <%= alert %>
+    <% end %>
+  <% end %>
+
+  <%= c "toggleable_container", id: 'email' do %>
+    <p>Pour confirmé merci d'entrer votre email:</p>
+    <%= form_with model: @booking_date, url: signup_path(@booking_date.id), method: :patch, local: true do |form| %>
+      <%= form.email_field :company_email, class: 'input', style: "width: 350px;" %>
+      <%= form.submit "Reserver", class: "submit" %>
+    <% end %>
+  <% end %>
+
+<% end %>
