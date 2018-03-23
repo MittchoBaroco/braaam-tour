@@ -63,21 +63,24 @@ RSpec.describe BookingDatesController, type: :controller do
         put :signup, params: {id: booking_date.to_param,
                       booking_date: invalid_attributes}, session: valid_session
         # expect(response).to be_successful
-        expect(response).to redirect_to(booking_date.tour)
+        expect(response).to be_successful
+        expect(controller).to set_flash.now[:alert]
       end
       it "returns error on tour page - with bad company_id" do
         #booking_date = BookingDate.create! valid_attributes
         put :signup, params: {id: booking_date.to_param,
                       booking_date: invalid_company_id}, session: valid_session
         # expect(response).to be_successful
-        expect(response).to redirect_to(booking_date.tour)
+        expect(response).to be_successful
+        expect(controller).to set_flash.now[:alert]
       end
       it "returns error on tour page - with bad company_email" do
         #booking_date = BookingDate.create! valid_attributes
         put :signup, params: {id: booking_date.to_param,
                       booking_date: invalid_company_email}, session: valid_session
         # expect(response).to be_successful
-        expect(response).to redirect_to(booking_date.tour)
+        expect(response).to be_successful
+        expect(controller).to set_flash.now[:alert]
       end
     end
   end

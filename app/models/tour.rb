@@ -51,4 +51,8 @@ class Tour < ApplicationRecord
                     where('booking_dates.day < ?', date).
                     references(:booking_dates).
                     order('booking_dates.day DESC') }
+
+  def booked_days_count
+    self.booking_dates.where.not(company_id: nil).count
+  end
 end

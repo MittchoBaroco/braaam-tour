@@ -5,10 +5,23 @@
   border-radius: 5px;
   background-color: #fbfdff;
   cursor: pointer;
+  text-decoration: none;
+  color: #118af4;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
 
   &--text {
     display: inline-block;
     padding-left: 7px;
-    color: #118af4;
+  }
+
+  &--status {
+    margin-right: 15px;
+    display: inline-block;
+    color: #EB5757;
   }
 }

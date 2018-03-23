@@ -1,6 +1,6 @@
 <%= c "container" do %>
   <div class="tour-index">
-    <h1>Next Tours</h1>
+    <%= c "tour/title", text: "Next Tours" %>
     <div class="tour-index--list">
       <% unless @tours_collection.empty? %>
         <% @tours_collection.each do |tour| %>
