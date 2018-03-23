@@ -10,3 +10,6 @@ en:
   reservation_confirmation_client: "We are pleased to confirm your reservation on"
   reservation_follow_up_client: "Shortly, we will send a contract via email"
   for_tour: "for"
+  time:
+    formats:
+      short: "%e %b"

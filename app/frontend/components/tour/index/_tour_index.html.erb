@@ -14,8 +14,8 @@
                 <%= tour.title %>
                   <br>
                 <% unless tour.booking_dates.empty? %>
-                  <%= l( tour.booking_dates.first.day.strftime("%e %b") ) %> -
-                  <%= l( tour.booking_dates.last.day.strftime("%e %b") ) %>
+                  <%= l( tour.booking_dates.first.day, format: :short ) %> -
+                  <%= l( tour.booking_dates.last.day, format: :short ) %>
                 <% else %>
                   &nbsp;
                 <% end %>
