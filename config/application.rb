@@ -21,6 +21,7 @@ Bundler.require(*Rails.groups)
 
 module BraaamTour
   class Application < Rails::Application
+    config.i18n.load_path += Dir[config.root.join('app/frontend/components/**/*.yml')]
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     # config.autoload_paths += %W(#{config.root}/lib)
