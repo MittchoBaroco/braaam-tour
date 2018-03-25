@@ -1,12 +1,19 @@
----
 en:
+  "yes": "Yes"
+  "no": "No"
   tour: "Tour"
+  book: "Book"
   tour_index_title: "Up-coming Tours"
   no_tours: "No Tours Available"
   date_reserved: "Date Reserved"
   client: "Client"
+  booking_confirmation: "Are you sure you want to book?"
+  ask_email: "To confirm please enter your email"
   follow_up: "Please follow up with a contract for the client"
   reservation_added_admin: "A new reservation has been made"
   reservation_confirmation_client: "We are pleased to confirm your reservation on"
   reservation_follow_up_client: "Shortly, we will send a contract via email"
   for_tour: "for"
+  time:
+    formats:
+      short: "%e %b"
