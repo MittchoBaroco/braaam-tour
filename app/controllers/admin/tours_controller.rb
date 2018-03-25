@@ -79,8 +79,8 @@ class Admin::ToursController < ApplicationController
         :title, :description, :video_uri, :tech_help, :housing, :catering,
         :transport, :currency, :price_normal, :price_braaam,
         :cover_image, # carosel_images: [],
-        awards_attributes: [:caption, :institution, :country, :award_year],
-        booking_dates_attributes: [:day, :company]
+        awards_attributes: [:caption, :institution, :country, :award_year, :id],
+        booking_dates_attributes: [:day, :company, :id]
       )
     end
 end
