@@ -15,12 +15,9 @@ class BookingDatesController < ApplicationController
       company, new_params = BookingStrategy.new(params: get_booking_info,
                                                 action: :signup).run
       if company and @booking_date.update( new_params )
-        # TODO: email company of sucessful booking signup
-        format.html do
-          BookingMailer.booking_confirmation(@booking_date.company, @booking_date.day.to_s, @tour.title).deliver_later
-          BookingMailer.admins_notification(@booking_date.company, @booking_date.day.to_s, @tour.title).deliver_later
-          redirect_to @tour, notice: 'Date was successfully booked.'
-        end
+        BookingMailer.booking_confirmation(@booking_date.company, @booking_date.day.to_s, @tour.title).deliver_later
+        BookingMailer.admins_notification(@booking_date.company, @booking_date.day.to_s, @tour.title).deliver_later
+        format.html { redirect_to @tour, notice: 'Date was successfully booked.' }
         format.json { render :show, status: :ok, location: @tour }
       elsif company.blank?
         # format.html { render :edit }
