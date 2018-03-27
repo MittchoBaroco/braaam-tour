@@ -38,6 +38,10 @@ hivemind Procfile.dev
 overmind start -f Procfile.dev
 ```
 
+# production
+## heroku
+please set master key in RAILS_MASTER_KEY env var as explain in config/environment/production.yml line 19
+
 ## Versions
 rails 5.2.0.rc1
 ruby 2.5.0

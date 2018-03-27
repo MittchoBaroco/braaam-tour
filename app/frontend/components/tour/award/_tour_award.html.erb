@@ -3,6 +3,6 @@
     <%= @caption %>
   </div>
   <div>
-    <%= @year %> - <%= @institution %>
+    <%= (@year + " - ") unless @year.blank? %><%= @institution %> - <%= @country %>
   </div>
 </div>
