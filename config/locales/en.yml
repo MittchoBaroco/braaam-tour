@@ -11,11 +11,19 @@ en:
   booking_confirmation: "Are you sure you want to book?"
   booking_already_taken: "Unfortunately the date you tried to book is already taken"
   ask_email: "To confirm please enter your email"
-  follow_up: "Please follow up with a contract for the client"
+  follow_up_admin: "Please follow up with a contract for the client"
   reservation_added_admin: "A new reservation has been made"
   reservation_confirmation_client: "We are pleased to confirm your reservation on"
   reservation_follow_up_client: "Shortly, we will send a contract via email"
   for_tour: "for"
+  copyright: "Copyright © %{year} Braaam, All Rights Reserved."
+  no_reply: "Please do not reply to this email, for any question contact contact@braaam.com."
+  no_reply_html: "Please do not reply to this email, for any question contact "
   time:
     formats:
       short: "%e %b"
+  booking_mailer:
+    booking_confirmation:
+      subject: "Booking Confirmation for %{tour_name}"
+    admins_notification:
+      subject: "Booking Notification for %{tour_name}"

@@ -35,12 +35,19 @@ RSpec.describe BookingDatesController, type: :controller do
   let(:valid_session) { {} }
 
   describe "PUT #signup" do
+    include ActiveJob::TestHelper
+
+    after do
+      clear_enqueued_jobs
+    end
+    
     context "with valid params" do
       it "updates the requested booking_date with company_id" do
         put :signup, params: {id: booking_date.to_param,
                       booking_date: valid_attributes}, session: valid_session
         booking_date.reload
         expect(booking_date.company_id).to eq(company.id)
+        expect(enqueued_jobs.size).to eq(2)
       end
       it "updates the requested booking_date with company_email" do
         put :signup, params: {id: booking_date.to_param,

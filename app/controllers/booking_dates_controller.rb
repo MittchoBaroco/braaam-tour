@@ -27,9 +27,9 @@ class BookingDatesController < ApplicationController
 
       # if the company can be found and booking date succesfully updates
       if company and @booking_date.update( new_params )
-        # TODO: email company of sucessful booking signup
-        format.html { redirect_to @tour,
-                                  notice: 'Date was successfully booked.' }
+        BookingMailer.booking_confirmation(@booking_date.company, @booking_date.day.to_s, @tour.title).deliver_later
+        BookingMailer.admins_notification(@booking_date.company, @booking_date.day.to_s, @tour.title).deliver_later
+        format.html { redirect_to @tour, notice: 'Date was successfully booked.' }
         format.json { render :show, status: :ok, location: @tour }
       end
 

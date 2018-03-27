@@ -11,11 +11,19 @@ fr:
   booking_confirmation: "Êtes vous sur de vouloir réserver?"
   booking_already_taken: "Malheureusement la date que vous essayé de réserver est déjà prise"
   ask_email: "Pour confirmer merci d'entrer votre email"
-  follow_up: "Merci de prendre les mesures nécessaires"
+  follow_up_admin: "Merci de prendre les mesures nécessaires"
   reservation_added_admin: "Une nouvelle réservation vient d'être effectué"
   reservation_confirmation_client: "Nous avons le plaisir de vous confirmer votre reservation du"
   reservation_follow_up_client: "Un email vous serra envoyé sous peu avec le contract"
   for_tour: "pour"
+  copyright: "Copyright © %{year} Braaam, Tous Droits Réservés."
+  no_reply: "Merci de ne pas répondre à cette email, pour toute question contacter contact@braaam.com."
+  no_reply_html: "Merci de ne pas répondre à cette email, pour toute question contacter "
+  booking_mailer:
+    booking_confirmation:
+      subject: "Confirmation de réservation pour %{tour_name}"
+    admins_notification:
+      subject: "Notification de réservation pour %{tour_name}"
   date:
     abbr_day_names:
     - dim
