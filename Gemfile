@@ -51,6 +51,8 @@ gem 'pry-rails'
 
 gem "aws-sdk-s3", require: false
 
+gem 'rollbar'
+
 group :development, :test do
   gem 'faker', '~> 1.8'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
