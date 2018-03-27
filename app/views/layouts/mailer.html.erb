@@ -615,9 +615,8 @@
 			            <tbody><tr>
 
 			                <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
-
-			                    <em>Copyright © <%= Date.today.year.to_s %> Braaam, Tous droits réservés.</em><br>
-			merci de ne pas répondre à cette email, pour toute question contacter <a href="mailto:contact@braaam.com" target="_blank">contact@braaam.com</a>
+			                    <em><%= t("copyright", year: Date.today.year.to_s) %></em><br>
+													<%= t("no_reply_html") %> <a href="mailto:contact@braaam.com" target="_blank">contact@braaam.com</a>.
 			                </td>
 			            </tr>
 			        </tbody></table>
