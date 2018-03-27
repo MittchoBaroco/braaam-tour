@@ -2,27 +2,34 @@
   <%= c "tour/title", text: "Reservation" %>
   <%= c "booking/tour_caption", tour: @tour, date: @booking_date.day %>
 
-  <p><strong><%= t "booking_confirmation" %></strong></p>
+  <% if @booking_date.company.blank? %>
+    <p><strong><%= t "booking_confirmation" %></strong></p>
 
-  <%= c "booking/button", href: "#email", color: "green" do %>
-    <%= t "yes" %>
-  <% end %>
-
-  <%= c "booking/button", href: url_for(@tour), color: "red" do %>
-    <%= t "no" %>
-  <% end %>
-
-  <% if alert %>
-    <%= c "booking/alert" do %>
-      <%= alert %>
+    <%= c "booking/button", href: "#email", color: "green" do %>
+      <%= t "yes" %>
     <% end %>
-  <% end %>
 
-  <%= c "toggleable_container", id: 'email' do %>
-    <p><%= t "ask_email" %>:</p>
-    <%= form_with model: @booking_date, url: signup_path(@booking_date.id), method: :patch, local: true do |form| %>
-      <%= form.email_field :company_email, class: 'input', style: "width: 350px;" %>
-      <%= form.submit (t "book"), class: "submit" %>
+    <%= c "booking/button", href: url_for(@tour), color: "red" do %>
+      <%= t "no" %>
+    <% end %>
+
+    <% if alert %>
+      <%= c "booking/alert" do %>
+        <%= alert %>
+      <% end %>
+    <% end %>
+
+    <%= c "toggleable_container", id: 'email' do %>
+      <p><%= t "ask_email" %>:</p>
+      <%= form_with model: @booking_date, url: signup_path(@booking_date.id), method: :patch, local: true do |form| %>
+        <%= form.email_field :company_email, class: 'input', style: "width: 350px;" %>
+        <%= form.submit (t "book"), class: "submit" %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p><strong><%= t "booking_already_taken" %></strong></p>
+    <%= c "booking/button", href: url_for(@tour), color: "blue" do %>
+      <%= t "back" %>
     <% end %>
   <% end %>
 

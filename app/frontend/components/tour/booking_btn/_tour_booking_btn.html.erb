@@ -1,4 +1,4 @@
-<%= link_to booking_path(@date.id), class: "tour-booking-btn js-tour-booking-btn" do %>
+<%= link_to link, class: "tour-booking-btn js-tour-booking-btn #{"disable" if close?}" do %>
   <div class="tour-booking-btn--text">
     <%= c "date", date: @date.day %>
   </div>
