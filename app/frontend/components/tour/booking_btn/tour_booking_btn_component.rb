@@ -7,4 +7,13 @@ module TourBookingBtnComponent
     return "booked" if @date.company_id
     return "open"
   end
+
+  def link
+    return '' if close?
+    return booking_path(@date.id)
+  end
+
+  def close?
+    status.eql?("booked")
+  end
 end

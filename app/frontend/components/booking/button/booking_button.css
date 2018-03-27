@@ -22,3 +22,11 @@
 .green:hover {
   background: color(#219653 shade(20%));
 }
+
+.blue {
+  background: #09529b;
+}
+
+.blue:hover {
+  background: color(#09529b shade(20%));
+}
