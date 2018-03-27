@@ -16,7 +16,6 @@ RSpec.describe Award, type: :model do
     it { should validate_presence_of(:institution) }
     # it { should validate_presence_of(:city) }
     it { should validate_presence_of(:country) }
-    it { should validate_presence_of(:award_year) }
 
     it { should validate_length_of(:caption).is_at_least(2) }
     it { should validate_length_of(:institution).is_at_least(2) }
