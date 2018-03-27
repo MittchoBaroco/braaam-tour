@@ -17,3 +17,8 @@ en:
   time:
     formats:
       short: "%e %b"
+  booking_mailer:
+    booking_confirmation:
+      subject: "Booking Confirmation for %{tour_name}"
+    admins_notification:
+      subject: "Booking Notification for %{tour_name}"

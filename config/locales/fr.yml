@@ -14,6 +14,11 @@ fr:
   reservation_confirmation_client: "Nous avons le plaisir de vous confirmer votre reservation du"
   reservation_follow_up_client: "Un email vous serra envoyé sous peu avec le contract"
   for_tour: "pour"
+  booking_mailer:
+    booking_confirmation:
+      subject: "Confirmation de réservation pour %{tour_name}"
+    admins_notification:
+      subject: "Notification de réservation pour %{tour_name}"
   date:
     abbr_day_names:
     - dim
