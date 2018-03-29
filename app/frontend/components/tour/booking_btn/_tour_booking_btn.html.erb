@@ -2,8 +2,8 @@
   <div class="tour-booking-btn--text">
     <%= c "date", date: @date.day %>
   </div>
-  <div class="tour-booking-btn--status">
-    <%= c "fontawesome_icon", icon: "fas fa-calendar-check fa-lg" if status.eql?("mine") %>
-    <%= c "fontawesome_icon", icon: "fas fa-calendar-times fa-lg" if status.eql?("booked") %>
+  <div class="tour-booking-btn--status <%= "txt-green" unless close? %> <%= "txt-red" if close? %>">
+    <%= c "fontawesome_icon", icon: "fas fa-calendar-check fa-lg" unless close? %>
+    <%= c "fontawesome_icon", icon: "fas fa-calendar-times fa-lg" if close? %>
   </div>
 <% end %>
