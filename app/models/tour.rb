@@ -3,7 +3,7 @@ class Tour < ApplicationRecord
   CURRENCIES = %w(CHF EUR)
 
   has_many :awards, inverse_of: :tour
-  has_many :booking_dates, inverse_of: :tour, dependent: :destroy
+  has_many :booking_dates, -> { order(day: :asc) }, inverse_of: :tour, dependent: :destroy
   has_many :companies,     through: :booking_dates
 
   # https://evilmartians.com/chronicles/rails-5-2-active-storage-and-beyond
