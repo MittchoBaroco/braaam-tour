@@ -19,6 +19,8 @@ class Tour < ApplicationRecord
   accepts_nested_attributes_for :booking_dates,
                           reject_if: :all_blank, allow_destroy: true
 
+  validates :tour_caption,  presence: true, length: { minimum: 2 }
+  validates :artist_country,presence: true, length: { minimum: 2 }
   validates :title,       presence: true, length: { minimum: 2 }
   validates :description, presence: true, length: { minimum: 2 }
   # validate url

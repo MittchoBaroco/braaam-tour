@@ -17,6 +17,8 @@ FactoryBot.define do
   factory :tour do
     title        { Faker::Book.title }
     description  { Faker::ChuckNorris.fact }
+    artist_country{ [Faker::Address.country, Faker::Address.country_code].sample }
+    tour_caption { Faker::Seinfeld.quote }
     # cover_image  { Rack::Test::UploadedFile.new(
     #                   Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
     #                   'image/png') }
