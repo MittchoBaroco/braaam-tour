@@ -2,6 +2,9 @@ class Tour < ApplicationRecord
 
   CURRENCIES = %w(CHF EUR)
 
+  # TODO: add new start & end date fields - sort on them (queried from bookings)
+  # TODO: distinct for uniq returns - find an better solution - add back sorting
+
   has_many :awards, inverse_of: :tour
   has_many :booking_dates, -> { order(day: :asc) }, inverse_of: :tour, dependent: :destroy
   has_many :companies,     through: :booking_dates
@@ -32,28 +35,27 @@ class Tour < ApplicationRecord
   validates :catering,    inclusion: { in: [ true, false ] }
   validates :transport,   inclusion: { in: [ true, false ] }
 
-  # TODO: distinct for uniq returns - find an better solution
   default_scope      { with_attached_cover_image }
   scope :future,  -> { after(Date.today) }
   scope :past,    -> { before(Date.today) }
   scope :current, -> { after(Date.today - 1) }
-  # rails team wrong - my query does what's expected
-  # scope :img_join, -> { joins(:image_attachment) }
   scope :index_collection, -> { current.with_image }
   scope :show_collection, -> (id){ current.with_image.where.not(id: id) }
-  # ONLY USE  BELOW SCOPE (:with_image) in combination with other scopes!
+  # :with_image scope MUST be used in combination with other scopes!
   scope :with_image, -> { distinct.includes(:booking_dates).
                     where('active_storage_attachments.record_type = ?', 'Tour').
                     where('active_storage_attachments.name = ?', 'cover_image')
                   }
+  # TODO: solve order and limit conflict when using includes
+  # order_by and limit conflict - limit is more needed than order
   scope :after,  -> (date) { distinct.includes(:booking_dates).
                     where('booking_dates.day > ?', date).
-                    references(:booking_dates).
-                    order('booking_dates.day ASC') }
+                    references(:booking_dates) }
+                    # .order('booking_dates.day ASC') }
   scope :before, -> (date) { distinct.includes(:booking_dates).
                     where('booking_dates.day < ?', date).
-                    references(:booking_dates).
-                    order('booking_dates.day DESC') }
+                    references(:booking_dates) }
+                    # .order('booking_dates.day DESC') }
 
   def booked_days_count
     self.booking_dates.where.not(company_id: nil).count
