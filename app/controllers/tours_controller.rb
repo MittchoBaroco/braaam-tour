@@ -15,7 +15,8 @@ class ToursController < ApplicationController
     # collection of today and future tours for the bottom of the show page
     # DO NOT USE ORDER('booking_dates.day ASC')
     # -- order and limit conflict with includes
-    @tours = Tour.show_collection(@tour.id).limit(4)
+    # using limit 3 for now since show page has space for multiples of 3
+    @tours = Tour.show_collection(@tour.id).limit(3)
   end
 
   private
