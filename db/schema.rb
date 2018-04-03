@@ -97,9 +97,9 @@ ActiveRecord::Schema.define(version: 2018_04_02_155247) do
     t.boolean "catering", null: false
     t.boolean "transport", null: false
     t.integer "price_braaam_cents", default: 0, null: false
-    t.string "price_braaam_currency", default: "CHF", null: false
+    t.string "price_braaam_currency", default: "EUR", null: false
     t.integer "price_normal_cents", default: 0, null: false
-    t.string "price_normal_currency", default: "CHF", null: false
+    t.string "price_normal_currency", default: "EUR", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "tour_caption", default: "", null: false
