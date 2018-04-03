@@ -11,6 +11,7 @@ class Tour < ApplicationRecord
 
   # https://evilmartians.com/chronicles/rails-5-2-active-storage-and-beyond
   has_one_attached :cover_image
+  has_one_attached :tech_sheet
   # has_many_attached :carosel_images
 
   monetize :price_braaam_cents, numericality: { greater_than_or_equal_to: 0 }

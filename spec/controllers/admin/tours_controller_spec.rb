@@ -136,6 +136,17 @@ RSpec.describe Admin::ToursController, type: :controller do
         expect(tour.cover_image.filename ).to eq('RubyRules.png')
       end
     end
+    fdescribe 'PUT #update - with ActiveStorage tech_sheet' do
+      fit 'attaches the uploaded file' do
+        file = fixture_file_upload( Rails.root.
+                        join('spec', 'photos', 'Checkout.pdf'), 'application/pdf')
+        put :update, params: {id: tour.to_param,
+                              tour: { tech_sheet: file } },
+                      session: valid_session
+        tour.reload
+        expect(tour.tech_sheet.filename ).to eq('Checkout.pdf')
+      end
+    end
     describe "PUT #update" do
       context "with valid params" do
         it "updates the requested admin_tour" do
