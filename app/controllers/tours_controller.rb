@@ -13,9 +13,10 @@ class ToursController < ApplicationController
   # GET /tours/1.json
   def show
     # collection of today and future tours for the bottom of the show page
-    # @tours = Tour.current.with_image - [@tour]
-    # @tours = Tour.current.with_image.where.not(id: @tour.id)
-    @tours = Tour.show_collection(@tour.id).limit(4)
+    # DO NOT USE ORDER('booking_dates.day ASC')
+    # -- order and limit conflict with includes
+    # using limit 3 for now since show page has space for multiples of 3
+    @tours = Tour.show_collection(@tour.id).limit(6)
   end
 
   private
