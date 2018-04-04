@@ -11,75 +11,98 @@
     </div>
   <% end %>
 
-  <div class="fields">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+  <fieldset>
+    <legend>Base:</legend>
 
-  <div class="fields">
-    <%= form.label :cover_image %>
-    <%= form.file_field :cover_image, class: "form-control" %>
-  </div>
-
-  <div class="fields">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="fields">
-    <%= form.label :video_uri %>
-    <%= form.text_field :video_uri %>
-  </div>
-
-  <div class="fields">
-    <%= form.label :tech_help, "Tech help needed?" %>
-    <%= form.check_box :tech_help %>
-  </div>
-
-  <div class="fields">
-    <%= form.label :housing, "Housing needed?" %>
-    <%= form.check_box :housing %>
-  </div>
-
-  <div class="fields">
-    <%= form.label :catering, "Catering needed?" %>
-    <%= form.check_box :catering %>
-  </div>
-
-  <div class="fields">
-    <%= form.label :transport, "Transport included ?" %>
-    <%= form.check_box :transport %>
-  </div>
-
-  <div class="fields">
-    <%= form.label :price_normal %>
-    <%= form.number_field :price_normal, min: 0, step: 0.01 %>
-  </div>
-
-  <div class="fields">
-    <%= form.label :price_braaam %>
-    <%= form.number_field :price_braaam, min: 0, step: 0.01 %>
-  </div>
-
-  <div id="dates">
-    <%= form.fields_for :booking_dates do |date| %>
-      <%= render "booking_date_fields", f: date %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association 'add date', form, :booking_dates %>
+    <div class="fields">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
     </div>
-  </div>
 
-  <div id="awards">
-    <%= form.fields_for :awards do |award| %>
-      <%= render "award_fields", f: award %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association 'add award', form, :awards %>
+    <div class="fields">
+      <%= form.label :artist_country %>
+      <%= form.text_field :artist_country %>
     </div>
-  </div>
 
+    <div class="fields">
+      <%= form.label :tour_caption %>
+      <%= form.text_field :tour_caption %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :cover_image %>
+      <%= form.file_field :cover_image, class: "form-control" %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :video_uri %>
+      <%= form.text_field :video_uri %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :tech_help, "Tech help needed?" %>
+      <%= form.check_box :tech_help %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :housing, "Housing needed?" %>
+      <%= form.check_box :housing %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :catering, "Catering needed?" %>
+      <%= form.check_box :catering %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :transport, "Transport included ?" %>
+      <%= form.check_box :transport %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :price_normal %>
+      <%= form.number_field :price_normal, min: 0, step: 0.01 %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :price_braaam %>
+      <%= form.number_field :price_braaam, min: 0, step: 0.01 %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Dates:</legend>
+    <div id="dates">
+      <%= form.fields_for :booking_dates do |date| %>
+        <%= render "booking_date_fields", f: date %>
+      <% end %>
+      <br>
+      <div class="links">
+        <%= link_to_add_association 'add date', form, :booking_dates %>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Awards:</legend>
+    <div id="awards">
+      <%= form.fields_for :awards do |award| %>
+        <%= render "award_fields", f: award %>
+      <% end %>
+      <br>
+      <div class="links">
+        <%= link_to_add_association 'add award', form, :awards %>
+      </div>
+    </div>
+  </fieldset>
+  <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save", class: "submit" %>
   </div>
+  <br>
 <% end %>
