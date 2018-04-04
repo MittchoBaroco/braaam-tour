@@ -11,8 +11,9 @@
                               class: 'tour-item--image' %>
               <% end %>
               <p class="tour-item--title">
-                <%= tour.title %>
-                  <br>
+                <strong><%= tour.title %></strong><br>
+                <%= tour.tour_caption %><br>
+                <%= c "fontawesome_icon", icon: "fas fa-globe" %> <%= tour.artist_country %><br>
                 <% unless tour.booking_dates.empty? %>
                   <%= l( tour.booking_dates.first.day, format: :short ) %> -
                   <%= l( tour.booking_dates.last.day, format: :short ) %>
