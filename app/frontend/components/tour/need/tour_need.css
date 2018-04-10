@@ -5,6 +5,10 @@
   &--text {
     display: inline-block;
     margin-left: 6px;
+
+    a {
+      color: #fff;
+    }
   }
 
   &--icon {

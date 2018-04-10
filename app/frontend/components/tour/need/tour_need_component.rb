@@ -47,6 +47,13 @@ module TourNeedComponent
         icon_value: (c "fontawesome_icon", icon: "fas fa-plane fa-lg"),
         text_value: text_value
       }
+    when "tech_file"
+      text_value = t ".open_tech_file"
+
+      {
+        icon_value: (c "fontawesome_icon", icon: "fas fa-file fa-lg"),
+        text_value: link_to(text_value, @value, target: '_blank').html_safe
+      }
     end
   end
 end
