@@ -1,14 +1,18 @@
 <% unless @tours_collection.empty? %>
   <div class="tour-carousel">
     <h2 class="tour-carousel--title">Next tours</h2>
-    <% @tours_collection.each do |tour| %>
-      <%= link_to tour, class: 'tour-carousel--item' do %>
-        <% if tour.cover_image.attached? %>
-          <%= image_tag tour.cover_image.variant(resize: "400x400>"),
-                        class: 'tour-item--image' %>
-        <% end %>
-        <p><%= tour.title %></p>
+    <div class="tour-carousel--grid">
+      <% @tours_collection.each do |tour| %>
+        <div class="tour-carousel--grid-item">
+          <%= link_to tour, class: 'tour-carousel--link' do %>
+            <% if tour.cover_image.attached? %>
+              <%= image_tag tour.cover_image.variant(resize: "400x400>"),
+                            class: 'tour-item--image' %>
+            <% end %>
+            <p><%= tour.title %></p>
+          <% end %>
+        </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
 <% end %>
