@@ -8,3 +8,4 @@ fr:
     false_housing: "hébergement non requis"
     true_transport: "transport inclus"
     false_transport: "transport non inclus"
+    open_tech_file: "ouvrir la fiche technique"
