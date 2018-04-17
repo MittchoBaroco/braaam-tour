@@ -6,13 +6,24 @@
     padding-top: 15px;
   }
 
-  &--item {
+  &--grid {
+    display: flex;
+  	flex-direction: row;
+  	flex-wrap: wrap;
+  	justify-content: flex-start;
+  	align-items: stretch;
+  	align-content: stretch;
+  }
+
+  &--grid-item {
+    width: 33%;
+    padding-right: 3.33%;
+  }
+
+  &--link {
     text-decoration: none;
     font-weight: bold;
     color: inherit;
-    display: inline-block;
-    width: 33%;
-    padding-right: 3.33%;
 
     img {
       object-fit: cover;
