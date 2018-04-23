@@ -48,14 +48,23 @@ class Tour < ApplicationRecord
                   }
   # TODO: solve order and limit conflict when using includes
   # order_by and limit conflict - limit is more needed than order
-  scope :after,  -> (date) { distinct.includes(:booking_dates).
+  scope :after,  -> (date) { distinct.joins(:booking_dates).
                     where('booking_dates.day > ?', date).
-                    references(:booking_dates) }
-                    # .order('booking_dates.day ASC') }
-  scope :before, -> (date) { distinct.includes(:booking_dates).
+                    includes(:booking_dates).
+                    order('booking_dates.day ASC') }
+  # scope :after,  -> (date) { distinct.includes(:booking_dates).
+  #                   where('booking_dates.day > ?', date).
+  #                   references(:booking_dates) }
+  #                   # .order('booking_dates.day ASC') }
+  scope :before, -> (date) { distinct.joins(:booking_dates).
                     where('booking_dates.day < ?', date).
-                    references(:booking_dates) }
-                    # .order('booking_dates.day DESC') }
+                    includes(:booking_dates).
+                    references(:booking_dates).
+                    order('booking_dates.day DESC') }
+  # scope :before, -> (date) { distinct.includes(:booking_dates).
+  #                   where('booking_dates.day < ?', date).
+  #                   references(:booking_dates) }
+  #                   # .order('booking_dates.day DESC') }
 
   def booked_days_count
     self.booking_dates.where.not(company_id: nil).count
