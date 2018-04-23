@@ -32,11 +32,14 @@ class Admin::AwardsController < ApplicationController
       if @admin_award.save
         # format.html { redirect_to @admin_award, notice: 'Award was successfully created.' }
         # format.json { render :show, status: :created, location: @admin_award }
-        format.html { redirect_to admin_award_path(@admin_award), notice: 'Award was successfully created.' }
-        format.json { render :show, status: :created, location: admin_award_path(@admin_award) }
+        format.html { redirect_to admin_award_path(@admin_award),
+                      notice: 'Award was successfully created.' }
+        format.json { render :show, status: :created,
+                      location: admin_award_path(@admin_award) }
       else
         format.html { render :new }
-        format.json { render json: @admin_award.errors, status: :unprocessable_entity }
+        format.json { render json: @admin_award.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
@@ -48,11 +51,14 @@ class Admin::AwardsController < ApplicationController
       if @admin_award.update(admin_award_params)
         # format.html { redirect_to @admin_award, notice: 'Award was successfully updated.' }
         # format.json { render :show, status: :ok, location: @admin_award }
-        format.html { redirect_to admin_award_path(@admin_award), notice: 'Award was successfully created.' }
-        format.json { render :show, status: :created, location: admin_award_path(@admin_award) }
+        format.html { redirect_to admin_award_path(@admin_award),
+                      notice: 'Award was successfully created.' }
+        format.json { render :show, status: :created,
+                      location: admin_award_path(@admin_award) }
       else
         format.html { render :edit }
-        format.json { render json: @admin_award.errors, status: :unprocessable_entity }
+        format.json { render json: @admin_award.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
@@ -62,7 +68,8 @@ class Admin::AwardsController < ApplicationController
   def destroy
     @admin_award.destroy
     respond_to do |format|
-      format.html { redirect_to admin_awards_url, notice: 'Award was successfully destroyed.' }
+      format.html { redirect_to admin_awards_url,
+                    notice: 'Award was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -75,8 +82,8 @@ class Admin::AwardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_award_params
-      params.fetch(:admin_award, {}).permit(:caption, :institution, :country,
-                                            :award_year, :tour_id )
+      params.fetch(:admin_award, {}).
+            permit(:caption, :institution, :country, :award_year, :tour_id )
       # params.require(:admin_award).permit(:caption, :institution, :country,
       #                                     :award_year, :tour_id )
     end
