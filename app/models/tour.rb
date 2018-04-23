@@ -5,7 +5,8 @@ class Tour < ApplicationRecord
   # TODO: add new start & end date fields - sort on them (queried from bookings)
   # TODO: distinct for uniq returns - find an better solution - add back sorting
 
-  has_many :awards, inverse_of: :tour
+  has_many :awards,   inverse_of: :tour
+  has_many :comments, inverse_of: :tour
   has_many :booking_dates, -> { order(day: :asc) }, inverse_of: :tour, dependent: :destroy
   has_many :companies,     through: :booking_dates
 
