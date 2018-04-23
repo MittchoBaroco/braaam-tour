@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   resources :tours, only: [:show, :index]
   namespace :admin do
     resources :awards
+    resources :booking_dates
+    resources :comments
     resources :companies
     resources :managers
-    resources :booking_dates
     resources :tours
     # admin dashboard root page (admin_tours)
     root to: "tours#index"
