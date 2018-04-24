@@ -71,12 +71,12 @@
 
     <div class="fields">
       <%= form.label :price_normal %>
-      <%= form.number_field :price_normal, min: 0, step: 0.01 %>
+      <%= form.number_field :price_normal, value: @admin_tour.price_normal.to_f, min: 0, step: 0.01 %>
     </div>
 
     <div class="fields">
       <%= form.label :price_braaam %>
-      <%= form.number_field :price_braaam, min: 0, step: 0.01 %>
+      <%= form.number_field :price_braaam, value: @admin_tour.price_braaam.to_f, min: 0, step: 0.01 %>
     </div>
   </fieldset>
 
