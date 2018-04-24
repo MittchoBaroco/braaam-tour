@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
     def set_locale
       I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
       session[:locale] = I18n.locale
+      # http://www.xyzpub.com/en/ruby-on-rails/3.2/i18n_mehrsprachige_rails_applikation.html
       Rails.application.routes.default_url_options[:locale]= I18n.locale
     end
     # or without adding locale to session
