@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # set_locale MUST be before authentication to work unauthenticated
   before_action :set_locale
   before_action :authenticate_manager!
 
