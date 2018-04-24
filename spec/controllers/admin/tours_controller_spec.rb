@@ -16,8 +16,12 @@ RSpec.describe Admin::ToursController, type: :controller do
       FactoryBot.attributes_for(:tour, title: "", price_braaam: -100)
   }
   # user & session - for security / authorization testing
-  let!(:tour) { FactoryBot.create(:tour) }
-  let!(:manager) { FactoryBot.create(:manager) }
+  let!(:tour)          { FactoryBot.create(:tour) }
+  # these are new - adding dependencies to test deletes
+  let!(:booking_date)  { FactoryBot.create(:booking_date, tour_id: tour.id) }
+  let!(:booked_date)   { FactoryBot.create(:booked_date,  tour_id: tour.id) }
+  let!(:award)         { FactoryBot.create(:award,        tour_id: tour.id) }
+  let!(:manager)       { FactoryBot.create(:manager) }
   let!(:valid_session) { {manager_id: manager.id} }
 
   context "UNAUTHENTICATED" do
@@ -91,7 +95,7 @@ RSpec.describe Admin::ToursController, type: :controller do
     end
     # https://www.neontsunami.com/posts/testing-activestorage-uploads-in-rails-52
     describe 'POST #update - with ActiveStorage image' do
-      it 'attaches the uploaded file' do
+      fit 'attaches the uploaded file' do
         file = fixture_file_upload( Rails.root.
                         join('public', 'apple-touch-icon.png'), 'image/png')
         expect {
@@ -103,13 +107,13 @@ RSpec.describe Admin::ToursController, type: :controller do
     end
     describe "POST #create" do
       context "with valid params" do
-        it "creates a new Tour from Admin" do
+        fit "creates a new Tour from Admin" do
           expect {
             post :create, params: {tour: valid_attributes},
                           session: valid_session
           }.to change(Tour, :count).by(1)
         end
-        it "redirects to the created admin_tour" do
+        fit "redirects to the created admin_tour" do
           post :create, params: {tour: valid_attributes},
                         session: valid_session
           # expect(response).to redirect_to(Tour.last)
@@ -155,7 +159,7 @@ RSpec.describe Admin::ToursController, type: :controller do
           tour.reload
           expect( tour.title ).to eq( "Watch" )
         end
-        it "redirects to the admin_tour" do
+        fit "redirects to the admin_tour" do
           put :update, params: {id: tour.to_param, tour: valid_attributes},
                         session: valid_session
           expect(response).to redirect_to( admin_tour_path(tour) )
