@@ -23,7 +23,6 @@ FactoryBot.define do
     #                   Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
     #                   'image/png') }
     # video_uri    { video_samples.sample }
-    tech_help    { ['true', 'false'].sample }
     housing      { Faker::Boolean.boolean }
     catering     { Faker::Boolean.boolean }
     transport    { Faker::Boolean.boolean }
