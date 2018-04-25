@@ -33,7 +33,6 @@ class Tour < ApplicationRecord
   validates :video_uri,   allow_blank: true,
                           format: { with: /\Ahttps?:\/\/[\S.-]+\.[\S.-]+\z/i,
                                     message: "please enter a valid url" }
-  validates :tech_help,   inclusion: { in: [ true, false ] }
   validates :housing,     inclusion: { in: [ true, false ] }
   validates :catering,    inclusion: { in: [ true, false ] }
   validates :transport,   inclusion: { in: [ true, false ] }
@@ -71,5 +70,9 @@ class Tour < ApplicationRecord
 
   def booked_days_count
     self.booking_dates.where.not(company_id: nil).count
+  end
+
+  def need_tech_help?
+    self.tech_sheet.attached?
   end
 end

@@ -15,9 +15,9 @@ module TourNeedComponent
 
   def type_content
     case @type
-    when "independent"
-      text_value = t ".true_independent" if @value.eql?(true)
-      text_value = t ".false_independent" if @value.eql?(false)
+    when "need_tech_help"
+      text_value = t ".true_need_tech_help" if @value.eql?(true)
+      text_value = t ".false_need_tech_help" if @value.eql?(false)
 
       {
         icon_value: (c "fontawesome_icon", icon: "fas fa-cogs fa-lg"),
