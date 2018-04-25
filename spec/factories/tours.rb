@@ -31,8 +31,11 @@ FactoryBot.define do
     base_cents   = Faker::Number.between(500, 10000)
     discount     = (base_cents * Faker::Number.between(75,90) / 100).round(2)
     braaam_amt   = base_cents - discount
-    price_normal { Money.new(base_cents, currency) }
-    price_braaam { Money.new(braaam_amt, currency) }
+    # rails money format changed - must use string - how to add currency now?
+    price_normal { base_cents.to_s }
+    price_braaam { braaam_amt.to_s }
+    # price_normal { Money.new(base_cents, currency) }
+    # price_braaam { Money.new(braaam_amt, currency) }
   end
 
   factory :tour_w_image, parent: :tour do
