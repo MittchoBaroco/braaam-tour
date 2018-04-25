@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_23_163045) do
+ActiveRecord::Schema.define(version: 2018_04_25_133046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2018_04_23_163045) do
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "close"
     t.index ["company_id"], name: "index_booking_dates_on_company_id"
     t.index ["day", "tour_id"], name: "index_booking_dates_on_day_and_tour_id", unique: true
     t.index ["tour_id"], name: "index_booking_dates_on_tour_id"

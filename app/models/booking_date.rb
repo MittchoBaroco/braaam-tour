@@ -6,6 +6,7 @@ class BookingDate < ApplicationRecord
   validates :tour, uniqueness: { scope: :day,
                                 message: 'tours may only have one event per-day'
                               }
+  validates :close, inclusion: { in: [ true, false ] }
   validates_date :day,:on => :update
   validates_date :day,:on => :create,
                       :on_or_after => :today,
@@ -21,6 +22,9 @@ class BookingDate < ApplicationRecord
   scope :before, -> (date) { where('day < ?', date).
                             order(day: :desc, tour_id: :desc) }
 
-  scope :close, -> { where.not(company_id: nil) }
+  scope :closed, -> { where.not(company_id: nil) }
 
+  def is_close?
+    self.close or self.company_id
+  end
 end

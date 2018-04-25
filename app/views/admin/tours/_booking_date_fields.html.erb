@@ -3,5 +3,9 @@
     <%= f.label :day %>
     <%= f.date_field :day, class: "datepicker" %>
   </div>
+  <div class="fields">
+    <%= f.label :close, "Show has booked?" %>
+    <%= f.check_box :close %>
+  </div>
   <%= link_to_remove_association "remove date", f %>
 </div>

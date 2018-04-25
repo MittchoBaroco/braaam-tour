@@ -4,7 +4,7 @@ module TourBookingBtnComponent
 
   def status
     # return "mine"
-    return "booked" if @date.company_id
+    return "booked" if @date.is_close?
     return "open"
   end
 
