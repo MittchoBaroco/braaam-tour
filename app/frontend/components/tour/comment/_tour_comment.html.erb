@@ -1,0 +1,8 @@
+<div class="tour-comment">
+  <div class="tour-comment--body">
+    <%= @body %>
+  </div>
+  <div class="tour-comment--infos">
+    <%= @author_name %> - <%= l(@created_at, format: :short_with_year) %>
+  </div>
+</div>

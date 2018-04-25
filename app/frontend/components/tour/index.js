@@ -2,6 +2,7 @@ import "components/tour/award/tour_award";
 import "components/tour/booking_btn/tour_booking_btn";
 import "components/tour/call_to_action/tour_call_to_action";
 import "components/tour/carousel/tour_carousel";
+import "components/tour/comment/tour_comment";
 import "components/tour/cover_picture/tour_cover_picture";
 import "components/tour/description/tour_description";
 import "components/tour/index/tour_index";

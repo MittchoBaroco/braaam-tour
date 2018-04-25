@@ -22,6 +22,7 @@ en:
   time:
     formats:
       short: "%e %b"
+      short_with_year: "%e %b %Y"
   booking_mailer:
     booking_confirmation:
       subject: "Booking Confirmation for %{tour_name}"

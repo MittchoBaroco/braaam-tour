@@ -15,6 +15,7 @@ class CreateAwards < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     add_index :awards, :award_year, algorithm: :concurrently
-    add_index :awards, [:caption, :institution, :award_year], unique: true, algorithm: :concurrently
+    add_index :awards, [:caption, :institution, :award_year],
+                        unique: true, algorithm: :concurrently
   end
 end

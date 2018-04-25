@@ -2,3 +2,4 @@ en:
   tour_section_component:
     component_name: tour_section_component
     award_title: Awards
+    comment_title: Comments

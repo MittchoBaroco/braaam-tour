@@ -72,6 +72,7 @@ RSpec.describe Tour, type: :model do
 
   context "Check company Relationships" do
     it { should have_many(:awards) }
+    it { should have_many(:comments) }
     it { should have_many(:booking_dates).order(day: :asc)
                                          .inverse_of(:tour)
                                          .dependent(:destroy) }

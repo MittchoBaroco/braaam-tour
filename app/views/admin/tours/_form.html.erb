@@ -105,6 +105,19 @@
       </div>
     </div>
   </fieldset>
+
+  <fieldset>
+    <legend>Comments:</legend>
+    <div id="comments">
+      <%= form.fields_for :comments do |comment| %>
+        <%= render "comment_fields", f: comment %>
+      <% end %>
+      <br>
+      <div class="links">
+        <%= link_to_add_association 'add comment', form, :comments %>
+      </div>
+    </div>
+  </fieldset>
   <br>
   <div class="actions">
     <%= form.submit "Save", class: "submit" %>

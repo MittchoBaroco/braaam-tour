@@ -1,0 +1,13 @@
+.tour-comment {
+  margin-bottom: 15px;
+
+  &--body {
+
+  }
+
+  &--infos {
+    margin-top: 3px;
+    font-size: 12px;
+    color: #888;
+  }
+}

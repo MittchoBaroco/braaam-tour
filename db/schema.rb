@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_02_155247) do
+ActiveRecord::Schema.define(version: 2018_04_23_163045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2018_04_02_155247) do
     t.index ["company_id"], name: "index_booking_dates_on_company_id"
     t.index ["day", "tour_id"], name: "index_booking_dates_on_day_and_tour_id", unique: true
     t.index ["tour_id"], name: "index_booking_dates_on_tour_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "author_name", null: false
+    t.text "comment_body", null: false
+    t.bigint "tour_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_name", "comment_body", "tour_id"], name: "index_unique_comments", unique: true
+    t.index ["tour_id"], name: "index_comments_on_tour_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -110,4 +120,5 @@ ActiveRecord::Schema.define(version: 2018_04_02_155247) do
   add_foreign_key "awards", "tours"
   add_foreign_key "booking_dates", "companies"
   add_foreign_key "booking_dates", "tours"
+  add_foreign_key "comments", "tours"
 end

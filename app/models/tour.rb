@@ -5,7 +5,8 @@ class Tour < ApplicationRecord
   # TODO: add new start & end date fields - sort on them (queried from bookings)
   # TODO: distinct for uniq returns - find an better solution - add back sorting
 
-  has_many :awards,        inverse_of: :tour, dependent: :destroy
+  has_many :awards,   inverse_of: :tour, dependent: :destroy
+  has_many :comments, inverse_of: :tour, dependent: :destroy
   has_many :booking_dates, -> { order(day: :asc) }, inverse_of: :tour, dependent: :destroy
   has_many :companies,     through: :booking_dates
 
@@ -20,6 +21,8 @@ class Tour < ApplicationRecord
   accepts_nested_attributes_for :awards,
                           reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :booking_dates,
+                          reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :comments,
                           reject_if: :all_blank, allow_destroy: true
 
   validates :tour_caption,  presence: true, length: { minimum: 2 }

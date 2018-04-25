@@ -11,6 +11,7 @@ class CreateBookingDates < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :booking_dates, [:day, :tour_id], unique: true, algorithm: :concurrently
+    add_index :booking_dates, [:day, :tour_id],
+                              unique: true, algorithm: :concurrently
   end
 end
