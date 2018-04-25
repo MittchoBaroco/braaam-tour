@@ -1,7 +1,7 @@
 en:
   tour_need_component:
-    true_independent: "100% independent"
-    false_independent: "requires technical assistance"
+    true_need_tech_help: "requires technical assistance"
+    false_need_tech_help: "100% independent"
     true_catering: "catering required"
     false_catering: "catering not required"
     true_housing: "housing required"

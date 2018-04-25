@@ -59,8 +59,8 @@
         <%= c "tour/side" do %>
           <%= c "tour/section_side", type: "needs" do %>
 
-            <%= c "tour/need", value: @tour.tech_help, type: "independent" %>
-            <%= c "tour/need", value: url_for(@tour.tech_sheet), type: "tech_file" if @tour.tech_sheet.attached? %>
+            <%= c "tour/need", value: @tour.need_tech_help?, type: "need_tech_help" %>
+            <%= c "tour/need", value: url_for(@tour.tech_sheet), type: "tech_file" if @tour.need_tech_help? %>
             <%= c "tour/need", value: @tour.housing, type: "housing" %>
             <%= c "tour/need", value: @tour.catering, type: "catering" %>
             <%= c "tour/need", value: @tour.transport, type: "transport" %>

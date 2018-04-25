@@ -44,7 +44,6 @@ RSpec.describe Tour, type: :model do
     it { should validate_length_of(:tour_caption).is_at_least(2) }
     it { should validate_length_of(:artist_country).is_at_least(2) }
 
-    it { should allow_value(%w(true false)).for(:tech_help) }
     it { should allow_value(%w(true false)).for(:housing) }
     it { should allow_value(%w(true false)).for(:catering) }
     it { should allow_value(%w(true false)).for(:transport) }

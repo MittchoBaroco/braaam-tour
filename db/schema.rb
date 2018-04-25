@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(version: 2018_04_25_133046) do
     t.string "title", null: false
     t.text "description", null: false
     t.string "video_uri"
-    t.boolean "tech_help", null: false
     t.boolean "housing", null: false
     t.boolean "catering", null: false
     t.boolean "transport", null: false
