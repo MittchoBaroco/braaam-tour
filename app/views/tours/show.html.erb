@@ -37,6 +37,22 @@
 
         <% end %>
 
+        <% unless @tour.comments.empty? %>
+
+          <%= c "tour/section", type: "comments" do %>
+
+            <% @tour.comments.each do |comment| %>
+              <%= c "tour/comment",
+                body: comment.comment_body,
+                author_name: comment.author_name,
+                created_at: comment.created_at
+              %>
+            <% end %>
+
+          <% end %>
+
+        <% end %>
+
       <% end %>
 
       <%= c "column", size: 4 do %>
