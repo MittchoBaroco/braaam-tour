@@ -1,0 +1,11 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.label :comment_body %>
+    <%= f.text_area :comment_body, style: "height: 100px; width: 250px;" %>
+  </div>
+  <div class="field">
+    <%= f.label :author_name %>
+    <%= f.text_field :author_name %>
+  </div>
+  <%= link_to_remove_association "remove comment", f %>
+</div>

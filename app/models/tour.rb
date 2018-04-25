@@ -22,6 +22,8 @@ class Tour < ApplicationRecord
                           reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :booking_dates,
                           reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :comments,
+                          reject_if: :all_blank, allow_destroy: true
 
   validates :tour_caption,  presence: true, length: { minimum: 2 }
   validates :artist_country,presence: true, length: { minimum: 2 }
