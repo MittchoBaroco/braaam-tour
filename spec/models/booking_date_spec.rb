@@ -41,6 +41,7 @@ RSpec.describe BookingDate, type: :model do
   end
 
   context "Check booking_date validations" do
+    it { should allow_value(%w(true false)).for(:close) }
     it "correctly detects duplicate_booking_date" do
       # pp booking_day_0
       # pp copy_booking_day_0

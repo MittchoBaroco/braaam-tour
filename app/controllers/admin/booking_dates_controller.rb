@@ -5,7 +5,7 @@ class Admin::BookingDatesController < ApplicationController
   layout "admin"
 
   def index
-    @bookings = BookingDate.all.close
+    @bookings = BookingDate.all.closed
   end
 
   def show
@@ -125,6 +125,6 @@ class Admin::BookingDatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_booking_date_params
-      params.fetch(:admin_booking_date, {}).permit(:id, :day, :tour_id)
+      params.fetch(:admin_booking_date, {}).permit(:id, :day, :close, :tour_id)
     end
 end

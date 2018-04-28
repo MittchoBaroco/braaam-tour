@@ -80,7 +80,7 @@ class Admin::ToursController < ApplicationController
         :transport, :currency, :price_normal, :price_braaam,
         :cover_image, :tech_sheet, :tour_caption, :artist_country,
         awards_attributes: [:caption, :institution, :country, :award_year, :id, :_destroy],
-        booking_dates_attributes: [:day, :company, :id, :_destroy],
+        booking_dates_attributes: [:day, :company, :close, :id, :_destroy],
         comments_attributes: [:comment_body, :author_name, :id, :_destroy]
       )
     end
