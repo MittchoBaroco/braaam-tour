@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_25_133046) do
+ActiveRecord::Schema.define(version: 2018_04_29_174309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 2018_04_25_133046) do
     t.string "video_uri"
     t.boolean "housing", null: false
     t.boolean "catering", null: false
-    t.boolean "transport", null: false
     t.integer "price_braaam_cents", default: 0, null: false
     t.string "price_braaam_currency", default: "EUR", null: false
     t.integer "price_normal_cents", default: 0, null: false

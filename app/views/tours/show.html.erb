@@ -63,7 +63,7 @@
             <%= c "tour/need", value: url_for(@tour.tech_sheet), type: "tech_file" if @tour.need_tech_help? %>
             <%= c "tour/need", value: @tour.housing, type: "housing" %>
             <%= c "tour/need", value: @tour.catering, type: "catering" %>
-            <%= c "tour/need", value: @tour.transport, type: "transport" %>
+            <!-- <%= c "tour/need", value: true, type: "transport" %> -->
 
           <% end %>
           <%= c "tour/section_side", type: "dates" do %>

@@ -46,7 +46,6 @@ RSpec.describe Tour, type: :model do
 
     it { should allow_value(%w(true false)).for(:housing) }
     it { should allow_value(%w(true false)).for(:catering) }
-    it { should allow_value(%w(true false)).for(:transport) }
 
     it { should allow_values('',  nil, 'http://foo.com', 'http://foo.com/',
                                   'http://foo.com/sd_fgh?sdfg=ertyui').
