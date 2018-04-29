@@ -121,7 +121,6 @@ ActiveRecord::Schema.define(version: 2018_04_29_182710) do
     t.string "video_uri"
     t.boolean "housing", null: false
     t.boolean "catering", null: false
-    t.boolean "transport", null: false
     t.integer "price_braaam_cents", default: 0, null: false
     t.string "price_braaam_currency", default: "EUR", null: false
     t.integer "price_normal_cents", default: 0, null: false
