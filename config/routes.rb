@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :companies
   devise_for :managers
   resources :tours, only: [:show, :index]
   namespace :admin do
