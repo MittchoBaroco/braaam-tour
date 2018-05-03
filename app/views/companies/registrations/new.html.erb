@@ -4,8 +4,43 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :reference_person_full_name %><br />
+    <%= f.text_field :reference_person_full_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_address_line1 %><br />
+    <%= f.text_field :company_address_line1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_address_line2 %><br />
+    <%= f.text_field :company_address_line2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_city %><br />
+    <%= f.text_field :company_city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_npa %><br />
+    <%= f.text_field :company_npa %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_country %><br />
+    <%= f.text_field :company_country %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <div class="field">
