@@ -9,8 +9,15 @@
         <%= link_to t(".english"), url_for( :locale => 'en' ) unless I18n.locale.eql?(:en) %>
 
         <% if company_signed_in? %>
-          <%= current_company.name + " | " %>
-          <%= link_to "sign_out", destroy_company_session_path, method: :delete %>
+          <!-- <<a href="#">add listing</a>
+          <a href="#">my bookings</a>
+          <a href="#">manage my tours</a>
+          <a href="#">my settings</a>
+          <%= link_to "sign_out", destroy_company_session_path, method: :delete %> -->
+
+          <!-- <%= link_to "sign_out", destroy_company_session_path, method: :delete %> -->
+          <%= current_company.name %>
+
         <% end %>
 
         <%= link_to "sign_in", new_company_session_path unless company_signed_in? %>
