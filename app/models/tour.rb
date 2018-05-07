@@ -35,7 +35,6 @@ class Tour < ApplicationRecord
                                     message: "please enter a valid url" }
   validates :housing,     inclusion: { in: [ true, false ] }
   validates :catering,    inclusion: { in: [ true, false ] }
-  validates :transport,   inclusion: { in: [ true, false ] }
 
   default_scope      { with_attached_cover_image }
   scope :future,  -> { after(Date.today) }
