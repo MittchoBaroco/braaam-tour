@@ -50,7 +50,9 @@
 
         &--dropdown {
           display: none;
+          z-index: 1;
           ul {
+            background-color: #fff;
             position: absolute;
             z-index: 1;
             list-style: none;
