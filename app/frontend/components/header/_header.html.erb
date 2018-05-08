@@ -8,19 +8,22 @@
         <%= link_to t(".french"), url_for( :locale => 'fr' ) unless I18n.locale.eql?(:fr) %>
         <%= link_to t(".english"), url_for( :locale => 'en' ) unless I18n.locale.eql?(:en) %>
 
-        <% if company_signed_in? %>
-          <!-- <<a href="#">add listing</a>
-          <a href="#">my bookings</a>
-          <a href="#">manage my tours</a>
-          <a href="#">my settings</a>
-          <%= link_to "sign_out", destroy_company_session_path, method: :delete %> -->
-
-          <!-- <%= link_to "sign_out", destroy_company_session_path, method: :delete %> -->
-          <%= current_company.name %>
-
-        <% end %>
-
-        <%= link_to "sign_in", new_company_session_path unless company_signed_in? %>
+        <div class="header--container--navigation--menu">
+          <% if company_signed_in? %>
+            <button onclick="toogleDropdown()" class="header--container--navigation--menu--dropbtn dropbtn-js"><%= current_company.name %> <%= c "fontawesome_icon", icon: "fas fa-bars" %></button>
+            <div class="header--container--navigation--menu--dropdown dropdown-js">
+              <ul class="dropdown-content-js">
+                <li><a href="#">add listing</a></li>
+                <li><a href="#">my bookings</a></li>
+                <li><a href="#">manage my listing</a></li>
+                <li><a href="#">my settings</a></li>
+                <li><%= link_to "sign out", destroy_company_session_path, method: :delete %></li>
+              </ul>
+            </div>
+          <% else %>
+            <%= link_to "sign in", new_company_session_path %>
+          <% end %>
+        </div>
       </nav>
     </div>
   <% end %>
