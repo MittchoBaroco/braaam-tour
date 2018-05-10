@@ -25,7 +25,6 @@ FactoryBot.define do
     # video_uri    { video_samples.sample }
     housing      { Faker::Boolean.boolean }
     catering     { Faker::Boolean.boolean }
-    transport    { Faker::Boolean.boolean }
     currency     = Tour::CURRENCIES.sample
     base_cents   = Faker::Number.between(500, 10000)
     discount     = (base_cents * Faker::Number.between(75,90) / 100).round(2)
