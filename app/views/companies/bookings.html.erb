@@ -1,2 +1,17 @@
-<h1>Companies#bookings</h1>
-<p>Find me in app/views/companies/bookings.html.erb</p>
+<%= c "container" do %>
+  <%= c "tour/title", text: "My Bookings" %>
+  <table>
+    <th>Title</th>
+    <th>Dates</th>
+    <th>Number of participant</th>
+    <th>Price</th>
+    <th>Actions</th>
+    <% @bookings.each do |booking| %>
+    <tr><%= booking.title %></tr>
+    <tr>kad ksdk adkkskd ald<% booking.title %></tr>
+    <tr>5<% booking.title %></tr>
+    <tr><%= booking.price_braaam %></tr>
+    <tr>cancel</tr>
+    <% end %>
+  </table>
+<% end %>
