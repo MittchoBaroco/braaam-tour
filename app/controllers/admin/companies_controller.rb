@@ -1,5 +1,5 @@
 class Admin::CompaniesController < ApplicationController
-  # before_action :authenticate_manager!
+  before_action :authenticate_manager!
   before_action :set_admin_company, only: [:show, :edit, :update, :destroy]
   layout "admin"
 

@@ -1,5 +1,4 @@
 class BookingDatesController < ApplicationController
-  skip_before_action :authenticate_manager!
   before_action :set_booking_date, only: [:signup, :book]
 
   def book

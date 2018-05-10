@@ -13,10 +13,8 @@
             <button onclick="toogleDropdown()" class="header--container--navigation--menu--dropbtn dropbtn-js"><%= current_company.name %> <%= c "fontawesome_icon", icon: "fas fa-bars" %></button>
             <div class="header--container--navigation--menu--dropdown dropdown-js">
               <ul class="dropdown-content-js">
-                <li><a href="#">add listing</a></li>
-                <li><a href="#">my bookings</a></li>
-                <li><a href="#">manage my listing</a></li>
-                <li><a href="#">my settings</a></li>
+                <li><%= link_to "my bookings", company_bookings_path(current_company) %></li>
+                <li><%= link_to "my settings", company_settings_path(current_company) %></li>
                 <li><%= link_to "sign out", destroy_company_session_path, method: :delete %></li>
               </ul>
             </div>

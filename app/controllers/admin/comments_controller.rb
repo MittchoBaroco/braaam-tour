@@ -1,4 +1,5 @@
 class Admin::CommentsController < ApplicationController
+  before_action :authenticate_manager!
   before_action :set_admin_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/comments

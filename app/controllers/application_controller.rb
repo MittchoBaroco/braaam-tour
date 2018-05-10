@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   # set_locale MUST be before authentication to work unauthenticated
   before_action :set_locale
-  before_action :authenticate_manager!
+  # before_action :authenticate_manager!
 
    def default_url_options(options={})
      logger.debug "default_url_options is passed options: #{options.inspect}\n"

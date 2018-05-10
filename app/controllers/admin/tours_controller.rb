@@ -1,5 +1,5 @@
 class Admin::ToursController < ApplicationController
-  # before_action :authenticate_manager!
+  before_action :authenticate_manager!
   before_action :set_admin_tour, only: [:show, :edit, :update, :destroy]
   layout "admin"
 

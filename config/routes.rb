@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     # admin dashboard root page (admin_tours)
     root to: "tours#index"
   end
-
+  get   'companies/:id/bookings',         to: 'companies#bookings', as: "company_bookings"
+  get   'companies/:id/settings',         to: 'companies#settings', as: "company_settings"
   get   'booking_dates/book/:id',         to: 'booking_dates#book', as: "booking"
   put   'booking_dates/signup/:id',       to: 'booking_dates#signup', as: "signup"
   patch 'booking_dates/signup/:id',       to: 'booking_dates#signup'
