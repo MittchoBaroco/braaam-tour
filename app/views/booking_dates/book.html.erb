@@ -5,27 +5,20 @@
   <% if @booking_date.company.blank? %>
     <p><strong><%= t "booking_confirmation" %></strong></p>
 
-    <%= c "booking/button", href: "#email", color: "green" do %>
-      <%= t "yes" %>
-    <% end %>
+    <%= form_with model: @booking_date, url: signup_path(@booking_date.id), method: :patch, local: true do |form| %>
+      <%= form.hidden_field :company_email, value: current_company.email %>
+      <%= form.submit (t "yes"), class: "submit-booking" %>
+      <%= c "booking/button", href: url_for(@tour), color: "red" do %>
+        <%= t "no" %>
+      <% end %>
 
-    <%= c "booking/button", href: url_for(@tour), color: "red" do %>
-      <%= t "no" %>
-    <% end %>
-
-    <% if alert %>
-      <%= c "booking/alert" do %>
-        <%= alert %>
+      <% if alert %>
+        <%= c "booking/alert" do %>
+          <%= alert %>
+        <% end %>
       <% end %>
     <% end %>
 
-    <%= c "toggleable_container", id: 'email' do %>
-      <p><%= t "ask_email" %>:</p>
-      <%= form_with model: @booking_date, url: signup_path(@booking_date.id), method: :patch, local: true do |form| %>
-        <%= form.email_field :company_email, class: 'input', style: "width: 350px;" %>
-        <%= form.submit (t "book"), class: "submit" %>
-      <% end %>
-    <% end %>
   <% else %>
     <p><strong><%= t "booking_already_taken" %></strong></p>
     <%= c "booking/button", href: url_for(@tour), color: "blue" do %>

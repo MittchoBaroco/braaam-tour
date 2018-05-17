@@ -1,5 +1,6 @@
 class BookingDatesController < ApplicationController
-  before_action :set_booking_date, only: [:signup, :book]
+  before_action :authenticate_company!
+  before_action :set_booking_date, only: [:signup, :book, :cancel]
 
   def book
     @tour = @booking_date.tour
@@ -46,6 +47,32 @@ class BookingDatesController < ApplicationController
       format.html { flash.now[:alert] = 'Unexpected error'; render :book }
       format.json { render json: @booking_date.errors,
                                   status: :unprocessable_entity }
+    end
+  end
+
+  # PATCH/PUT /booking_dates/cancel/1
+  # PATCH/PUT /booking_dates/cancel/1.json
+  def cancel
+    respond_to do |format|
+      tour = @booking_date.tour
+      company, new_params = BookingStrategy.new(params: get_booking_info,
+                                                action: :cancel).run
+
+      if company and @booking_date.update( new_params )
+        format.html { redirect_to company_bookings_path,
+                                  notice: 'Date was successfully cancelled.' }
+        format.json { render :show, status: :ok, location: tour }
+      elsif company.blank?
+        format.html { redirect_to company_bookings_path,
+                                  alert: 'cancellation failed - company not found' }
+        format.json { render json: @booking_date.errors,
+                                  status: :unprocessable_entity }
+      else
+        format.html { redirect_to company_bookings_path,
+                                  alert: 'cancellation failed - unexpected error' }
+        format.json { render json: @booking_date.errors,
+                                  status: :unprocessable_entity }
+      end
     end
   end
 

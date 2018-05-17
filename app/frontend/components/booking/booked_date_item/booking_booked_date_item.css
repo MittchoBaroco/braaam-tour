@@ -1,0 +1,35 @@
+.booking-booked-date-item {
+  display: inline-block;
+  width: 100px;
+  margin-top: 15px;
+  margin-right: 20px;
+  padding: 10px;
+  align-items: center;
+  border: 1px solid #eee;
+  border-radius: 10px;
+
+  &--day {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  &--month {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  &--cancel {
+    padding: 5px 20px;
+    border-radius: 12px;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: #EB5757;
+    margin-top: 10px;
+  }
+
+  &--cancel:hover {
+    background: color(#EB5757 shade(20%));
+  }
+}

@@ -73,6 +73,25 @@ body {
   font-size: 12px;
 }
 
+.submit-booking {
+  padding: 5px 20px;
+  border-radius: 12px;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background: #219653;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.submit-booking:hover {
+  background: color(#219653 shade(20%));
+}
+
 .submit:hover {
   background: color(#09529b shade(20%));
 }
