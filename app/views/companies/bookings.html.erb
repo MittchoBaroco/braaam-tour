@@ -9,4 +9,9 @@
     <% end %>
     <%= c "booking/booked_item_actions", tour_path: tour_path(tour), comment_path: tour_path(tour, anchor: "comments") %>
   <% end %>
+  <%= c "hr" %>
+
+  <%= c "booking/button", href: tours_path do %>
+    Back to tours
+  <% end %>
 <% end %>

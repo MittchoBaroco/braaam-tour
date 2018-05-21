@@ -1,2 +1,51 @@
-<h1>Companies#settings</h1>
-<p>Find me in app/views/companies/settings.html.erb</p>
+<%= c "container" do %>
+  <%= c "tour/title", text: "My Settings" %>
+
+  <h2>Informations</h2>
+
+  <%= form_with url: company_path, model: current_company do |form| %>
+    <div class="field">
+      <%= label_tag :name %><br>
+      <%= form.text_field :name, class: "input" %>
+    </div>
+    <div class="field">
+      <%= label_tag :reference_person_full_name %><br>
+      <%= form.text_field :reference_person_full_name, class: "input" %>
+    </div>
+    <div class="field">
+      <%= label_tag :company_address_line1 %><br>
+      <%= form.text_field :company_address_line1, class: "input" %>
+    </div>
+    <div class="field">
+      <%= label_tag :company_address_line2 %><br>
+      <%= form.text_field :company_address_line2, class: "input" %>
+    </div>
+    <div class="field">
+      <%= label_tag :company_npa %><br>
+      <%= form.text_field :company_npa, class: "input" %>
+    </div>
+    <div class="field">
+      <%= label_tag :company_country %><br>
+      <%= form.text_field :company_country, class: "input" %>
+    </div>
+    <div class="field">
+      <%= label_tag :company_city %><br>
+      <%= form.text_field :company_city, class: "input" %>
+    </div>
+
+    <%= form.submit "Update", class: "submit" %>
+  <% end %>
+
+  <%= c "hr" %>
+
+  <%= c "booking/button", href: tours_path do %>
+    Back to tours
+  <% end %>
+
+  <%= c "booking/button", href: edit_company_registration_path do %>
+    Change my email/password
+  <% end %>
+
+  <%= link_to "Cancel my account", registration_path("company"), data: { confirm: "Are you sure?" }, method: :delete, class: "btn red" %>
+
+<% end %>

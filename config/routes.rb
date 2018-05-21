@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :managers
 
   resources :tours, only: [:show, :index]
+  resources :companies, only: [:update]
+
   namespace :admin do
     resources :awards
     resources :companies

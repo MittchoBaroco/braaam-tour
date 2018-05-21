@@ -68,9 +68,11 @@ body {
   text-align: center;
   text-decoration: none;
   background: #09529b;
+  border: none;
   outline: none;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .submit-booking {
@@ -94,4 +96,41 @@ body {
 
 .submit:hover {
   background: color(#09529b shade(20%));
+}
+
+.btn {
+  padding: 5px 20px;
+  border-radius: 12px;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background: #09529b;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.red {
+  background: #EB5757;
+}
+
+.red:hover {
+  background: color(#EB5757 shade(20%));
+}
+
+@media screen and (max-width: 479px) {
+  .btn {
+    margin: 5px 0;
+  }
+
+  .submit-booking {
+    margin: 5px 0;
+  }
+
+  .submit{
+    margin: 5px 0;
+  }
 }
