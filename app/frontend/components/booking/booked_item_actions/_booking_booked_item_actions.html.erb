@@ -1,8 +1,4 @@
 <div class="booking-booked-item-actions">
-  <%= c "booking/button", href: @tour_path do %>
-    Voir la fiche
-  <% end %>
-  <%= c "booking/button", href: @comment_path  do %>
-    Commenter
-  <% end %>
+  <%= link_to "Voir la fiche", @tour_path, class: 'btn' %>
+  <%= link_to "Commenter", @comment_path, class: 'btn' %>
 </div>

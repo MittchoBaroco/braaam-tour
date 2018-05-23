@@ -113,6 +113,10 @@ body {
   line-height: 20px;
 }
 
+.btn:hover {
+  background: color(#09529b shade(20%));
+}
+
 .red {
   background: #EB5757;
 }
