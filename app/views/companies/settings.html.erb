@@ -1,9 +1,11 @@
 <%= c "container" do %>
   <%= c "tour/title", text: "My Settings" %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
   <h2>Informations</h2>
 
-  <%= form_with url: company_path, model: current_company do |form| %>
+  <%= form_with url: company_path, model: current_company, local: true do |form| %>
     <div class="field">
       <%= label_tag :name %><br>
       <%= form.text_field :name, class: "input" %>

@@ -1,5 +1,7 @@
 <%= c "container" do %>
   <%= c "tour/title", text: "My Bookings" %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <% @bookings.each do |tour| %>
     <h2><%= tour.title %></h2>
     <div><%= tour.tour_caption %></div>
