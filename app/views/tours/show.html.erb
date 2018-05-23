@@ -75,18 +75,25 @@
             <!-- <%= c "tour/need", value: true, type: "transport" %> -->
 
           <% end %>
-          <%= c "tour/section_side", type: "dates" do %>
-            <% @tour.booking_dates.each do |date| %>
-              <%= c "tour/booking_btn", date: date %>
+          <% if company_signed_in? %>
+            <%= c "tour/section_side", type: "dates" do %>
+              <% @tour.booking_dates.each do |date| %>
+                <%= c "tour/booking_btn", date: date %>
+              <% end %>
             <% end %>
-          <% end %>
-          <%= c "tour/section_side", type: "prices" do %>
-            <div style="text-decoration: line-through">
-              Initial price: <%= c "price", money: @tour.price_normal %>
-            </div>
-            <div>
-              Braaamed price: <strong><%= c "price", money: @tour.price_braaam %></strong>
-            </div>
+            <%= c "tour/section_side", type: "prices" do %>
+              <div style="text-decoration: line-through">
+                Initial price: <%= c "price", money: @tour.price_normal %>
+              </div>
+              <div>
+                Braaamed price: <strong><%= c "price", money: @tour.price_braaam %></strong>
+              </div>
+            <% end %>
+          <% else %>
+            <%= c "tour/section_side", type: "dates" do %>
+              Please <%= link_to "Sign In", new_company_session_path, class: "link" %> for booking informations and price
+
+            <% end %>
           <% end %>
         <% end %>
 
