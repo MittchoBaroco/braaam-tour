@@ -16,6 +16,7 @@ class ToursController < ApplicationController
     # -- order and limit conflict with includes
     # using limit 3 for now since show page has space for multiples of 3
     @tours = Tour.show_collection(@tour.id).limit(6)
+    @comments = @tour.comments.order(created_at: :desc)
   end
 
   private

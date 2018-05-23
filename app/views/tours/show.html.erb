@@ -37,26 +37,31 @@
 
         <% end %>
 
-        <% unless @tour.comments.empty? %>
+        <%= c "tour/section", type: "comments" do %>
 
-          <%= c "tour/section", type: "comments" do %>
+          <% if company_signed_in? %>
+            <%= c "tour/comment_form", tour: @tour %>
+          <% end %>
 
-            <% @tour.comments.each do |comment| %>
+          <% unless @comments.empty? %>
+            <% @comments.each do |comment| %>
               <%= c "tour/comment",
                 body: comment.comment_body,
                 author_name: comment.author_name,
                 created_at: comment.created_at
               %>
             <% end %>
-
           <% end %>
 
         <% end %>
 
-        <br>
-        <%= c "booking/button", href: tours_url, color: "blue" do %>
-          <%= t "back" %>
+        <%= c "hr" %>
+
+        <%= c "booking/button", href: tours_path do %>
+          Back to tours
         <% end %>
+        <br>
+        <br>
       <% end %>
 
       <%= c "column", size: 4 do %>

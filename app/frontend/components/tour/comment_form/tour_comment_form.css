@@ -1,0 +1,15 @@
+.tour-comment-form {
+  margin: 15px 0;
+
+  &--text_area {
+    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-color: #fff;
+    color: #484848;
+  }
+}
