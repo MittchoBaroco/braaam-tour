@@ -1,64 +1,65 @@
-<h2>Sign up</h2>
+<%= c "container" do %>
+  <%= c "tour/title", text: "Sign up"  %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true, class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+    <div class="field">
+      <%= f.label :reference_person_full_name %><br />
+      <%= f.text_field :reference_person_full_name, class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :reference_person_full_name %><br />
-    <%= f.text_field :reference_person_full_name %>
-  </div>
+    <div class="field">
+      <%= f.label :company_address_line1 %><br />
+      <%= f.text_field :company_address_line1, class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :company_address_line1 %><br />
-    <%= f.text_field :company_address_line1 %>
-  </div>
+    <div class="field">
+      <%= f.label :company_address_line2 %><br />
+      <%= f.text_field :company_address_line2, class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :company_address_line2 %><br />
-    <%= f.text_field :company_address_line2 %>
-  </div>
+    <div class="field">
+      <%= f.label :company_city %><br />
+      <%= f.text_field :company_city, class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :company_city %><br />
-    <%= f.text_field :company_city %>
-  </div>
+    <div class="field">
+      <%= f.label :company_npa %><br />
+      <%= f.text_field :company_npa, class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :company_npa %><br />
-    <%= f.text_field :company_npa %>
-  </div>
+    <div class="field">
+      <%= f.label :company_country %><br />
+      <%= f.text_field :company_country, class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :company_country %><br />
-    <%= f.text_field :company_country %>
-  </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autocomplete: "email", class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off", class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "input" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <div class="actions">
+      <%= f.submit "Sign up", class: "submit" %>
+    </div>
+  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  <%= render "companies/shared/links" %>
 <% end %>
-
-<%= render "companies/shared/links" %>

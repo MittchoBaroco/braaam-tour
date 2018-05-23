@@ -47,6 +47,25 @@ body {
   }
 }
 
+.field {
+  margin: 10px 0;
+}
+
+.actions {
+  margin: 10px 0;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  color: #09529b;
+}
+
+.link:hover {
+  color: color(#09529b shade(20%));
+  text-decoration: underline;
+}
+
 .input {
   display: block;
   width: 100%;
