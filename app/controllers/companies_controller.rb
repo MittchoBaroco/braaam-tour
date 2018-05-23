@@ -6,6 +6,7 @@ class CompaniesController < ApplicationController
   end
 
   def settings
+    @company = current_company
   end
 
   # PATCH/PUT /admin/companies/1
@@ -15,9 +16,10 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to company_settings_path(@company), notice: 'Company was successfully created.' }
+        format.html { redirect_to company_settings_path(@company), notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: company_path(@company) }
       else
+        flash.now[:alert] = 'Update failed'
         format.html { render :settings }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
