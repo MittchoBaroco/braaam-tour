@@ -1,5 +1,5 @@
 <%= c "container" do %>
-  <%= c "tour/title", text: "My Bookings" %>
+  <%= c "tour/title", text: t("my_bookings") %>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <% @bookings.each do |tour| %>
@@ -14,6 +14,6 @@
   <%= c "hr" %>
 
   <%= c "booking/button", href: tours_path do %>
-    Back to tours
+    <%= t("back_to_tours") %>
   <% end %>
 <% end %>

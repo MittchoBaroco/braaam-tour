@@ -4,6 +4,7 @@ fr:
   tour: "Tournée"
   book: "Réserver"
   back: "Retour"
+  update: "Mettre à jour"
   tour_index_title: "Tournées à venir"
   no_tours: "Pas de tournées disponible"
   date_reserved: "Date résérve"
@@ -19,6 +20,11 @@ fr:
   copyright: "Copyright © %{year} Braaam, Tous Droits Réservés."
   no_reply: "Merci de ne pas répondre à cette email, pour toute question contacter contact@braaam.com."
   no_reply_html: "Merci de ne pas répondre à cette email, pour toute question contacter "
+  my_bookings: "Mes réservations"
+  my_settings: "Mes paramètres"
+  back_to_tours: "Retour aux tournées"
+  change_my_email_password: "Modifier mon email/mot de passe"
+  cancel_account: "Résilier mon compte"
   booking_mailer:
     booking_confirmation:
       subject: "Confirmation de réservation pour %{tour_name}"
@@ -166,3 +172,15 @@ fr:
   time:
     formats:
       short: "%e %b"
+  activerecord:
+    models:
+      company: Compagnie
+    attributes:
+      company:
+        name: "Nom de la compagnie"
+        reference_person_full_name: "Nom complet de la personne de référence"
+        company_address_line1: "Adresse de l'entreprise"
+        company_address_line2: "Complément d'adresse"
+        company_npa: "Code postal"
+        company_country: "Pays"
+        company_city: "Ville"

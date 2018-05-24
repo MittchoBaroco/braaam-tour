@@ -1,5 +1,5 @@
 <%= c "container" do %>
-  <%= c "tour/title", text: "My Settings" %>
+  <%= c "tour/title", text: t("my_settings") %>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
@@ -17,51 +17,49 @@
     </div>
   <% end %>
 
-  <h2>Informations</h2>
-
   <%= form_with url: company_path, model: current_company, local: true do |form| %>
     <div class="field">
-      <%= label_tag :name %><br>
+      <%= label_tag :name, Company.human_attribute_name("name") %><br>
       <%= form.text_field :name, class: "input" %>
     </div>
     <div class="field">
-      <%= label_tag :reference_person_full_name %><br>
+      <%= label_tag :reference_person_full_name, Company.human_attribute_name("reference_person_full_name") %><br>
       <%= form.text_field :reference_person_full_name, class: "input" %>
     </div>
     <div class="field">
-      <%= label_tag :company_address_line1 %><br>
+      <%= label_tag :company_address_line1, Company.human_attribute_name("company_address_line1") %><br>
       <%= form.text_field :company_address_line1, class: "input" %>
     </div>
     <div class="field">
-      <%= label_tag :company_address_line2 %><br>
+      <%= label_tag :company_address_line2, Company.human_attribute_name("company_address_line2") %><br>
       <%= form.text_field :company_address_line2, class: "input" %>
     </div>
     <div class="field">
-      <%= label_tag :company_npa %><br>
+      <%= label_tag :company_npa, Company.human_attribute_name("company_npa") %><br>
       <%= form.text_field :company_npa, class: "input" %>
     </div>
     <div class="field">
-      <%= label_tag :company_country %><br>
-      <%= form.text_field :company_country, class: "input" %>
-    </div>
-    <div class="field">
-      <%= label_tag :company_city %><br>
+      <%= label_tag :company_city, Company.human_attribute_name("company_city") %><br>
       <%= form.text_field :company_city, class: "input" %>
     </div>
+    <div class="field">
+      <%= label_tag :company_country, Company.human_attribute_name("company_country") %><br>
+      <%= form.text_field :company_country, class: "input" %>
+    </div>
 
-    <%= form.submit "Update", class: "submit" %>
+    <%= form.submit t("update"), class: "submit" %>
   <% end %>
 
   <%= c "hr" %>
 
   <%= c "booking/button", href: tours_path do %>
-    Back to tours
+    <%= t("back_to_tours") %>
   <% end %>
 
   <%= c "booking/button", href: edit_company_registration_path do %>
-    Change my email/password
+    <%= t("change_my_email_password") %>
   <% end %>
 
-  <%= link_to "Cancel my account", registration_path("company"), data: { confirm: "Are you sure?" }, method: :delete, class: "btn red" %>
+  <%= link_to t("cancel_account"), registration_path("company"), data: { confirm: "Are you sure?" }, method: :delete, class: "btn red" %>
 
 <% end %>
