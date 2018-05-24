@@ -7,7 +7,6 @@ import "components/tour/comment_form/tour_comment_form";
 import "components/tour/cover_picture/tour_cover_picture";
 import "components/tour/description/tour_description";
 import "components/tour/index/tour_index";
-import "components/tour/name/tour_name";
 import "components/tour/need/tour_need";
 import "components/tour/section/tour_section";
 import "components/tour/section_side/tour_section_side";
