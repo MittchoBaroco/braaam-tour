@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_29_182710) do
+ActiveRecord::Schema.define(version: 2018_05_24_090318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -68,7 +68,9 @@ ActiveRecord::Schema.define(version: 2018_04_29_182710) do
     t.bigint "tour_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "company_id"
     t.index ["author_name", "comment_body", "tour_id"], name: "index_unique_comments", unique: true
+    t.index ["company_id"], name: "index_comments_on_company_id"
     t.index ["tour_id"], name: "index_comments_on_tour_id"
   end
 
@@ -135,5 +137,6 @@ ActiveRecord::Schema.define(version: 2018_04_29_182710) do
   add_foreign_key "awards", "tours"
   add_foreign_key "booking_dates", "companies"
   add_foreign_key "booking_dates", "tours"
+  add_foreign_key "comments", "companies"
   add_foreign_key "comments", "tours"
 end
