@@ -1,6 +1,6 @@
 .booking-booked-date-item {
   display: inline-block;
-  width: 100px;
+  width: 110px;
   margin-top: 15px;
   margin-right: 20px;
   padding: 10px;
@@ -8,12 +8,7 @@
   border: 1px solid #eee;
   border-radius: 10px;
 
-  &--day {
-    font-size: 20px;
-    text-align: center;
-  }
-
-  &--month {
+  &--date {
     font-size: 20px;
     text-align: center;
   }
@@ -26,7 +21,8 @@
     text-align: center;
     text-decoration: none;
     background: #EB5757;
-    margin-top: 10px;
+    margin: 10px auto 0 auto;
+    width: 90px;
   }
 
   &--cancel:hover {

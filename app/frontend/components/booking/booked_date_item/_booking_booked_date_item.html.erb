@@ -1,5 +1,4 @@
 <div class="booking-booked-date-item">
-  <div class="booking-booked-date-item--day"><%= @day %></div>
-  <div class="booking-booked-date-item--month"><%= @month %></div>
+  <div class="booking-booked-date-item--date"><%= l(@date, format: :short) %></div>
   <%= link_to t(".cancel"), cancel_path(@id, booking_date: { company_email: @email }), method: :put, class: "booking-booked-date-item--cancel" %>
 </div>

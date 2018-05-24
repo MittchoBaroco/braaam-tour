@@ -7,7 +7,7 @@
     <div><%= tour.tour_caption %></div>
     <div><%= c "price", money: tour.price_braaam %></div>
     <% tour.booking_dates.where(id: current_company.booking_dates.pluck(:id)).each do |date| %>
-      <%= c "booking/booked_date_item", day: date.day.day, month: date.day.month, email: current_company.email, id: date.id  %>
+      <%= c "booking/booked_date_item", date: date.day, email: current_company.email, id: date.id  %>
     <% end %>
     <%= c "booking/booked_item_actions", tour_path: tour_path(tour), comment_path: tour_path(tour, anchor: "comments") %>
   <% end %>
