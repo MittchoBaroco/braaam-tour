@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.js   { render inline: "location.reload();" }
-        format.html { redirect_to request.referrer,
+        format.html { redirect_to @tour,
                       notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created,
                       location: tour_path(@tour) }

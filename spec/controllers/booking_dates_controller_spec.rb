@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe BookingDatesController, type: :controller do
+  before(:each) do
+    sign_in company
+  end
 
   let!(:booking_date) {
     FactoryBot.create(:booking_date)
@@ -32,7 +35,7 @@ RSpec.describe BookingDatesController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # BookingDatesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) {}
 
   describe "PUT #signup" do
     include ActiveJob::TestHelper
@@ -40,7 +43,7 @@ RSpec.describe BookingDatesController, type: :controller do
     after do
       clear_enqueued_jobs
     end
-    
+
     context "with valid params" do
       it "updates the requested booking_date with company_id" do
         put :signup, params: {id: booking_date.to_param,

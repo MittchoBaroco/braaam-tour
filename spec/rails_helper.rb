@@ -35,6 +35,10 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
+  # logged_in helper for devise access to controllers
+  # https://stackoverflow.com/questions/38421853/why-is-my-rspec-not-loading-devisetestcontrollerhelpers
+  config.include Devise::Test::ControllerHelpers, type: :controller
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

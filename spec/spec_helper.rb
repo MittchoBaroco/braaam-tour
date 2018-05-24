@@ -1,13 +1,5 @@
-# require 'support/controller_helpers'
-# require 'support/devise'
-
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-
-  # logged_in helper for devise access to controllers
-  # https://github.com/plataformatec/devise/wiki/how-to:-stub-authentication-in-controller-specs
-  # config.include Devise::Test::ControllerHelpers, :type => :controller
-
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
