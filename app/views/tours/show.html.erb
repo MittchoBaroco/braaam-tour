@@ -58,7 +58,7 @@
         <%= c "hr" %>
 
         <%= c "booking/button", href: tours_path do %>
-          Back to tours
+          <%= t("back_to_tours") %>
         <% end %>
         <br>
         <br>
@@ -91,7 +91,7 @@
             <% end %>
           <% else %>
             <%= c "tour/section_side", type: "dates" do %>
-              Please <%= link_to "Sign In", new_company_session_path, class: "link" %> for booking informations and price
+              <%= link_to t("log_in"), new_company_session_path, class: "link", style: "color: #021222" %> <%= t("for_booking_and_price") %>
 
             <% end %>
           <% end %>
