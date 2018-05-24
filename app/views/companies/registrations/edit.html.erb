@@ -1,5 +1,5 @@
 <%= c "container" do %>
-  <%= c "tour/title", text: "Edit email/password" %>
+  <%= c "tour/title", text: t("change_my_email_password") %>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
@@ -16,7 +16,7 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password %> <i>(<%= t("leave_blank_password") %>)</i><br />
       <%= f.password_field :password, autocomplete: "off", class: "input" %>
       <% if @minimum_password_length %>
         <br />
@@ -30,18 +30,18 @@
     </div>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password, t("current_password") %> <i><%= t("we_need_password_to_confirm") %></i><br />
       <%= f.password_field :current_password, autocomplete: "off", class: "input" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Update", class: "submit" %>
+      <%= f.submit t("update"), class: "submit" %>
     </div>
   <% end %>
 
   <%= c "hr" %>
 
   <%= c "booking/button", href: company_settings_path(current_company) do %>
-    Back to settings
+    <%= t("back_to_settings") %>
   <% end %>
 <% end %>
