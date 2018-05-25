@@ -74,4 +74,8 @@ class Tour < ApplicationRecord
   def need_tech_help?
     self.tech_sheet.attached?
   end
+
+  def title_with_country
+    "#{title} (#{artist_country})"
+  end
 end

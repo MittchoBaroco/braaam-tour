@@ -1,0 +1,8 @@
+<div class="tour-comment-form">
+  <%= form_with url: tour_comments_path(@tour), model: Comment.new, remote: true do |form| %>
+    <div class="fields">
+      <%= form.text_area :comment_body, class: "tour-comment-form--text_area" %>
+    </div>
+    <%= form.submit t(".add_comment"), class: "submit" %>
+  <% end %>
+</div>

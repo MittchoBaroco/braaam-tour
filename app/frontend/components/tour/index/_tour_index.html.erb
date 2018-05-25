@@ -5,7 +5,7 @@
       <% unless @tours_collection.empty? %>
         <% @tours_collection.each do |tour| %>
           <div class="grid--item">
-            <%= link_to tour, class: "grid--item--link", target: "_blank" do %>
+            <%= link_to tour, class: "grid--item--link" do %>
               <div>
                 <% if tour.cover_image.attached? %>
                   <%= image_tag tour.cover_image.variant(resize: "400x400>"),
@@ -14,10 +14,7 @@
               </div>
               <div class="grid--item--text">
                 <div class="grid--item--title">
-                  <%= tour.title %>
-                </div>
-                <div class="grid--item--artist">
-                  <%= c "fontawesome_icon", icon: "fas fa-globe" %> <%= tour.artist_country %>
+                  <%= tour.title_with_country %>
                 </div>
                 <div class="grid--item--caption">
                   <%= tour.tour_caption %>
@@ -28,9 +25,11 @@
                     <%= l( tour.booking_dates.last.day, format: :short ) %>
                   <% end %>
                 </div>
-                <div class="grid--item--price">
-                  <%= c "price", money: tour.price_braaam %>
-                </div>
+                <% if company_signed_in? %>
+                  <div class="grid--item--price">
+                    <%= c "price", money: tour.price_braaam %>
+                  </div>
+                <% end %>
               </div>
             <% end %>
           </div>

@@ -21,6 +21,36 @@
       <%= form.label :email %>
       <%= form.email_field :email %>
     </div>
+
+    <div class="fields">
+      <%= form.label :reference_person_full_name %>
+      <%= form.text_field :reference_person_full_name %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :company_address_line1 %>
+      <%= form.text_field :company_address_line1 %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :company_address_line2 %>
+      <%= form.text_field :company_address_line2 %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :company_country %>
+      <%= form.text_field :company_country %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :company_npa %>
+      <%= form.text_field :company_npa %>
+    </div>
+
+    <div class="fields">
+      <%= form.label :company_city %>
+      <%= form.text_field :company_city %>
+    </div>
     <%= form.submit %>
   </div>
 <% end %>

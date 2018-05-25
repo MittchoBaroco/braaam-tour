@@ -1,0 +1,47 @@
+<%= c "container" do %>
+  <%= c "tour/title", text: t("change_my_email_password") %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password %> <i>(<%= t("leave_blank_password") %>)</i><br />
+      <%= f.password_field :password, autocomplete: "off", class: "input" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password, t("current_password") %> <i><%= t("we_need_password_to_confirm") %></i><br />
+      <%= f.password_field :current_password, autocomplete: "off", class: "input" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit t("update"), class: "submit" %>
+    </div>
+  <% end %>
+
+  <%= c "hr" %>
+
+  <%= c "booking/button", href: company_settings_path(current_company) do %>
+    <%= t("back_to_settings") %>
+  <% end %>
+<% end %>

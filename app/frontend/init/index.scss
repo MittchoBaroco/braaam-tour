@@ -47,6 +47,25 @@ body {
   }
 }
 
+.field {
+  margin: 10px 0;
+}
+
+.actions {
+  margin: 10px 0;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  color: #09529b;
+}
+
+.link:hover {
+  color: color(#09529b shade(20%));
+  text-decoration: underline;
+}
+
 .input {
   display: block;
   width: 100%;
@@ -68,11 +87,73 @@ body {
   text-align: center;
   text-decoration: none;
   background: #09529b;
+  border: none;
   outline: none;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.submit-booking {
+  padding: 5px 20px;
+  border-radius: 12px;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background: #219653;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.submit-booking:hover {
+  background: color(#219653 shade(20%));
 }
 
 .submit:hover {
   background: color(#09529b shade(20%));
+}
+
+.btn {
+  padding: 5px 20px;
+  border-radius: 12px;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background: #09529b;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.btn:hover {
+  background: color(#09529b shade(20%));
+}
+
+.red {
+  background: #EB5757;
+}
+
+.red:hover {
+  background: color(#EB5757 shade(20%));
+}
+
+@media screen and (max-width: 479px) {
+  .btn {
+    margin: 5px 0;
+  }
+
+  .submit-booking {
+    margin: 5px 0;
+  }
+
+  .submit{
+    margin: 5px 0;
+  }
 }

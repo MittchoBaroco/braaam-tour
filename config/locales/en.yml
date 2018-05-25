@@ -4,6 +4,12 @@ en:
   tour: "Tour"
   book: "Book"
   back: "Back"
+  update: "Update"
+  for_booking_and_price: "for booking informations and price"
+  sign_in: "Sign in"
+  sign_up: "Sign up"
+  log_in: "Log in"
+  remember_me: "Remember me"
   tour_index_title: "Up-coming Tours"
   no_tours: "No Tours Available"
   date_reserved: "Date Reserved"
@@ -19,6 +25,17 @@ en:
   copyright: "Copyright © %{year} Braaam, All Rights Reserved."
   no_reply: "Please do not reply to this email, for any question contact contact@braaam.com."
   no_reply_html: "Please do not reply to this email, for any question contact "
+  my_bookings: "Mes bookings"
+  my_settings: "Mes settings"
+  back_to_tours: "Back to tours"
+  change_my_email_password: "Change my email/password"
+  leave_blank_password: "leave blank if you don't want to change it"
+  we_need_password_to_confirm: "we need your current password to confirm your changes"
+  cancel_account: "Cancel my account"
+  back_to_settings: "Back to settings"
+  current_password: "Current password"
+  send_me_password_instruction: "Send me reset password instructions"
+  forgot_password: "Forgot your password?"
   time:
     formats:
       short: "%e %b"
@@ -28,3 +45,17 @@ en:
       subject: "Booking Confirmation for %{tour_name}"
     admins_notification:
       subject: "Booking Notification for %{tour_name}"
+  activerecord:
+    models:
+      company: Company
+    attributes:
+      company:
+        name: "Company name"
+        reference_person_full_name: "Full name of the reference person"
+        company_address_line1: "Company address"
+        company_address_line2: "Address line 2"
+        company_npa: "ZIP code"
+        company_country: "Country"
+        company_city: "City"
+        password: "Password"
+        password_confirmation: "Password confirmation"

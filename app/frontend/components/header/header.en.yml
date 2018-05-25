@@ -2,3 +2,6 @@ en:
   header_component:
     french: french
     english: english
+    bookings: "My Bookings"
+    settings: "My Settings"
+    sign_out: "Sign out"

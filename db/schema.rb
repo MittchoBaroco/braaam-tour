@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_29_174309) do
+ActiveRecord::Schema.define(version: 2018_05_24_090318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -68,7 +68,9 @@ ActiveRecord::Schema.define(version: 2018_04_29_174309) do
     t.bigint "tour_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "company_id"
     t.index ["author_name", "comment_body", "tour_id"], name: "index_unique_comments", unique: true
+    t.index ["company_id"], name: "index_comments_on_company_id"
     t.index ["tour_id"], name: "index_comments_on_tour_id"
   end
 
@@ -77,7 +79,23 @@ ActiveRecord::Schema.define(version: 2018_04_29_174309) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "company_address_line1"
+    t.string "company_address_line2"
+    t.string "company_country"
+    t.string "company_npa"
+    t.string "company_city"
+    t.string "reference_person_full_name"
     t.index ["email"], name: "index_companies_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
   end
 
   create_table "managers", force: :cascade do |t|
@@ -119,5 +137,6 @@ ActiveRecord::Schema.define(version: 2018_04_29_174309) do
   add_foreign_key "awards", "tours"
   add_foreign_key "booking_dates", "companies"
   add_foreign_key "booking_dates", "tours"
+  add_foreign_key "comments", "companies"
   add_foreign_key "comments", "tours"
 end

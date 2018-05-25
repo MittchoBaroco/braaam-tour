@@ -5,8 +5,23 @@
         <%= link_to "BRAAAM", root_path %>
       </div>
       <nav class="header--container--navigation">
-        <%= link_to t(".french"), url_for( :locale => 'fr' ) unless I18n.locale.eql?(:fr) %>
-        <%= link_to t(".english"), url_for( :locale => 'en' ) unless I18n.locale.eql?(:en) %>
+        <%= link_to "français", url_for( :locale => 'fr' ) unless I18n.locale.eql?(:fr) %>
+        <%= link_to "english", url_for( :locale => 'en' ) unless I18n.locale.eql?(:en) %>
+
+        <div class="header--container--navigation--menu">
+          <% if company_signed_in? %>
+            <button onclick="toogleDropdown()" class="header--container--navigation--menu--dropbtn dropbtn-js"><%= current_company.name %> <%= c "fontawesome_icon", icon: "fas fa-bars" %></button>
+            <div class="header--container--navigation--menu--dropdown dropdown-js">
+              <ul class="dropdown-content-js">
+                <li><%= link_to t(".bookings"), company_bookings_path(current_company) %></li>
+                <li><%= link_to t(".settings"), company_settings_path(current_company) %></li>
+                <li><%= link_to t(".sign_out"), destroy_company_session_path, method: :delete %></li>
+              </ul>
+            </div>
+          <% else %>
+            <%= link_to t("sign_in"), new_company_session_path %>
+          <% end %>
+        </div>
       </nav>
     </div>
   <% end %>

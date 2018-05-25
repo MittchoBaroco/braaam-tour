@@ -2,3 +2,6 @@ fr:
   header_component:
     french: français
     english: anglais
+    bookings: "Mes réservations"
+    settings: "Mes paramètres"
+    sign_out: "Déconnexion"
