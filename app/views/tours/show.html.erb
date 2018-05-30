@@ -75,12 +75,12 @@
             <!-- <%= c "tour/need", value: true, type: "transport" %> -->
 
           <% end %>
-          <% if company_signed_in? %>
-            <%= c "tour/section_side", type: "dates" do %>
-              <% @tour.booking_dates.each do |date| %>
-                <%= c "tour/booking_btn", date: date %>
-              <% end %>
+          <%= c "tour/section_side", type: "dates" do %>
+            <% @tour.booking_dates.each do |date| %>
+              <%= c "tour/booking_btn", date: date %>
             <% end %>
+          <% end %>
+          <% if company_signed_in? %>
             <%= c "tour/section_side", type: "prices" do %>
               <div style="text-decoration: line-through">
                 Initial price: <%= c "price", money: @tour.price_normal %>
@@ -91,8 +91,7 @@
             <% end %>
           <% else %>
             <%= c "tour/section_side", type: "dates" do %>
-              <%= link_to t("log_in"), new_company_session_path, class: "link", style: "color: #021222" %> <%= t("for_booking_and_price") %>
-
+              <%= link_to t("log_in"), new_company_session_path, class: "link", style: "color: #021222" %> <%= t("for_price") %>
             <% end %>
           <% end %>
         <% end %>

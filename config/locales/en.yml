@@ -5,7 +5,7 @@ en:
   book: "Book"
   back: "Back"
   update: "Update"
-  for_booking_and_price: "for booking informations and price"
+  for_price: "for price"
   sign_in: "Sign in"
   sign_up: "Sign up"
   log_in: "Log in"

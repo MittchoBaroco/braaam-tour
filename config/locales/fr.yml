@@ -5,7 +5,7 @@ fr:
   book: "Réserver"
   back: "Retour"
   update: "Mettre à jour"
-  for_booking_and_price: "pour afficher les dates et prix"
+  for_price: "pour afficher les prix"
   sign_in: "Connexion"
   sign_up: "S'inscrire"
   log_in: "S'identifier"
