@@ -75,6 +75,7 @@ RSpec.describe Tour, type: :model do
                                          .inverse_of(:tour)
                                          .dependent(:destroy) }
     it { should have_many(:companies).through(:booking_dates) }
+    it { belong_to(:creator).class_name("Company").with_foreign_key(:company_id).optional }
   end
 
   context "test nested attributes" do
@@ -118,6 +119,22 @@ RSpec.describe Tour, type: :model do
       response = Tour.show_collection(tour_tomorrow.id).map{|t| t.title}
       correct  = [tour_today.title]
       expect(response).to eq( correct )
+    end
+  end
+
+  context "methods" do
+    describe "#creator_name" do
+      it "return Braaam if creator is missing" do
+        t = tour_today.dup
+        expect(t.creator_name).to eq("Braaam")
+      end
+
+      it "return the name of the creator" do
+        t = tour_today.dup
+        c = FactoryBot.build(:company, name: 'pony')
+        t.creator = c
+        expect(t.creator_name).to eq('pony')
+      end
     end
   end
 

@@ -7,6 +7,7 @@
       <%= c "column", size: 8 do %>
 
         <%= c "tour/title", text: @tour.title_with_country %>
+        <%= c "tour/proposed_by", text: @tour.creator_name %>
         <%= c "tour/description", text: @tour.description %>
         <%= c "tour/call_to_action" %>
 

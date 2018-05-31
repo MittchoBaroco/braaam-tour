@@ -36,6 +36,7 @@ fr:
   current_password: "Mot de passe actuel"
   send_me_password_instruction: "Envoyez-moi les instructions de réinitialisation"
   forgot_password: "Mot de passe oublié?"
+  proposed_by: "Proposé par"
   booking_mailer:
     booking_confirmation:
       subject: "Confirmation de réservation pour %{tour_name}"
