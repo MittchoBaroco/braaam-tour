@@ -25,4 +25,11 @@ RSpec.describe CompaniesController, type: :controller do
     end
   end
 
+  describe "GET #tours" do
+    it "returns http success" do
+      get :tours, params: {id: company.id }, session: valid_session
+      expect(response).to be_successful
+    end
+  end
+
 end

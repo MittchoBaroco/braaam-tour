@@ -14,6 +14,8 @@
             <div class="header--container--navigation--menu--dropdown dropdown-js">
               <ul class="dropdown-content-js">
                 <li><%= link_to t(".bookings"), company_bookings_path(current_company) %></li>
+                <li><%= link_to t(".add_tour"), new_tour_path %></li>
+                <li><%= link_to t(".manage_tour"), company_tours_path(current_company) %></li>
                 <li><%= link_to t(".settings"), company_settings_path(current_company) %></li>
                 <li><%= link_to t(".sign_out"), destroy_company_session_path, method: :delete %></li>
               </ul>

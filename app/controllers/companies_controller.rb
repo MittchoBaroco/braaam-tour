@@ -9,6 +9,10 @@ class CompaniesController < ApplicationController
     @company = current_company
   end
 
+  def tours
+    @tours = current_company.created_tours
+  end
+
   # PATCH/PUT /admin/companies/1
   # PATCH/PUT /admin/companies/1.json
   def update

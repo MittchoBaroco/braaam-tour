@@ -20,6 +20,7 @@ class ToursController < ApplicationController
   end
 
   def new
+
   end
 
   private

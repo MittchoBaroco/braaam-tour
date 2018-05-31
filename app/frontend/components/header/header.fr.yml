@@ -5,3 +5,5 @@ fr:
     bookings: "Mes réservations"
     settings: "Mes paramètres"
     sign_out: "Déconnexion"
+    add_tour: "Ajouter une tournée"
+    manage_tour: "Gérer mes tournées"
