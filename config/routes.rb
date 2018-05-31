@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :companies
   devise_for :managers
 
-  resources :tours, only: [:show, :index, :new] do
+  resources :tours, only: [:show, :index, :new, :edit] do
     resources :comments, only: [:create]
   end
   resources :companies, only: [:update]
