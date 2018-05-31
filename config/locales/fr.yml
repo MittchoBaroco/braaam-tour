@@ -28,6 +28,8 @@ fr:
   my_bookings: "Mes réservations"
   my_settings: "Mes paramètres"
   my_tours: "Mes tournées"
+  add_tour: "Ajouter une tournée"
+  edit_tour: "Modifier la tournée"
   back_to_tours: "Retour aux tournées"
   change_my_email_password: "Modifier mon email/mot de passe"
   leave_blank_password: "laissez vide si vous ne voulez pas le changer"
@@ -147,6 +149,7 @@ fr:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      invalid_currency: "devise non valid: doit être une devise valide (par exemple. '100', '5%{decimal}24', ou '123%{thousands}456%{decimal}78'). reçu %{currency}"
       accepted: doit être accepté(e)
       blank: doit être rempli(e)
       present: doit être vide
@@ -197,7 +200,20 @@ fr:
   activerecord:
     models:
       company: Compagnie
+      tour: Tournée
     attributes:
+      tour:
+        title: "Titre de la tournée"
+        artist_country: "Pay de l'artiste"
+        tour_caption: "Légende"
+        cover_image: "Image de couverture"
+        description: "Description"
+        video_uri: "Lien de la video (youtube)"
+        housing: "Besoin d'hébergement"
+        catering: "Besoin de restauration"
+        tech_sheet: "Fiche technique"
+        price_normal: "Prix normale"
+        price_braaam: "Prix Braaam (réduit)"
       company:
         name: "Nom de la compagnie"
         reference_person_full_name: "Nom complet de la personne de référence"

@@ -17,6 +17,9 @@ class Tour < ApplicationRecord
   has_one_attached :tech_sheet
   # has_many_attached :carosel_images
 
+  # Use EUR as the model level currency
+  register_currency :eur
+
   monetize :price_braaam_cents, numericality: { greater_than_or_equal_to: 0 }
   monetize :price_normal_cents, numericality: { greater_than_or_equal_to: 0 }
 

@@ -11,7 +11,7 @@
         <%= c "tour/description", text: @tour.description %>
         <%= c "tour/call_to_action" %>
 
-        <% if @tour.video_uri %>
+        <% unless @tour.video_uri.blank? %>
 
           <%= c "tour/section", type: "video" do %>
 

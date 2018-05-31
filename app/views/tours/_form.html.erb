@@ -1,0 +1,76 @@
+<%= form_with(model: @tour, url: @tour, local: true) do |form| %>
+  <% if @tour.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@tour.errors.count, "error") %> prohibited
+        this tour from being saved:
+      </h2>
+      <ul>
+        <% @tour.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, Tour.human_attribute_name("title") + " *" %>
+    <%= form.text_field :title, class: "input", required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :artist_country, Tour.human_attribute_name("artist_country") + " *" %>
+    <%= form.text_field :artist_country, class: "input", required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tour_caption, Tour.human_attribute_name("tour_caption") + " *" %>
+    <%= form.text_field :tour_caption, class: "input", required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cover_image %><br>
+    <%= form.file_field :cover_image, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, Tour.human_attribute_name("description") + " *" %><br>
+    <%= form.text_area :description, style: "height: 100px; width: 100%; border-color: #cccccc", required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video_uri %>
+    <%= form.text_field :video_uri, class: "input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :housing %>
+    <%= form.check_box :housing %>
+  </div>
+
+  <div class="field">
+    <%= form.label :catering %>
+    <%= form.check_box :catering %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tech_sheet %><br>
+    <%= form.file_field :tech_sheet, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price_normal, Tour.human_attribute_name("price_normal") + " *" %>
+    <%= form.number_field :price_normal, value: @tour.price_normal.to_f, min: 0, step: 0.01, class: "input", required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price_braaam, Tour.human_attribute_name("price_braaam") + " *" %>
+    <%= form.number_field :price_braaam, value: @tour.price_braaam.to_f, min: 0, step: 0.01, class: "input", required: true %>
+  </div>
+
+  <br>
+  <div class="action">
+    <%= form.submit class: "submit" %>
+  </div>
+  <br>
+<% end %>
