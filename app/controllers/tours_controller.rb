@@ -1,4 +1,5 @@
 class ToursController < ApplicationController
+  before_action :authenticate_company!, only: [:new, :create]
   before_action :set_tour, only: [:show]
 
   # GET /tours
