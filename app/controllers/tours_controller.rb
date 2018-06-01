@@ -1,6 +1,6 @@
 class ToursController < ApplicationController
-  before_action :authenticate_company!, only: [:new, :create]
-  before_action :set_tour, only: [:show]
+  before_action :authenticate_company!, only: [:new, :create, :edit, :update]
+  before_action :set_tour, only: [:show, :edit, :update]
 
   # GET /tours
   # GET /tours.json
@@ -44,6 +44,33 @@ class ToursController < ApplicationController
         format.json { render :show, status: :created, location: tour_path(@tour) }
       else
         format.html { render :new }
+        format.json { render json: @tour.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+  end
+
+  # PATCH/PUT /admin/tours/1
+  # PATCH/PUT /admin/tours/1.json
+  def update
+    @tour.update(tour_params)
+
+    #fix currency for franch locale
+    if I18n.locale.eql?(:fr)
+      correct_money_normal = tour_params[:price_normal].gsub(".", ",")
+      correct_money_braaam = tour_params[:price_braaam].gsub(".", ",")
+      @tour.price_normal = correct_money_normal
+      @tour.price_braaam = correct_money_braaam
+    end
+
+    respond_to do |format|
+      if @tour.save
+        format.html { redirect_to tour_path(@tour), notice: 'Tour was successfully created.' }
+        format.json { render :show, status: :created, location: tour_path(@tour) }
+      else
+        format.html { render :edit }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end

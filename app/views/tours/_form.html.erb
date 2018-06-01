@@ -68,7 +68,7 @@
     <%= form.number_field :price_braaam, value: @tour.price_braaam.to_f, min: 0, step: 0.01, class: "input", required: true %>
   </div>
 
-  <%= c "tour/datepicker", form_target: "#tour_form" %>
+  <%= c "tour/datepicker", form_target: "#tour_form", disable_edit: defined?(edit) && edit %>
 
   <br>
   <div class="action">
