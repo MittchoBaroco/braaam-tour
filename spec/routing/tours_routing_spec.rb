@@ -16,7 +16,7 @@ RSpec.describe ToursController, type: :routing do
     end
 
     it "routes to #edit" do
-      expect(:get => "/tours/edit").to route_to("tours#edit")
+      expect(:get => "/tours/1/edit").to route_to("tours#edit", :id => "1")
     end
 
   end
