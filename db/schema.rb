@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_090318) do
+ActiveRecord::Schema.define(version: 2018_05_30_102550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -131,6 +131,8 @@ ActiveRecord::Schema.define(version: 2018_05_24_090318) do
     t.datetime "updated_at", null: false
     t.string "tour_caption", default: "", null: false
     t.string "artist_country", default: "", null: false
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_tours_on_company_id"
     t.index ["title"], name: "index_tours_on_title"
   end
 
@@ -139,4 +141,5 @@ ActiveRecord::Schema.define(version: 2018_05_24_090318) do
   add_foreign_key "booking_dates", "tours"
   add_foreign_key "comments", "companies"
   add_foreign_key "comments", "tours"
+  add_foreign_key "tours", "companies"
 end

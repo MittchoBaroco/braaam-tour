@@ -27,6 +27,15 @@ class Admin::ToursController < ApplicationController
   # POST /admin/tours.json
   def create
     @admin_tour = Tour.new(admin_tour_params)
+
+    #fix currency for franch locale
+    if I18n.locale.eql?(:fr)
+      correct_money_normal = admin_tour_params[:price_normal].gsub(".", ",")
+      correct_money_braaam = admin_tour_params[:price_braaam].gsub(".", ",")
+      @admin_tour.price_normal = correct_money_normal
+      @admin_tour.price_braaam = correct_money_braaam
+    end
+
     respond_to do |format|
       if @admin_tour.save
         # format.html { redirect_to @admin_tour, notice: 'Tour was successfully created.' }

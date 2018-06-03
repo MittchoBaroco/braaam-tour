@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :companies
   devise_for :managers
 
-  resources :tours, only: [:show, :index] do
+  resources :tours, only: [:show, :index, :new, :edit, :create, :update] do
     resources :comments, only: [:create]
   end
   resources :companies, only: [:update]
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   get   'companies/:id/bookings',         to: 'companies#bookings', as: "company_bookings"
   get   'companies/:id/settings',         to: 'companies#settings', as: "company_settings"
+  get   'companies/:id/tours',            to: 'companies#tours', as: "company_tours"
   get   'booking_dates/book/:id',         to: 'booking_dates#book', as: "booking"
   put   'booking_dates/signup/:id',       to: 'booking_dates#signup', as: "signup"
   patch 'booking_dates/signup/:id',       to: 'booking_dates#signup'

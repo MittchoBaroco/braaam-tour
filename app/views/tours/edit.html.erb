@@ -1,0 +1,14 @@
+<%= c "container" do %>
+  <%= c "tour/title", text: t("add_tour") %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <%= render "form", edit: true %>
+
+  <%= c "hr" %>
+
+  <%= c "booking/button", href: tours_path do %>
+    <%= t("back_to_tours") %>
+  <% end %>
+
+<% end %>

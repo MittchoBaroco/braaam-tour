@@ -5,6 +5,8 @@ class Tour < ApplicationRecord
   # TODO: add new start & end date fields - sort on them (queried from bookings)
   # TODO: distinct for uniq returns - find an better solution - add back sorting
 
+  belongs_to :creator, foreign_key: "company_id", class_name: "Company", optional: true
+
   has_many :awards,   inverse_of: :tour, dependent: :destroy
   has_many :comments, inverse_of: :tour, dependent: :destroy
   has_many :booking_dates, -> { order(day: :asc) }, inverse_of: :tour, dependent: :destroy
@@ -14,6 +16,9 @@ class Tour < ApplicationRecord
   has_one_attached :cover_image
   has_one_attached :tech_sheet
   # has_many_attached :carosel_images
+
+  # Use EUR as the model level currency
+  register_currency :eur
 
   monetize :price_braaam_cents, numericality: { greater_than_or_equal_to: 0 }
   monetize :price_normal_cents, numericality: { greater_than_or_equal_to: 0 }
@@ -77,5 +82,14 @@ class Tour < ApplicationRecord
 
   def title_with_country
     "#{title} (#{artist_country})"
+  end
+
+  def creator_name
+     return "Braaam" if creator.blank?
+     return creator.name
+  end
+
+  def braaam_tour?
+    creator.blank?
   end
 end

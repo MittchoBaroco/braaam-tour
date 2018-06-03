@@ -5,3 +5,5 @@ en:
     bookings: "My Bookings"
     settings: "My Settings"
     sign_out: "Sign out"
+    add_tour: "Add a tour"
+    manage_tour: "Manage my tours"

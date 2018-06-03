@@ -35,6 +35,7 @@ RSpec.describe Company, type: :model do
     context "Check company Relationships" do
       it { should have_many(:booking_dates) }
       it { should have_many(:tours).through(:booking_dates) }
+      it { should have_many(:created_tours).with_foreign_key("company_id").class_name("Tour")}
     end
 
 end

@@ -6,6 +6,7 @@ class Company < ApplicationRecord
 
   has_many :booking_dates
   has_many :tours, through: :booking_dates
+  has_many :created_tours, class_name: "Tour", foreign_key: "company_id"
 
   # validate email & name not empty
   validates :name,  presence: true, length: { minimum: 2 }
@@ -17,6 +18,5 @@ class Company < ApplicationRecord
   validates :company_country, presence: true, length: { minimum: 2 }
   validates :company_npa, presence: true, length: { minimum: 1 }
   validates :company_city, presence: true, length: { minimum: 2 }
-  validates :reference_person_full_name, presence: true, length: { minimum: 2 }
-
+  validates :reference_person_full_name, presence: true, length: { minimum: 2 }  
 end

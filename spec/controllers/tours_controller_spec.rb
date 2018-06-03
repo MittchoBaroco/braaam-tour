@@ -8,6 +8,10 @@ RSpec.describe ToursController, type: :controller do
 
   let(:valid_session) { {} }
 
+  let!(:company) {
+    FactoryBot.create(:company, email: 'test@example.com')
+  }
+
   describe "GET #index" do
     it "returns a success response" do
       get :index, params: {}, session: valid_session
@@ -18,6 +22,17 @@ RSpec.describe ToursController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       get :show, params: {id: tour1.to_param}, session: valid_session
+      expect(response).to be_successful
+    end
+  end
+
+  describe "GET #new" do
+    before(:each) do
+      sign_in company
+    end
+
+    it "returns a success response" do
+      get :new, params: {}, session: valid_session
       expect(response).to be_successful
     end
   end
