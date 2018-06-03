@@ -35,7 +35,7 @@ $('#calendar').fullCalendar({
 });
 
 function getLocale() {
-  if ($('#calendar').data("locale") == "en") {
+  if ($('#calendar').data("locale") === "en") {
     return "en-gb"
   } else {
     return $('#calendar').data("locale");
