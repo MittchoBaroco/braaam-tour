@@ -55,7 +55,7 @@ class ToursController < ApplicationController
   # PATCH/PUT /admin/tours/1
   # PATCH/PUT /admin/tours/1.json
   def update
-    @tour.update(tour_params)
+    @tour.assign_attributes(tour_params)
 
     #fix currency for franch locale
     if I18n.locale.eql?(:fr)
@@ -85,9 +85,8 @@ class ToursController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tour_params
       params.require(:tour).permit(
-        :title, :description, :video_uri, :tech_help, :housing, :catering,
-        :currency, :price_normal, :price_braaam,
-        :cover_image, :tech_sheet, :tour_caption, :artist_country,
+        :title, :description, :video_uri, :housing, :catering, :artist_country,
+        :cover_image, :tech_sheet, :tour_caption, :price_normal, :price_braaam,
         awards_attributes: [:caption, :institution, :country, :award_year, :id, :_destroy],
         booking_dates_attributes: [:day, :company, :close, :id, :_destroy],
         comments_attributes: [:comment_body, :author_name, :id, :_destroy]
