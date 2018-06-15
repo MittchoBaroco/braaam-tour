@@ -1,23 +1,12 @@
 import "./header.css";
+import jQuery from "jquery";
+import $ from "jquery";
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function toogleDropdown() {
-    document.getElementsByClassName("dropdown-js")[0].classList.toggle("show");
-}
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn-js')) {
-    var dropdowns = document.getElementsByClassName("dropdown-js");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-
-window.toogleDropdown = toogleDropdown;
+$( document ).ready(function() {
+  $(".dropbtn-js").click(function(){
+    $(".dropdown-js").toggleClass("show")
+  })
+});

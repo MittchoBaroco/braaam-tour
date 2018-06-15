@@ -10,7 +10,7 @@
 
         <div class="header--container--navigation--menu">
           <% if company_signed_in? %>
-            <button onclick="toogleDropdown()" class="header--container--navigation--menu--dropbtn dropbtn-js"><%= current_company.name %> <%= c "fontawesome_icon", icon: "fas fa-bars" %></button>
+            <button class="header--container--navigation--menu--dropbtn dropbtn-js"><%= current_company.name %> <%= c "fontawesome_icon", icon: "fas fa-bars" %></button>
             <div class="header--container--navigation--menu--dropdown dropdown-js">
               <ul class="dropdown-content-js">
                 <li><%= link_to t(".bookings"), company_bookings_path(current_company) %></li>
