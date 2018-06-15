@@ -24,6 +24,8 @@ module BraaamTour
     config.i18n.load_path += Dir[config.root.join('app/frontend/components/**/*.yml')]
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    # use french as the default locale
+    config.i18n.default_locale = :fr
     # config.autoload_paths += %W(#{config.root}/lib)
     # config.autoload_paths += %W(#{config.root}/service)
     # config.autoload_paths += %W(#{config.root}/workflow)
