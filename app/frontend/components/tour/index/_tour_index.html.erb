@@ -21,7 +21,7 @@
                 </div>
                 <div class="grid--item--dates">
                   <% unless tour.booking_dates.empty? %>
-                    <%= l( tour.booking_dates.first.day, format: :short ) %> -
+                    <%= t("from_date") %> <%= l( tour.booking_dates.first.day, format: :short ) %> <%= t("to_date") %>
                     <%= l( tour.booking_dates.last.day, format: :short ) %>
                   <% end %>
                 </div>

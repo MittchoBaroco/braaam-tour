@@ -1,6 +1,8 @@
 fr:
   "yes": "Oui"
   "no": "Non"
+  from_date: "du"
+  to_date: "au"
   tour: "Tournée"
   book: "Réserver"
   back: "Retour"
@@ -55,6 +57,7 @@ fr:
     - ven
     - sam
     abbr_month_names:
+    -
     - jan.
     - fév.
     - mar.

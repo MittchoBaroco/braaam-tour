@@ -14,7 +14,7 @@
 .grid--item {
   width: 23%;
   margin: 35px 2% 0 0;
-  line-height: 18px;
+  line-height: 17px;
 
   &--link {
     color: #000;
@@ -29,18 +29,22 @@
   }
 
   &--text {
-    margin-top: 2.5px;
+    /* margin-top: 2.5px; */
   }
 
   &--title {
     font-weight: bold;
     padding-top: 2px;
+    text-transform: uppercase;
   }
 
   &--caption {
-    padding-top: 2px;
-    padding-bottom: 4px;
-    line-height: 16px;
+    /* padding-top: 2px;
+    padding-bottom: 4px; */
+  }
+
+  &--price {
+    color: #09529b;
   }
 }
 
