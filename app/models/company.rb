@@ -18,5 +18,8 @@ class Company < ApplicationRecord
   validates :company_country, presence: true, length: { minimum: 2 }
   validates :company_npa, presence: true, length: { minimum: 1 }
   validates :company_city, presence: true, length: { minimum: 2 }
-  validates :reference_person_full_name, presence: true, length: { minimum: 2 }  
+  validates :reference_person_full_name, presence: true, length: { minimum: 2 }
+  validates :vat_number, length: { minimum: 2 }, allow_blank: true
+  validates :ape, length: { minimum: 2 }, allow_blank: true
+  validates :siret, length: { minimum: 2 }, allow_blank: true
 end

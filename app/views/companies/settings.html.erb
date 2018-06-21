@@ -46,6 +46,18 @@
       <%= label_tag :company_country, Company.human_attribute_name("company_country") %><br>
       <%= form.text_field :company_country, class: "input" %>
     </div>
+    <div class="field">
+      <%= label_tag :ape, Company.human_attribute_name("ape") %><br />
+      <%= form.text_field :ape, class: "input" %>
+    </div>
+    <div class="field">
+      <%= label_tag :siret, Company.human_attribute_name("siret") %><br />
+      <%= form.text_field :siret, class: "input" %>
+    </div>
+    <div class="field">
+      <%= label_tag :vat_number, Company.human_attribute_name("vat_number") %><br />
+      <%= form.text_field :vat_number, class: "input" %>
+    </div>
 
     <%= form.submit t("update"), class: "submit" %>
   <% end %>

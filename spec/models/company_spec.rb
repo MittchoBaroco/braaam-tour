@@ -29,6 +29,9 @@ RSpec.describe Company, type: :model do
       it { should validate_length_of(:company_npa).is_at_least(1) }
       it { should validate_length_of(:company_city).is_at_least(2) }
       it { should validate_length_of(:reference_person_full_name).is_at_least(2) }
+      it { should validate_length_of(:vat_number).is_at_least(2).allow_nil }
+      it { should validate_length_of(:ape).is_at_least(2).allow_nil }
+      it { should validate_length_of(:siret).is_at_least(2).allow_nil }
 
     end
 

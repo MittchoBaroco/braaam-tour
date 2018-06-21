@@ -3,44 +3,73 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <% if resource.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(resource.errors.count, "error") %> prohibited
+          this company from being saved:
+        </h2>
+        <ul>
+          <% resource.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, class: "input" %>
+      <%= f.label :name, Company.human_attribute_name("name") + "*" %><br>
+      <%= f.text_field :name, class: "input", required: true %>
     </div>
 
     <div class="field">
-      <%= f.label :reference_person_full_name %><br />
-      <%= f.text_field :reference_person_full_name, class: "input" %>
+      <%= f.label :reference_person_full_name, Company.human_attribute_name("reference_person_full_name") + "*" %><br>
+      <%= f.text_field :reference_person_full_name, class: "input", required: true %>
     </div>
 
     <div class="field">
-      <%= f.label :company_address_line1 %><br />
-      <%= f.text_field :company_address_line1, class: "input" %>
+      <%= f.label :company_address_line1, Company.human_attribute_name("company_address_line1") + "*" %><br>
+      <%= f.text_field :company_address_line1, class: "input", required: true %>
     </div>
 
     <div class="field">
-      <%= f.label :company_address_line2 %><br />
+      <%= f.label :company_address_line2, Company.human_attribute_name("company_address_line2") %><br>
       <%= f.text_field :company_address_line2, class: "input" %>
     </div>
 
     <div class="field">
-      <%= f.label :company_city %><br />
-      <%= f.text_field :company_city, class: "input" %>
+      <%= f.label :company_npa, Company.human_attribute_name("company_npa") + "*" %><br>
+      <%= f.text_field :company_npa, class: "input", required: true %>
     </div>
 
     <div class="field">
-      <%= f.label :company_npa %><br />
-      <%= f.text_field :company_npa, class: "input" %>
+      <%= f.label :company_city, Company.human_attribute_name("company_city") + "*" %><br>
+      <%= f.text_field :company_city, class: "input", required: true %>
     </div>
 
     <div class="field">
-      <%= f.label :company_country %><br />
-      <%= f.text_field :company_country, class: "input" %>
+      <%= f.label :company_country, Company.human_attribute_name("company_country") + "*" %><br>
+      <%= f.text_field :company_country, class: "input", required: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :ape, Company.human_attribute_name("ape") %><br />
+      <%= f.text_field :ape, class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :siret, Company.human_attribute_name("siret") %><br />
+      <%= f.text_field :siret, class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :vat_number, Company.human_attribute_name("vat_number") %><br />
+      <%= f.text_field :vat_number, class: "input" %>
     </div>
 
     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autocomplete: "email", class: "input" %>
+      <%= f.email_field :email, autocomplete: "email", class: "input", required: true %>
     </div>
 
     <div class="field">
@@ -48,12 +77,12 @@
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
-      <%= f.password_field :password, autocomplete: "off", class: "input" %>
+      <%= f.password_field :password, autocomplete: "off", class: "input", required: true %>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "input" %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "input", required: true %>
     </div>
 
     <div class="actions">

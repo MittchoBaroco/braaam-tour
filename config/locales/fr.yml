@@ -227,3 +227,6 @@ fr:
         company_city: "Ville"
         password: "Mot de passe"
         password_confirmation: "Confirmation de mot de passe"
+        vat_number: "Numero de TVA"
+        ape: "APE"
+        siret: "Siret"
