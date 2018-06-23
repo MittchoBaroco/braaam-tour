@@ -66,6 +66,34 @@ RSpec.describe Tour, type: :model do
       invalid_tour.price_braaam = -1
       expect(invalid_tour).to_not be_valid
     end
+    # it "detects an invalid_start_date" do
+    #   invalid_tour = tour_today.dup
+    #   invalid_tour.tour_start_date = "23/12/799a"
+    #   expect( invalid_tour.valid? ).to be_falsey
+    #   expect( invalid_tour.errors.messages).to eq(
+    #               {:tour=>["must exist"], :day=>["is not a valid date"]} )
+    # end
+    # it "detects an no_past_start_date" do
+    #   invalid_tour = tour_today.dup
+    #   invalid_tour.tour_start_date = (Date.today - 1.day)
+    #   expect( invalid_tour.valid? ).to be_falsey
+    #   expect( invalid_tour.errors.messages).to eq(
+    #               { :day=>["must be a date on or after today"]} )
+    # end
+    # it "detects an invalid_end_date" do
+    #   invalid_tour = tour_today.dup
+    #   invalid_tour.tour_end_date = "23/12/799a"
+    #   expect( invalid_tour.valid? ).to be_falsey
+    #   expect( invalid_tour.errors.messages).to eq(
+    #               {:tour=>["must exist"], :day=>["is not a valid date"]} )
+    # end
+    # it "detects an no_past_end_date" do
+    #   invalid_tour = tour_today.dup
+    #   invalid_tour.tour_start_date = (Date.today - 1.day)
+    #   expect( invalid_tour.valid? ).to be_falsey
+    #   expect( invalid_tour.errors.messages).to eq(
+    #               { :day=>["must be a date on or after today"]} )
+    # end
   end
 
   context "Check company Relationships" do
@@ -123,6 +151,44 @@ RSpec.describe Tour, type: :model do
   end
 
   context "methods" do
+    describe "set_start_date" do
+      it "assign start_date at creation" do
+        tour = FactoryBot.create(:tour)
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today)))
+        tour.reload
+        expect(tour.tour_start_date).to eq(Date.today)
+      end
+
+      it "assign correct start_date on update" do
+        tour = FactoryBot.create(:tour)
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 1.day)))
+        tour.reload
+        expect(tour.tour_start_date).to eq(Date.today + 1.day)
+
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today)))
+        expect(tour.tour_start_date).to eq(Date.today)
+      end
+    end
+
+    describe "set_end_date" do
+      it "assign end_date at creation" do
+        tour = FactoryBot.create(:tour)
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today)))
+        tour.reload
+        expect(tour.tour_end_date).to eq(Date.today)
+      end
+
+      it "assign correct end_date on update" do
+        tour = FactoryBot.create(:tour)
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 1.day)))
+        tour.reload
+        expect(tour.tour_end_date).to eq(Date.today + 1.day)
+
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 2.day)))
+        expect(tour.tour_end_date).to eq(Date.today + 2.day)
+      end
+    end
+
     describe "#creator_name" do
       it "return Braaam if creator is missing" do
         t = tour_today.dup

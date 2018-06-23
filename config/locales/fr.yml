@@ -165,6 +165,7 @@ fr:
       greater_than_or_equal_to: doit être supérieur ou égal à %{count}
       inclusion: n'est pas inclus(e) dans la liste
       invalid: n'est pas valide
+      record_invalid: l'enregistrement n'est pas valide
       less_than: doit être inférieur à %{count}
       less_than_or_equal_to: doit être inférieur ou égal à %{count}
       model_invalid: "Validation échouée : %{errors}"

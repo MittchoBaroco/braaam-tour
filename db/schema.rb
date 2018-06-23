@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_102550) do
+ActiveRecord::Schema.define(version: 2018_06_22_073507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -94,6 +94,9 @@ ActiveRecord::Schema.define(version: 2018_05_30_102550) do
     t.string "company_npa"
     t.string "company_city"
     t.string "reference_person_full_name"
+    t.string "vat_number"
+    t.string "ape"
+    t.string "siret"
     t.index ["email"], name: "index_companies_on_email", unique: true
     t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
   end
@@ -132,6 +135,8 @@ ActiveRecord::Schema.define(version: 2018_05_30_102550) do
     t.string "tour_caption", default: "", null: false
     t.string "artist_country", default: "", null: false
     t.bigint "company_id"
+    t.date "tour_start_date"
+    t.date "tour_end_date"
     t.index ["company_id"], name: "index_tours_on_company_id"
     t.index ["title"], name: "index_tours_on_title"
   end

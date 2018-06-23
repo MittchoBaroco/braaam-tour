@@ -5,6 +5,17 @@ class Tour < ApplicationRecord
   # TODO: add new start & end date fields - sort on them (queried from bookings)
   # TODO: distinct for uniq returns - find an better solution - add back sorting
 
+  after_touch do
+    dates = self.booking_dates.to_a
+    has_dates = dates.empty?
+
+    new_start_date = if has_dates then nil else dates.first.day end
+    self.update tour_start_date: new_start_date unless tour_start_date == new_start_date
+
+    new_end_date = if has_dates then nil else dates.last.day end
+    self.update tour_end_date: new_end_date unless tour_end_date == new_end_date
+  end
+
   belongs_to :creator, foreign_key: "company_id", class_name: "Company", optional: true
 
   has_many :awards,   inverse_of: :tour, dependent: :destroy
@@ -40,6 +51,17 @@ class Tour < ApplicationRecord
                                     message: "please enter a valid url" }
   validates :housing,     inclusion: { in: [ true, false ] }
   validates :catering,    inclusion: { in: [ true, false ] }
+
+  # validation for sorting field
+  # validates_date :tour_start_date,:on => :update
+  # validates_date :tour_start_date,:on => :create,
+  #                     :on_or_after => :today,
+  #                     :on_or_after_message => 'must be a date on or after today'
+  #
+  # validates_date :tour_end_date,:on => :update
+  # validates_date :tour_end_date,:on => :create,
+  #                     :on_or_after => :today,
+  #                     :on_or_after_message => 'must be a date on or after today'
 
   default_scope      { with_attached_cover_image }
   scope :future,  -> { after(Date.today) }
