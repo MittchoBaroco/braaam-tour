@@ -10,7 +10,7 @@ RSpec.describe Tour, type: :model do
 
   let!(:date_in_week)       { FactoryBot.create(:booking_date,
                               day: (Date.today + 7),
-                              tour_id: tour_in_week_awards.id) }
+                              tour: tour_in_week_awards) }
   let!(:date_tt_tomorrow)   { FactoryBot.create(:booking_date,
                               day: (Date.tomorrow),
                               tour_id: tour_today_tomorrow.id) }
@@ -39,6 +39,38 @@ RSpec.describe Tour, type: :model do
     it { should validate_presence_of(:tour_caption) }
     it { should validate_presence_of(:artist_country) }
 
+    describe "presence of tour_start_date" do
+      context "without booking days associate" do
+        it "allow blank" do
+          expect(FactoryBot.create(:tour)).to be_valid
+        end
+      end
+
+      context "with booking days associate" do
+        it "validates presence of tour_start_date" do
+          t = FactoryBot.create(:tour)
+          t.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 1.day)))
+          expect(t).to be_valid
+
+          t.tour_start_date = ""
+          expect(t).to_not be_valid
+          expect( t.errors.messages).to include(
+                      {:tour_start_date=>["can't be blank"]} )
+        end
+
+        it "validates presence of tour_end_date" do
+          t = FactoryBot.create(:tour)
+          t.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 1.day)))
+          expect(t).to be_valid
+
+          t.tour_end_date = ""
+          expect(t).to_not be_valid
+          expect( t.errors.messages).to include(
+                      {:tour_end_date=>["can't be blank"]} )
+        end
+      end
+    end
+
     it { should validate_length_of(:title).is_at_least(2) }
     it { should validate_length_of(:description).is_at_least(2) }
     it { should validate_length_of(:tour_caption).is_at_least(2) }
@@ -66,34 +98,6 @@ RSpec.describe Tour, type: :model do
       invalid_tour.price_braaam = -1
       expect(invalid_tour).to_not be_valid
     end
-    # it "detects an invalid_start_date" do
-    #   invalid_tour = tour_today.dup
-    #   invalid_tour.tour_start_date = "23/12/799a"
-    #   expect( invalid_tour.valid? ).to be_falsey
-    #   expect( invalid_tour.errors.messages).to eq(
-    #               {:tour=>["must exist"], :day=>["is not a valid date"]} )
-    # end
-    # it "detects an no_past_start_date" do
-    #   invalid_tour = tour_today.dup
-    #   invalid_tour.tour_start_date = (Date.today - 1.day)
-    #   expect( invalid_tour.valid? ).to be_falsey
-    #   expect( invalid_tour.errors.messages).to eq(
-    #               { :day=>["must be a date on or after today"]} )
-    # end
-    # it "detects an invalid_end_date" do
-    #   invalid_tour = tour_today.dup
-    #   invalid_tour.tour_end_date = "23/12/799a"
-    #   expect( invalid_tour.valid? ).to be_falsey
-    #   expect( invalid_tour.errors.messages).to eq(
-    #               {:tour=>["must exist"], :day=>["is not a valid date"]} )
-    # end
-    # it "detects an no_past_end_date" do
-    #   invalid_tour = tour_today.dup
-    #   invalid_tour.tour_start_date = (Date.today - 1.day)
-    #   expect( invalid_tour.valid? ).to be_falsey
-    #   expect( invalid_tour.errors.messages).to eq(
-    #               { :day=>["must be a date on or after today"]} )
-    # end
   end
 
   context "Check company Relationships" do

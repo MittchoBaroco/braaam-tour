@@ -52,16 +52,8 @@ class Tour < ApplicationRecord
   validates :housing,     inclusion: { in: [ true, false ] }
   validates :catering,    inclusion: { in: [ true, false ] }
 
-  # validation for sorting field
-  # validates_date :tour_start_date,:on => :update
-  # validates_date :tour_start_date,:on => :create,
-  #                     :on_or_after => :today,
-  #                     :on_or_after_message => 'must be a date on or after today'
-  #
-  # validates_date :tour_end_date,:on => :update
-  # validates_date :tour_end_date,:on => :create,
-  #                     :on_or_after => :today,
-  #                     :on_or_after_message => 'must be a date on or after today'
+  validates :tour_start_date, presence: true, if: :has_booking_days?
+  validates :tour_end_date, presence: true, if: :has_booking_days?
 
   default_scope      { with_attached_cover_image }
   scope :future,  -> { after(Date.today) }
@@ -113,5 +105,9 @@ class Tour < ApplicationRecord
 
   def braaam_tour?
     creator.blank?
+  end
+
+  def has_booking_days?
+    !(self.booking_dates.empty?)
   end
 end
