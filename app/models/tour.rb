@@ -61,30 +61,10 @@ class Tour < ApplicationRecord
   scope :current, -> { after(Date.today - 1) }
   scope :index_collection, -> { current.with_image }
   scope :show_collection, -> (id){ current.with_image.where.not(id: id) }
-  # :with_image scope MUST be used in combination with other scopes!
-  scope :with_image, -> { distinct.includes(:booking_dates).
-                    where('active_storage_attachments.record_type = ?', 'Tour').
-                    where('active_storage_attachments.name = ?', 'cover_image')
-                  }
-  # TODO: solve order and limit conflict when using includes
-  # order_by and limit conflict - limit is more needed than order
-  scope :after,  -> (date) { distinct.joins(:booking_dates).
-                    where('booking_dates.day > ?', date).
-                    includes(:booking_dates).
-                    order('booking_dates.day ASC') }
-  # scope :after,  -> (date) { distinct.includes(:booking_dates).
-  #                   where('booking_dates.day > ?', date).
-  #                   references(:booking_dates) }
-  #                   # .order('booking_dates.day ASC') }
-  scope :before, -> (date) { distinct.joins(:booking_dates).
-                    where('booking_dates.day < ?', date).
-                    includes(:booking_dates).
-                    references(:booking_dates).
-                    order('booking_dates.day DESC') }
-  # scope :before, -> (date) { distinct.includes(:booking_dates).
-  #                   where('booking_dates.day < ?', date).
-  #                   references(:booking_dates) }
-  #                   # .order('booking_dates.day DESC') }
+  scope :with_image, -> { joins("INNER JOIN active_storage_attachments ON active_storage_attachments.record_id = tours.id AND active_storage_attachments.record_type = 'Tour'") }
+
+  scope :after,  -> (date) { where('tour_start_date > ? OR tour_end_date > ?', date, date).order(:tour_start_date).order(:title) }
+  scope :before, -> (date) { where('tour_start_date < ? OR tour_end_date < ?', date, date).order(:tour_start_date).order(:title) }
 
   def booked_days_count
     self.booking_dates.where.not(company_id: nil).count

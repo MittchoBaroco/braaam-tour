@@ -125,7 +125,7 @@ RSpec.describe Tour, type: :model do
     end
     it "properly selects and orders current (today or future) tours" do
       response = Tour.current.map{|t| t.title}
-      correct  = [tour_today_tomorrow.title, tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
+      correct  = [tour_today.title, tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week_awards.title ]
       expect(response).to eq( correct )
       # expect(response).to match_array( correct )
     end
@@ -137,7 +137,7 @@ RSpec.describe Tour, type: :model do
     it "properly selects and orders tours with events before TOMORROW" do
       # response = Tour.before(Date.tomorrow).map{&:title}
       response = Tour.before(Date.tomorrow).map{|t| t.title}
-      correct  = [tour_today_tomorrow.title, tour_today.title]
+      correct  = [tour_today.title, tour_today_tomorrow.title]
       expect(response).to eq( correct )
     end
     it "properly selects index carousel tour - all in future with amage" do
