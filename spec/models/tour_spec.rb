@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Tour, type: :model do
 
-  let!(:tour_in_week_awards){ FactoryBot.create(:tour, title: "In Week") }
-  let!(:tour_today_tomorrow){ FactoryBot.create(:tour, title: "Today & Tomorrow") }
-  let!(:tour_tomorrow)      { FactoryBot.create(:tour_w_image, title: "Tomorrow") }
-  let!(:tour_today)         { FactoryBot.create(:tour_w_image, title: "Today") }
-  # let!(:tour_yesterday)   { FactoryBot.create(:tour, title: "Yesterday") }
+  let!(:tour_in_week)        { FactoryBot.create(:tour, title: "In Week") }
+  let!(:tour_today_tomorrow) { FactoryBot.create(:tour, title: "Today & Tomorrow") }
+  let!(:tour_tomorrow)       { FactoryBot.create(:tour_w_image, title: "Tomorrow") }
+  let!(:tour_today)          { FactoryBot.create(:tour_w_image, title: "Today") }
+  # let!(:tour_yesterday)    { FactoryBot.create(:tour, title: "Yesterday") }
 
   let!(:date_in_week)       { FactoryBot.create(:booking_date,
-                              day: (Date.today + 7),
-                              tour: tour_in_week_awards) }
+                              day: (Date.today + 7.day),
+                              tour_id: tour_in_week.id) }
   let!(:date_tt_tomorrow)   { FactoryBot.create(:booking_date,
                               day: (Date.tomorrow),
                               tour_id: tour_today_tomorrow.id) }
@@ -28,9 +28,10 @@ RSpec.describe Tour, type: :model do
     it 'has a valid Factory' do
       expect(tour_today).to be_valid
     end
-    it 'has a valid Factory with awards' do
-      expect(tour_in_week_awards).to be_valid
-    end
+    # QUESTION: There is not any awards here - what is different from 'has a valid factory'?
+    # it 'has a valid Factory with awards' do
+    #   expect(tour_in_week).to be_valid
+    # end
   end
 
   context "Check company validations" do
@@ -120,18 +121,18 @@ RSpec.describe Tour, type: :model do
       # response = Tour.future.pluck(:title)
       response = Tour.future.map{|t| t.title}
       # pp response
-      correct  = [tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week_awards.title ]
+      correct  = [tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week.title ]
       expect(response).to eq( correct )
     end
     it "properly selects and orders current (today or future) tours" do
       response = Tour.current.map{|t| t.title}
-      correct  = [tour_today.title, tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week_awards.title ]
+      correct  = [tour_today.title, tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week.title ]
       expect(response).to eq( correct )
       # expect(response).to match_array( correct )
     end
     it "properly selects and orders tours with events after TOMORROW" do
       response = Tour.after(Date.tomorrow).map{|t| t.title}
-      correct  = [tour_in_week_awards.title ]
+      correct  = [tour_in_week.title ]
       expect(response).to eq( correct )
     end
     it "properly selects and orders tours with events before TOMORROW" do

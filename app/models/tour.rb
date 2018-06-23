@@ -88,6 +88,6 @@ class Tour < ApplicationRecord
   end
 
   def has_booking_days?
-    !(self.booking_dates.empty?)
+    !(self.booking_dates.pluck(:id).blank?)
   end
 end
