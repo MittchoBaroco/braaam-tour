@@ -42,6 +42,8 @@ en:
   send_me_password_instruction: "Send me reset password instructions"
   forgot_password: "Forgot your password?"
   proposed_by: "Proposed by"
+  admin:
+    sign_in: "Admin Sign in"
   time:
     formats:
       short: "%e %b"
