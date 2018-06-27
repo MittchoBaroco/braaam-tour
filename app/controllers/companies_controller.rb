@@ -37,8 +37,8 @@ class CompaniesController < ApplicationController
     params.fetch(:company, {}).permit(
       :email, :name, :company_address_line1,
       :company_address_line2, :company_country,
-      :company_npa, :company_city,
-      :reference_person_full_name
+      :company_npa, :company_city, :vat_number,
+      :reference_person_full_name, :ape, :siret
     )
   end
 end

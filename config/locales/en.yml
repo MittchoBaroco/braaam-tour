@@ -82,3 +82,6 @@ en:
         company_city: "City"
         password: "Password"
         password_confirmation: "Password confirmation"
+        vat_number: "VAT Number"
+        ape: "APE Number"
+        siret: "Siret Number"
