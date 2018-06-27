@@ -66,6 +66,9 @@ class Tour < ApplicationRecord
   scope :after,  -> (date) { where('tour_start_date > ? OR tour_end_date > ?', date, date).order(:tour_start_date).order(:title) }
   scope :before, -> (date) { where('tour_start_date < ? OR tour_end_date < ?', date, date).order(:tour_start_date).order(:title) }
 
+  scope :summer, -> { where('tour_start_date >= ? and tour_start_date <= ?', Date.strptime("01-Apr-18", "%d-%b-%y"), Date.strptime("30-Oct-18", "%d-%b-%y")) }
+  scope :winter, -> { where('tour_start_date >= ? and tour_start_date <= ?', Date.strptime("01-Nov-18", "%d-%b-%y"), Date.strptime("30-Mar-19", "%d-%b-%y")) }
+
   def booked_days_count
     self.booking_dates.where.not(company_id: nil).count
   end
@@ -89,5 +92,20 @@ class Tour < ApplicationRecord
 
   def has_booking_days?
     !(self.booking_dates.pluck(:id).blank?)
+  end
+
+  def season
+    infos = { year: self.tour_start_date.year.to_s }
+    infos[:season] = "summer" if self.summer_tour?
+    infos[:season] = "winter" if self.winter_tour?
+    return infos
+  end
+
+  def summer_tour?
+    self.tour_start_date >= Date.strptime("01-Apr-18", "%d-%b-%y") and self.tour_start_date <= Date.strptime("30-Oct-18", "%d-%b-%y")
+  end
+
+  def winter_tour?
+    self.tour_start_date >= Date.strptime("01-Nov-18", "%d-%b-%y") and self.tour_start_date <= Date.strptime("30-Mar-19", "%d-%b-%y")
   end
 end

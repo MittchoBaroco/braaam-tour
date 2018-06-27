@@ -1,6 +1,6 @@
-<% unless @tours_collection.empty? %>
+<% unless @tours_collection.nil? %>
   <div class="tour-carousel">
-    <h2 class="tour-carousel--title">Next tours</h2>
+    <h2 class="tour-carousel--title"><%= t("next_tours") %>  <%= t(@season[:season].to_s) %>  <%= @season[:year] %></h2>
     <div class="tour-carousel--grid">
       <% @tours_collection.each do |tour| %>
         <div class="tour-carousel--grid-item">

@@ -1,6 +1,7 @@
 <%= c "container" do %>
   <div class="tour-index">
-    <%= c "tour/title", text: t('tour_index_title') %>
+    <%= c "tour/title", text: t('tour_index_summer_title') if @title == :summer%>
+    <%= c "tour/title", text: t('tour_index_winter_title') if @title == :winter%>
     <div class="tour-index--grid">
       <% unless @tours_collection.empty? %>
         <% @tours_collection.each do |tour| %>
