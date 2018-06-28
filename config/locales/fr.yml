@@ -6,13 +6,17 @@ fr:
   tour: "Tournée"
   book: "Réserver"
   back: "Retour"
+  winter: "hiver"
+  summer: "été"
   update: "Mettre à jour"
   for_price: "pour afficher les prix"
   sign_in: "Connexion"
   sign_up: "S'inscrire"
   log_in: "S'identifier"
   remember_me: "Se souvenir de moi"
-  tour_index_title: "Tournées à venir"
+  tour_index_summer_title: "Tournées été à venir"
+  tour_index_winter_title: "Tournées hiver à venir"
+  next_tours: "Prochaines tournées"
   no_tours: "Pas de tournées disponible"
   date_reserved: "Date résérve"
   client: "Client"
@@ -165,6 +169,7 @@ fr:
       greater_than_or_equal_to: doit être supérieur ou égal à %{count}
       inclusion: n'est pas inclus(e) dans la liste
       invalid: n'est pas valide
+      record_invalid: l'enregistrement n'est pas valide
       less_than: doit être inférieur à %{count}
       less_than_or_equal_to: doit être inférieur ou égal à %{count}
       model_invalid: "Validation échouée : %{errors}"

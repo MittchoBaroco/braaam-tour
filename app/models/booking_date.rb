@@ -1,6 +1,6 @@
 class BookingDate < ApplicationRecord
 
-  belongs_to :tour
+  belongs_to :tour, touch: true
   belongs_to :company, optional: true
 
   validates :tour, uniqueness: { scope: :day,

@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Tour, type: :model do
 
-  let!(:tour_in_week_awards){ FactoryBot.create(:tour, title: "In Week") }
-  let!(:tour_today_tomorrow){ FactoryBot.create(:tour, title: "Today & Tomorrow") }
-  let!(:tour_tomorrow)      { FactoryBot.create(:tour_w_image, title: "Tomorrow") }
-  let!(:tour_today)         { FactoryBot.create(:tour_w_image, title: "Today") }
-  # let!(:tour_yesterday)   { FactoryBot.create(:tour, title: "Yesterday") }
+  let!(:tour_in_week)        { FactoryBot.create(:tour, title: "In Week") }
+  let!(:tour_today_tomorrow) { FactoryBot.create(:tour, title: "Today & Tomorrow") }
+  let!(:tour_tomorrow)       { FactoryBot.create(:tour_w_image, title: "Tomorrow") }
+  let!(:tour_today)          { FactoryBot.create(:tour_w_image, title: "Today") }
+  # let!(:tour_yesterday)    { FactoryBot.create(:tour, title: "Yesterday") }
 
   let!(:date_in_week)       { FactoryBot.create(:booking_date,
-                              day: (Date.today + 7),
-                              tour_id: tour_in_week_awards.id) }
+                              day: (Date.today + 7.day),
+                              tour_id: tour_in_week.id) }
   let!(:date_tt_tomorrow)   { FactoryBot.create(:booking_date,
                               day: (Date.tomorrow),
                               tour_id: tour_today_tomorrow.id) }
@@ -28,9 +28,10 @@ RSpec.describe Tour, type: :model do
     it 'has a valid Factory' do
       expect(tour_today).to be_valid
     end
-    it 'has a valid Factory with awards' do
-      expect(tour_in_week_awards).to be_valid
-    end
+    # QUESTION: There is not any awards here - what is different from 'has a valid factory'?
+    # it 'has a valid Factory with awards' do
+    #   expect(tour_in_week).to be_valid
+    # end
   end
 
   context "Check company validations" do
@@ -38,6 +39,38 @@ RSpec.describe Tour, type: :model do
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:tour_caption) }
     it { should validate_presence_of(:artist_country) }
+
+    describe "presence of tour_start_date" do
+      context "without booking days associate" do
+        it "allow blank" do
+          expect(FactoryBot.create(:tour)).to be_valid
+        end
+      end
+
+      context "with booking days associate" do
+        it "validates presence of tour_start_date" do
+          t = FactoryBot.create(:tour)
+          t.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 1.day)))
+          expect(t).to be_valid
+
+          t.tour_start_date = ""
+          expect(t).to_not be_valid
+          expect( t.errors.messages).to include(
+                      {:tour_start_date=>["can't be blank"]} )
+        end
+
+        it "validates presence of tour_end_date" do
+          t = FactoryBot.create(:tour)
+          t.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 1.day)))
+          expect(t).to be_valid
+
+          t.tour_end_date = ""
+          expect(t).to_not be_valid
+          expect( t.errors.messages).to include(
+                      {:tour_end_date=>["can't be blank"]} )
+        end
+      end
+    end
 
     it { should validate_length_of(:title).is_at_least(2) }
     it { should validate_length_of(:description).is_at_least(2) }
@@ -88,24 +121,24 @@ RSpec.describe Tour, type: :model do
       # response = Tour.future.pluck(:title)
       response = Tour.future.map{|t| t.title}
       # pp response
-      correct  = [tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week_awards.title ]
+      correct  = [tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week.title ]
       expect(response).to eq( correct )
     end
     it "properly selects and orders current (today or future) tours" do
       response = Tour.current.map{|t| t.title}
-      correct  = [tour_today_tomorrow.title, tour_today.title, tour_tomorrow.title, tour_in_week_awards.title ]
+      correct  = [tour_today.title, tour_today_tomorrow.title, tour_tomorrow.title, tour_in_week.title ]
       expect(response).to eq( correct )
       # expect(response).to match_array( correct )
     end
     it "properly selects and orders tours with events after TOMORROW" do
       response = Tour.after(Date.tomorrow).map{|t| t.title}
-      correct  = [tour_in_week_awards.title ]
+      correct  = [tour_in_week.title ]
       expect(response).to eq( correct )
     end
     it "properly selects and orders tours with events before TOMORROW" do
       # response = Tour.before(Date.tomorrow).map{&:title}
       response = Tour.before(Date.tomorrow).map{|t| t.title}
-      correct  = [tour_today_tomorrow.title, tour_today.title]
+      correct  = [tour_today.title, tour_today_tomorrow.title]
       expect(response).to eq( correct )
     end
     it "properly selects index carousel tour - all in future with amage" do
@@ -123,6 +156,44 @@ RSpec.describe Tour, type: :model do
   end
 
   context "methods" do
+    describe "set_start_date" do
+      it "assign start_date at creation" do
+        tour = FactoryBot.create(:tour)
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today)))
+        tour.reload
+        expect(tour.tour_start_date).to eq(Date.today)
+      end
+
+      it "assign correct start_date on update" do
+        tour = FactoryBot.create(:tour)
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 1.day)))
+        tour.reload
+        expect(tour.tour_start_date).to eq(Date.today + 1.day)
+
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today)))
+        expect(tour.tour_start_date).to eq(Date.today)
+      end
+    end
+
+    describe "set_end_date" do
+      it "assign end_date at creation" do
+        tour = FactoryBot.create(:tour)
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today)))
+        tour.reload
+        expect(tour.tour_end_date).to eq(Date.today)
+      end
+
+      it "assign correct end_date on update" do
+        tour = FactoryBot.create(:tour)
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 1.day)))
+        tour.reload
+        expect(tour.tour_end_date).to eq(Date.today + 1.day)
+
+        tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 2.day)))
+        expect(tour.tour_end_date).to eq(Date.today + 2.day)
+      end
+    end
+
     describe "#creator_name" do
       it "return Braaam if creator is missing" do
         t = tour_today.dup
