@@ -1,74 +1,85 @@
 class Admin::ToursController < ApplicationController
   before_action :authenticate_manager!
-  before_action :set_admin_tour, only: [:show, :edit, :update, :destroy]
+  before_action :set_tour, only: [:show, :edit, :update, :destroy]
   layout "admin"
 
-  # GET /admin/tours
-  # GET /admin/tours.json
+  # GET /tours
+  # GET /tours.json
   def index
-    @admin_tours = Tour.all
+    @tours = Tour.all
   end
 
-  # GET /admin/tours/1
-  # GET /admin/tours/1.json
+  # GET /tours/1
+  # GET /tours/1.json
   def show
   end
 
-  # GET /admin/tours/new
+  # GET /tours/new
   def new
-    @admin_tour = Tour.new
+    @tour = Tour.new
   end
 
-  # GET /admin/tours/1/edit
+  # GET /tours/1/edit
   def edit
   end
 
-  # POST /admin/tours
-  # POST /admin/tours.json
+  # POST /tours
+  # POST /tours.json
   def create
-    @admin_tour = Tour.new(admin_tour_params)
+    @tour = Tour.new(tour_params)
 
-    #fix currency for franch locale
+    #fix currency for french locale
     if I18n.locale.eql?(:fr)
-      correct_money_normal = admin_tour_params[:price_normal].gsub(".", ",")
-      correct_money_braaam = admin_tour_params[:price_braaam].gsub(".", ",")
-      @admin_tour.price_normal = correct_money_normal
-      @admin_tour.price_braaam = correct_money_braaam
+      correct_money_normal = tour_params[:price_normal].gsub(".", ",")
+      correct_money_braaam = tour_params[:price_braaam].gsub(".", ",")
+      @tour.price_normal = correct_money_normal
+      @tour.price_braaam = correct_money_braaam
     end
 
     respond_to do |format|
-      if @admin_tour.save
-        # format.html { redirect_to @admin_tour, notice: 'Tour was successfully created.' }
-        # format.json { render :show, status: :created, location: @admin_tour }
-        format.html { redirect_to admin_tour_path(@admin_tour), notice: 'Tour was successfully created.' }
-        format.json { render :show, status: :created, location: admin_tour_path(@admin_tour) }
+      if @tour.save
+        format.html { redirect_to [:admin, @tour], notice: 'Tour was successfully created.' }
+        format.json { render :show, status: :created, location: @tour }
       else
         format.html { render :new }
-        format.json { render json: @admin_tour.errors, status: :unprocessable_entity }
+        format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /admin/tours/1
-  # PATCH/PUT /admin/tours/1.json
+  # PATCH/PUT /tours/1
+  # PATCH/PUT /tours/1.json
   def update
+    @tour.assign_attributes(tour_params)
+
+    #fix currency for french locale
+    if I18n.locale.eql?(:fr)
+      if tour_params[:price_normal].present?
+        correct_money_normal = tour_params[:price_normal].gsub(".", ",")
+        @tour.price_normal = correct_money_normal
+      end
+
+      if tour_params[:price_braaam].present?
+        correct_money_braaam = tour_params[:price_braaam].gsub(".", ",")
+        @tour.price_braaam = correct_money_braaam
+      end
+    end
+
     respond_to do |format|
-      if @admin_tour.update(admin_tour_params)
-        # format.html { redirect_to @admin_tour, notice: 'Tour was successfully updated.' }
-        # format.json { render :show, status: :ok, location: @admin_tour }
-        format.html { redirect_to admin_tour_path(@admin_tour), notice: 'Tour was successfully created.' }
-        format.json { render :show, status: :created, location: admin_tour_path(@admin_tour) }
+      if @tour.save
+        format.html { redirect_to [:admin, @tour], notice: 'Tour was successfully updated.' }
+        format.json { render :show, status: :ok, location: @tour }
       else
         format.html { render :edit }
-        format.json { render json: @admin_tour.errors, status: :unprocessable_entity }
+        format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /admin/tours/1
-  # DELETE /admin/tours/1.json
+  # DELETE /tours/1
+  # DELETE /tours/1.json
   def destroy
-    @admin_tour.destroy
+    @tour.destroy
     respond_to do |format|
       format.html { redirect_to admin_tours_url, notice: 'Tour was successfully destroyed.' }
       format.json { head :no_content }
@@ -77,13 +88,12 @@ class Admin::ToursController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin_tour
-      @admin_tour = Tour.find(params[:id])
+    def set_tour
+      @tour = Tour.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_tour_params
-      # byebug
+    def tour_params
       params.require(:tour).permit(
         :title, :description, :video_uri, :tech_help, :housing, :catering,
         :currency, :price_normal, :price_braaam,

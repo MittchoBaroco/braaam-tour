@@ -1,4 +1,11 @@
+<p id="notice"><%= notice %></p>
+<%= c "admin/title", text: (Manager.model_name.human + " : " + @manager.full_name) %>
+<p><strong><%= Manager.human_attribute_name("id") %></strong>: <%= @manager.id %></p>
+<p><strong><%= Manager.human_attribute_name("full_name") %></strong>: <%= @manager.full_name %></p>
+<p><strong><%= Manager.human_attribute_name("email") %></strong>: <%= @manager.email %></p>
+<p><strong><%= Manager.human_attribute_name("created_at") %></strong>: <%= @manager.created_at %></p>
+<p><strong><%= Manager.human_attribute_name("updated_at") %></strong>: <%= @manager.updated_at %></p>
 
-
-<%= link_to 'Edit', edit_admin_manager_path(@admin_manager) %> |
-<%= link_to 'Back', admin_managers_path %>
+<%= link_to t("admin.edit"), edit_admin_manager_path(@manager), class: "btn" %>
+<%= link_to t("admin.back"), admin_managers_path, class: "btn" %>
+<br><br>

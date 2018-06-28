@@ -12,7 +12,7 @@
     <div class="flex-container">
       <%= c "admin/nav" %>
       <%= c "admin/body" do %>
-        yield
+        <%= yield %>
       <% end %>
     </div>
     <%= javascript_pack_tag "application" %>

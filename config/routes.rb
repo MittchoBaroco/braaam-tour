@@ -8,11 +8,8 @@ Rails.application.routes.draw do
   resources :companies, only: [:update]
 
   namespace :admin do
-    resources :awards
     resources :companies
-    resources :comments
     resources :managers
-    resources :booking_dates
     resources :tours
     # admin dashboard root page (admin_tours)
     root to: "tours#index"

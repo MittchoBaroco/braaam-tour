@@ -1,19 +1,17 @@
 <header class="admin-header">
-  <%= c "container" do %>
-    <div class="admin-header--container">
-      <div class="admin-header--container--brand">
-        <%= link_to "BRAAAM Admin", admin_root_path %>
-      </div>
-      <nav class="admin-header--container--navigation">
-        <%= link_to "français", url_for( :locale => 'fr' ) unless I18n.locale.eql?(:fr) %>
-        <%= link_to "english", url_for( :locale => 'en' ) unless I18n.locale.eql?(:en) %>
-
-        <div class="admin-header--container--navigation--menu">
-          <% if manager_signed_in? %>
-            <p class="admin-header--container--navigation--menu--dropbtn"><%= current_manager.full_name %></p>
-          <% end %>
-        </div>
-      </nav>
+  <div class="admin-header--container">
+    <div class="admin-header--container--brand">
+      <%= link_to "BRAAAM Admin", admin_root_path %>
     </div>
-  <% end %>
+    <nav class="admin-header--container--navigation">
+      <%= link_to "français", url_for( :locale => 'fr' ) unless I18n.locale.eql?(:fr) %>
+      <%= link_to "english", url_for( :locale => 'en' ) unless I18n.locale.eql?(:en) %>
+
+      <div class="admin-header--container--navigation--menu">
+        <% if manager_signed_in? %>
+          <p class="admin-header--container--navigation--menu--dropbtn"><%= current_manager.full_name %></p>
+        <% end %>
+      </div>
+    </nav>
+  </div>
 </header>

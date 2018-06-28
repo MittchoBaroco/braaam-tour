@@ -1,17 +1,50 @@
-<%= form_with(model: admin_manager, local: true) do |form| %>
-  <% if admin_manager.errors.any? %>
+<%= form_with(model: [:admin, manager], local: true) do |form| %>
+  <% if manager.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(admin_manager.errors.count, "error") %> prohibited this admin_manager from being saved:</h2>
+      <h2><%= pluralize(manager.errors.count, "error") %> prohibited this manager from being saved:</h2>
 
       <ul>
-      <% admin_manager.errors.full_messages.each do |message| %>
+      <% manager.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="field">
+    <%= form.label :full_name %>
+    <%= form.text_field :full_name, class: "input" %>
   </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "input" %>
+  </div>
+
+  <fieldset>
+    <legend>Security:</legend>
+
+    <% unless @manager.new_record? %>
+      <div class="field">
+        <%= form.label :current_password, t("current_password") %> <i><%= t("we_need_password_to_confirm") %></i><br />
+        <%= form.password_field :current_password, autocomplete: "off", class: "input" %>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :password %><br />
+      <%= form.password_field :password, autocomplete: "off", class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password_confirmation %><br />
+      <%= form.password_field :password_confirmation, autocomplete: "off", class: "input" %>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <%= form.submit "Save", class: "submit" %>
+    <%= link_to 'Back', admin_managers_path, class: "btn" %>
+  </div>
+  <br>
 <% end %>

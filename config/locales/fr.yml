@@ -44,6 +44,21 @@ fr:
   proposed_by: "Proposé par"
   admin:
     sign_in: "Connexion Administrateur"
+    add_tour: "Ajouter une tournée"
+    add_company: "Ajouter un partenaire"
+    add_manager: "Ajouter un administrateur"
+    show: "voir"
+    edit: "modifier"
+    delete: "supprimer"
+    back: "retour"
+    basic_info: "Infos de base"
+    files: "Fichier"
+    awards: "Récompenses"
+    comments: "Commentaires"
+    no_comments: "Il n'y a aucun commentaire enregistré"
+    no_dates: "Il n'y a aucune date enregistré"
+    no_awards: "Il n'y a aucune récompenses enregistré"
+    visit_public_page: "Voir l'annonce public"
   booking_mailer:
     booking_confirmation:
       subject: "Confirmation de réservation pour %{tour_name}"
@@ -206,10 +221,11 @@ fr:
     models:
       company: Compagnie
       tour: Tournée
+      manager: Administrateur
     attributes:
       tour:
         title: "Titre de la tournée"
-        artist_country: "Pay de l'artiste"
+        artist_country: "Pays de l'artiste"
         tour_caption: "Légende"
         cover_image: "Image de couverture"
         description: "Description"
@@ -219,6 +235,29 @@ fr:
         tech_sheet: "Fiche technique"
         price_normal: "Prix normale"
         price_braaam: "Prix Braaam (réduit)"
+        tour_start_date: "Date de début"
+        tour_end_date: "Date de fin"
+        status: "Status"
+        creator: "Organisateur"
+        created_at: "Créer le"
+        updated_at: "Mise à jour le"
+      booking_date:
+        day: "Date"
+        close: "Bloqué"
+        company: "Compagnie"
+      award:
+        caption: "Légende"
+        institution: "Institution"
+        country: "Pays"
+        award_year: "Année reçu"
+      comment:
+        comment_body: "Texte"
+        author_name: "Nom de l'auteur"
+      manager:
+        full_name: "Nom complet"
+        email: "Email"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation de mot de passe"
       company:
         name: "Nom de la compagnie"
         reference_person_full_name: "Nom complet de la personne de référence"
@@ -232,3 +271,5 @@ fr:
         vat_number: "Numero de TVA"
         ape: "APE"
         siret: "Siret"
+        created_at: "Créer le"
+        updated_at: "Mise à jour le"
