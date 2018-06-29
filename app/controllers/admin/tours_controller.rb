@@ -3,28 +3,28 @@ class Admin::ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy]
   layout "admin"
 
-  # GET /tours
-  # GET /tours.json
+  # GET admin/tours
+  # GET admin/tours.json
   def index
     @tours = Tour.all
   end
 
-  # GET /tours/1
-  # GET /tours/1.json
+  # GET admin/tours/1
+  # GET admin/tours/1.json
   def show
   end
 
-  # GET /tours/new
+  # GET admin/tours/new
   def new
     @tour = Tour.new
   end
 
-  # GET /tours/1/edit
+  # GET admin/tours/1/edit
   def edit
   end
 
-  # POST /tours
-  # POST /tours.json
+  # POST admin/tours
+  # POST admin/tours.json
   def create
     @tour = Tour.new(tour_params)
 
@@ -47,8 +47,8 @@ class Admin::ToursController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tours/1
-  # PATCH/PUT /tours/1.json
+  # PATCH/PUT admin/tours/1
+  # PATCH/PUT admin/tours/1.json
   def update
     @tour.assign_attributes(tour_params)
 
@@ -76,8 +76,8 @@ class Admin::ToursController < ApplicationController
     end
   end
 
-  # DELETE /tours/1
-  # DELETE /tours/1.json
+  # DELETE admin/tours/1
+  # DELETE admin/tours/1.json
   def destroy
     @tour.destroy
     respond_to do |format|
