@@ -3,28 +3,28 @@ class Admin::ManagersController < ApplicationController
   before_action :set_manager, only: [:show, :edit, :update, :destroy]
   layout "admin"
 
-  # GET /managers
-  # GET /managers.json
+  # GET admin/managers
+  # GET admin/managers.json
   def index
     @managers = Manager.all
   end
 
-  # GET /managers/1
-  # GET /managers/1.json
+  # GET admin/managers/1
+  # GET admin/managers/1.json
   def show
   end
 
-  # GET /managers/new
+  # GET admin/managers/new
   def new
     @manager = Manager.new
   end
 
-  # GET /managers/1/edit
+  # GET admin/managers/1/edit
   def edit
   end
 
-  # POST /managers
-  # POST /managers.json
+  # POST admin/managers
+  # POST admin/managers.json
   def create
     @manager = Manager.new(manager_params)
 
@@ -39,8 +39,8 @@ class Admin::ManagersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /managers/1
-  # PATCH/PUT /managers/1.json
+  # PATCH/PUT admin/managers/1
+  # PATCH/PUT admin/managers/1.json
   def update
     respond_to do |format|
       if @manager.update_with_password(manager_params)
@@ -53,8 +53,8 @@ class Admin::ManagersController < ApplicationController
     end
   end
 
-  # DELETE /managers/1
-  # DELETE /managers/1.json
+  # DELETE admin/managers/1
+  # DELETE admin/managers/1.json
   def destroy
     @manager.destroy
     respond_to do |format|
