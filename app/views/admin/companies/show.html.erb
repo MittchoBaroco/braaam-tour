@@ -1,4 +1,20 @@
-<%= pp @admin_company.attributes %>
+<p id="notice"><%= notice %></p>
+<%= c "admin/title", text: (Company.model_name.human + " : " + @company.name) %>
+<p><strong><%= Company.human_attribute_name("id") %></strong>: <%= @company.id %></p>
+<p><strong><%= Company.human_attribute_name("name") %></strong>: <%= @company.name %></p>
+<p><strong><%= Company.human_attribute_name("email") %></strong>: <%= @company.email %></p>
+<p><strong><%= Company.human_attribute_name("reference_person_full_name") %></strong>: <%= @company.reference_person_full_name %></p>
+<p><strong><%= Company.human_attribute_name("vat_number") %></strong>: <%= @company.vat_number %></p>
+<p><strong><%= Company.human_attribute_name("siret") %></strong>: <%= @company.siret %></p>
+<p><strong><%= Company.human_attribute_name("ape") %></strong>: <%= @company.ape %></p>
+<p><strong><%= Company.human_attribute_name("company_address_line1") %></strong>: <%= @company.company_address_line1 %></p>
+<p><strong><%= Company.human_attribute_name("company_address_line2") %></strong>: <%= @company.company_address_line2 %></p>
+<p><strong><%= Company.human_attribute_name("company_city") %></strong>: <%= @company.company_city %></p>
+<p><strong><%= Company.human_attribute_name("company_npa") %></strong>: <%= @company.company_npa %></p>
+<p><strong><%= Company.human_attribute_name("company_country") %></strong>: <%= @company.company_country %></p>
+<p><strong><%= Company.human_attribute_name("created_at") %></strong>: <%= @company.created_at %></p>
+<p><strong><%= Company.human_attribute_name("updated_at") %></strong>: <%= @company.updated_at %></p>
 
-<%= link_to 'Edit', edit_admin_company_path(@admin_company) %> |
-<%= link_to 'Back', admin_companies_path %>
+<%= link_to t("admin.edit"), edit_admin_company_path(@company), class: "btn" %>
+<%= link_to t("admin.back"), admin_companies_path, class: "btn" %>
+<br><br>

@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BraaamTour</title>
+    <title>Braaam Administration</title>
     <%= csrf_meta_tags %>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <%= stylesheet_pack_tag "application" %>
   </head>
 
   <body class="body">
-    <div class="flex">
-      <%= render 'admin/nav' %>
-
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
+    <%= c "admin/header" %>
+    <div class="flex-container">
+      <%= c "admin/nav" %>
+      <%= c "admin/body" do %>
+        <%= yield %>
+      <% end %>
     </div>
-
     <%= javascript_pack_tag "application" %>
   </body>
 </html>

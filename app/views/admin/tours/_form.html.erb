@@ -1,10 +1,10 @@
-<%= form_with(model: @admin_tour, url: [:admin, @admin_tour], local: true) do |form| %>
-  <% if admin_tour.errors.any? %>
+<%= form_with(model: [:admin, tour], local: true) do |form| %>
+  <% if tour.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(admin_tour.errors.count, "error") %> prohibited this admin_tour from being saved:</h2>
+      <h2><%= pluralize(tour.errors.count, "error") %> prohibited this tour from being saved:</h2>
 
       <ul>
-      <% admin_tour.errors.full_messages.each do |message| %>
+      <% tour.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -14,59 +14,60 @@
   <fieldset>
     <legend>Base:</legend>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :title %>
-      <%= form.text_field :title %>
+      <%= form.text_field :title, class: "input" %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :artist_country %>
-      <%= form.text_field :artist_country %>
+      <%= form.text_field :artist_country, class: "input" %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :tour_caption %>
-      <%= form.text_field :tour_caption %>
+      <%= form.text_field :tour_caption, class: "input" %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :cover_image %>
-      <%= form.file_field :cover_image, class: "form-control" %>
+      <%= form.file_field :cover_image, class: "form-control", require: true %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :description %>
-      <%= form.text_area :description, style: "height: 100px; width: 250px;" %>
+      <br>
+      <%= form.text_area :description, style: "height: 100px; width: 100%;" %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :video_uri %>
-      <%= form.text_field :video_uri %>
+      <%= form.text_field :video_uri, class: "input" %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :housing, "Housing needed?" %>
       <%= form.check_box :housing %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :catering, "Catering needed?" %>
       <%= form.check_box :catering %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :tech_sheet %>
       <%= form.file_field :tech_sheet, class: "form-control" %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :price_normal %>
-      <%= form.number_field :price_normal, value: @admin_tour.price_normal.to_f, min: 0, step: 0.01 %>
+      <%= form.number_field :price_normal, value: @tour.price_normal.to_f, min: 0, step: 0.01, class: "input" %>
     </div>
 
-    <div class="fields">
+    <div class="field">
       <%= form.label :price_braaam %>
-      <%= form.number_field :price_braaam, value: @admin_tour.price_braaam.to_f, min: 0, step: 0.01 %>
+      <%= form.number_field :price_braaam, value: @tour.price_braaam.to_f, min: 0, step: 0.01, class: "input" %>
     </div>
   </fieldset>
 
@@ -111,6 +112,7 @@
   <br>
   <div class="actions">
     <%= form.submit "Save", class: "submit" %>
+    <%= link_to 'Back', admin_tours_path, class: "btn" %>
   </div>
   <br>
 <% end %>

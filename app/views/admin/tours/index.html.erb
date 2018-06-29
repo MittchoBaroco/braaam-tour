@@ -1,27 +1,34 @@
-<div class="flex-item">
-  <h1>Tours</h1>
+<p id="notice"><%= notice %></p>
 
-  <%= link_to 'New Tour', new_admin_tour_path %>
+<%= c "admin/title", text: Tour.model_name.human + "s" %>
 
-  <br>
+<br>
 
-  <table>
-    <thead>
+<%= link_to t("admin.add_tour"), new_admin_tour_path, class: "btn" %>
+<br>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th><%= Tour.human_attribute_name("title") %></th>
+      <th><%= Tour.human_attribute_name("tour_start_date") %></th>
+      <th><%= Tour.human_attribute_name("tour_end_date") %></th>
+      <th><%= Tour.human_attribute_name("creator") %></th>
+      <th><%= Tour.human_attribute_name("status") %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tours.each do |tour| %>
       <tr>
-        <th>Title</th>
-        <th colspan="3">Actions</th>
+        <td><%= tour.title %></td>
+        <td><%= l(tour.tour_start_date) unless tour.tour_start_date.blank? %></td>
+        <td><%= l(tour.tour_end_date) unless tour.tour_end_date.blank?  %></td>
+        <td><%= tour.creator_name %></td>
+        <td>tour.status</td>
+        <td><%= link_to t("admin.show"), [:admin, tour], class: "btn" %> <%= link_to t("admin.edit"), edit_admin_tour_path(tour), class: "btn" %> <%= link_to t("admin.delete"), [:admin, tour], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></td>
       </tr>
-    </thead>
-
-    <tbody>
-      <% @admin_tours.each do |admin_tour| %>
-        <tr>
-          <td><%= admin_tour.title %></td>
-          <td><%= link_to 'Show', admin_tour_path(admin_tour) %></td>
-          <td><%= link_to 'Edit', edit_admin_tour_path(admin_tour) %></td>
-          <td><%= link_to 'Destroy', admin_tour_path(admin_tour), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>

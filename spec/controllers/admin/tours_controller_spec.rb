@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Admin::ToursController, type: :controller do
-
-  # include Devise::TestHelpers             # deprecated
   include Devise::Test::ControllerHelpers
+  let!(:manager) { FactoryBot.create(:manager) }
 
   # test attributes
   let(:new_attributes) {
@@ -21,7 +20,6 @@ RSpec.describe Admin::ToursController, type: :controller do
   let!(:booking_date)  { FactoryBot.create(:booking_date, tour_id: tour.id) }
   let!(:booked_date)   { FactoryBot.create(:booked_date,  tour_id: tour.id) }
   let!(:award)         { FactoryBot.create(:award,        tour_id: tour.id) }
-  let!(:manager)       { FactoryBot.create(:manager) }
   let!(:valid_session) { {manager_id: manager.id} }
 
   context "UNAUTHENTICATED" do
@@ -43,15 +41,15 @@ RSpec.describe Admin::ToursController, type: :controller do
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from POST #create to login page" do
-        post :create, params: {tour: invalid_attributes}
+        post :create, params: {tour: valid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from PUT #show to login page" do
-        put :update, params: {id: tour.to_param, tour: new_attributes}
+        put :update, params: {id: tour.to_param, tour: valid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from PATCH #show to login page" do
-        patch :update, params: {id: tour.to_param, tour: new_attributes}
+        patch :update, params: {id: tour.to_param, tour: valid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from DELETE #destroy to login page" do
@@ -63,8 +61,6 @@ RSpec.describe Admin::ToursController, type: :controller do
 
   context "AUTHENTICATED as manager" do
 
-    # Devise Valid Session testing - requires more:
-    # https://github.com/plataformatec/devise/wiki/how-to:-stub-authentication-in-controller-specs
     before(:each) do
       sign_in manager
     end
@@ -113,7 +109,7 @@ RSpec.describe Admin::ToursController, type: :controller do
                           session: valid_session
           }.to change(Tour, :count).by(1)
         end
-        fit "redirects to the created admin_tour" do
+        fit "redirects to the created tour" do
           post :create, params: {tour: valid_attributes},
                         session: valid_session
           # expect(response).to redirect_to(Tour.last)
@@ -153,13 +149,13 @@ RSpec.describe Admin::ToursController, type: :controller do
     end
     describe "PUT #update" do
       context "with valid params" do
-        it "updates the requested admin_tour" do
+        it "updates the requested tour" do
           put :update, params: {id: tour.to_param, tour: new_attributes},
                         session: valid_session
           tour.reload
           expect( tour.title ).to eq( "Watch" )
         end
-        fit "redirects to the admin_tour" do
+        fit "redirects to the tour" do
           put :update, params: {id: tour.to_param, tour: valid_attributes},
                         session: valid_session
           expect(response).to redirect_to( admin_tour_path(tour) )
@@ -174,12 +170,12 @@ RSpec.describe Admin::ToursController, type: :controller do
       end
     end
     describe "DELETE #destroy" do
-      it "destroys the requested admin_tour" do
+      it "destroys the requested tour" do
         expect {
           delete :destroy, params: {id: tour.to_param}, session: valid_session
         }.to change(Tour, :count).by(-1)
       end
-      it "redirects to the admin_tours list" do
+      it "redirects to the tours list" do
         # tour = Tour.create! valid_attributes
         delete :destroy, params: {id: tour.to_param}, session: valid_session
         expect(response).to redirect_to(admin_tours_url)

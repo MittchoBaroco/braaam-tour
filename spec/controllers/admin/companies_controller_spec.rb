@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Admin::CompaniesController, type: :controller do
-
+  # user & session - for security / authorization testing
   include Devise::Test::ControllerHelpers
+  let!(:manager) { FactoryBot.create(:manager) }
+  let!(:valid_session) { {manager_id: manager.id} }
 
   # test attributes
   let!(:company) {
@@ -17,10 +19,6 @@ RSpec.describe Admin::CompaniesController, type: :controller do
   let(:invalid_attributes) {
     {name: "", email: ""}
   }
-  # user & session - for security / authorization testing
-  let!(:manager) { FactoryBot.create(:manager) }
-  let!(:valid_session) { {manager_id: manager.id} }
-  # let!(:valid_session) { {} }
 
   context "UNAUTHENTICATED" do
     describe "redirect" do
