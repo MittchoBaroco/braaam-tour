@@ -21,7 +21,7 @@ RSpec.describe ToursController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      get :show, params: {id: tour1.to_param}, session: valid_session
+      get :show, params: {id: tour2.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end

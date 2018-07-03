@@ -17,9 +17,6 @@ RSpec.describe Admin::ToursController, type: :controller do
   # user & session - for security / authorization testing
   let!(:tour)          { FactoryBot.create(:tour) }
   # these are new - adding dependencies to test deletes
-  let!(:booking_date)  { FactoryBot.create(:booking_date, tour_id: tour.id) }
-  let!(:booked_date)   { FactoryBot.create(:booked_date,  tour_id: tour.id) }
-  let!(:award)         { FactoryBot.create(:award,        tour_id: tour.id) }
   let!(:valid_session) { {manager_id: manager.id} }
 
   context "UNAUTHENTICATED" do
@@ -60,6 +57,9 @@ RSpec.describe Admin::ToursController, type: :controller do
   end
 
   context "AUTHENTICATED as manager" do
+    let!(:booking_date)  { FactoryBot.create(:booking_date, tour_id: tour.id) }
+    let!(:booked_date)   { FactoryBot.create(:booked_date,  tour_id: tour.id) }
+    let!(:award)         { FactoryBot.create(:award,        tour_id: tour.id) }
 
     before(:each) do
       sign_in manager
