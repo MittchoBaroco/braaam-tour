@@ -10,6 +10,8 @@ import faCogs from '@fortawesome/fontawesome-free-solid/faCogs'
 import faGlobe from '@fortawesome/fontawesome-free-solid/faGlobe'
 import faFile from '@fortawesome/fontawesome-free-solid/faFile'
 import faBars from '@fortawesome/fontawesome-free-solid/faBars'
+import faInstagram from '@fortawesome/fontawesome-free-brands/faInstagram'
+import faFacebookSquare from '@fortawesome/fontawesome-free-brands/faFacebookSquare'
 
 // Add the icon to the library so you can use it in your page
-fontawesome.library.add(faCalMine, faCalClosed, faPlane, faBed, faUtensils, faCogs, faGlobe, faFile, faBars)
+fontawesome.library.add(faCalMine, faCalClosed, faPlane, faBed, faUtensils, faCogs, faGlobe, faFile, faBars, faInstagram, faFacebookSquare)
