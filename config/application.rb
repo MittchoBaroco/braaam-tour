@@ -26,6 +26,7 @@ module BraaamTour
     config.load_defaults 5.2
     # use french as the default locale
     config.i18n.default_locale = :fr
+    config.i18n.default_locale = :en if Rails.env.test?
     # config.autoload_paths += %W(#{config.root}/lib)
     # config.autoload_paths += %W(#{config.root}/service)
     # config.autoload_paths += %W(#{config.root}/workflow)

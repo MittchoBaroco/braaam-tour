@@ -1,3 +1,4 @@
+import "components/admin";
 import "components/booking";
 import "components/column/column";
 import "components/container/container";import "components/row/row";

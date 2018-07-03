@@ -5,6 +5,17 @@ class Tour < ApplicationRecord
   # TODO: add new start & end date fields - sort on them (queried from bookings)
   # TODO: distinct for uniq returns - find an better solution - add back sorting
 
+  after_touch do
+    dates = self.booking_dates.to_a
+    has_dates = dates.empty?
+
+    new_start_date = if has_dates then nil else dates.first.day end
+    self.update tour_start_date: new_start_date unless tour_start_date == new_start_date
+
+    new_end_date = if has_dates then nil else dates.last.day end
+    self.update tour_end_date: new_end_date unless tour_end_date == new_end_date
+  end
+
   belongs_to :creator, foreign_key: "company_id", class_name: "Company", optional: true
 
   has_many :awards,   inverse_of: :tour, dependent: :destroy
@@ -41,36 +52,22 @@ class Tour < ApplicationRecord
   validates :housing,     inclusion: { in: [ true, false ] }
   validates :catering,    inclusion: { in: [ true, false ] }
 
+  validates :tour_start_date, presence: true, if: :has_booking_days?
+  validates :tour_end_date, presence: true, if: :has_booking_days?
+
   default_scope      { with_attached_cover_image }
   scope :future,  -> { after(Date.today) }
   scope :past,    -> { before(Date.today) }
   scope :current, -> { after(Date.today - 1) }
   scope :index_collection, -> { current.with_image }
   scope :show_collection, -> (id){ current.with_image.where.not(id: id) }
-  # :with_image scope MUST be used in combination with other scopes!
-  scope :with_image, -> { distinct.includes(:booking_dates).
-                    where('active_storage_attachments.record_type = ?', 'Tour').
-                    where('active_storage_attachments.name = ?', 'cover_image')
-                  }
-  # TODO: solve order and limit conflict when using includes
-  # order_by and limit conflict - limit is more needed than order
-  scope :after,  -> (date) { distinct.joins(:booking_dates).
-                    where('booking_dates.day > ?', date).
-                    includes(:booking_dates).
-                    order('booking_dates.day ASC') }
-  # scope :after,  -> (date) { distinct.includes(:booking_dates).
-  #                   where('booking_dates.day > ?', date).
-  #                   references(:booking_dates) }
-  #                   # .order('booking_dates.day ASC') }
-  scope :before, -> (date) { distinct.joins(:booking_dates).
-                    where('booking_dates.day < ?', date).
-                    includes(:booking_dates).
-                    references(:booking_dates).
-                    order('booking_dates.day DESC') }
-  # scope :before, -> (date) { distinct.includes(:booking_dates).
-  #                   where('booking_dates.day < ?', date).
-  #                   references(:booking_dates) }
-  #                   # .order('booking_dates.day DESC') }
+  scope :with_image, -> { joins("INNER JOIN active_storage_attachments ON active_storage_attachments.record_id = tours.id AND active_storage_attachments.record_type = 'Tour'") }
+
+  scope :after,  -> (date) { where('tour_start_date > ? OR tour_end_date > ?', date, date).order(:tour_start_date).order(:title) }
+  scope :before, -> (date) { where('tour_start_date < ? OR tour_end_date < ?', date, date).order(:tour_start_date).order(:title) }
+
+  scope :summer, -> { where('tour_start_date >= ? and tour_start_date <= ?', Date.strptime("01-Apr-18", "%d-%b-%y"), Date.strptime("30-Oct-18", "%d-%b-%y")) }
+  scope :winter, -> { where('tour_start_date >= ? and tour_start_date <= ?', Date.strptime("01-Nov-18", "%d-%b-%y"), Date.strptime("30-Mar-19", "%d-%b-%y")) }
 
   def booked_days_count
     self.booking_dates.where.not(company_id: nil).count
@@ -91,5 +88,24 @@ class Tour < ApplicationRecord
 
   def braaam_tour?
     creator.blank?
+  end
+
+  def has_booking_days?
+    !(self.booking_dates.pluck(:id).blank?)
+  end
+
+  def season
+    infos = { year: self.tour_start_date.year.to_s }
+    infos[:season] = "summer" if self.summer_tour?
+    infos[:season] = "winter" if self.winter_tour?
+    return infos
+  end
+
+  def summer_tour?
+    self.tour_start_date >= Date.strptime("01-Apr-18", "%d-%b-%y") and self.tour_start_date <= Date.strptime("30-Oct-18", "%d-%b-%y")
+  end
+
+  def winter_tour?
+    self.tour_start_date >= Date.strptime("01-Nov-18", "%d-%b-%y") and self.tour_start_date <= Date.strptime("30-Mar-19", "%d-%b-%y")
   end
 end

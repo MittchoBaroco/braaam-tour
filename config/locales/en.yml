@@ -6,13 +6,17 @@ en:
   tour: "Tour"
   book: "Book"
   back: "Back"
+  winter: "winter"
+  summer: "summer"
   update: "Update"
   for_price: "for price"
   sign_in: "Sign in"
   sign_up: "Sign up"
   log_in: "Log in"
   remember_me: "Remember me"
-  tour_index_title: "Up-coming Tours"
+  tour_index_summer_title: "Up-coming Summer Tours"
+  tour_index_winter_title: "Up-coming Winter Tours"
+  next_tours: "Next tours"
   no_tours: "No Tours Available"
   date_reserved: "Date Reserved"
   client: "Client"
@@ -42,6 +46,23 @@ en:
   send_me_password_instruction: "Send me reset password instructions"
   forgot_password: "Forgot your password?"
   proposed_by: "Proposed by"
+  admin:
+    sign_in: "Admin Sign in"
+    add_tour: "Add a tour"
+    add_company: "Add a company"
+    add_manager: "Add a manager"
+    show: "show"
+    edit: "edit"
+    delete: "delete"
+    back: "back"
+    basic_info: "Basic informations"
+    files: "Files"
+    awards: "Awards"
+    comments: "Comments"
+    no_comments: "There is no comments saved"
+    no_dates: "There is no dates saved"
+    no_awards: "There is no awards saved"
+    visit_public_page: "Visit public page"
   time:
     formats:
       short: "%e %b"
@@ -55,7 +76,25 @@ en:
     models:
       company: Company
       tour: Tour
+      manager: Manager
     attributes:
+      booking_date:
+        day: "Day"
+        close: "Is Close"
+        company: "Company"
+      award:
+        caption: "Caption"
+        institution: "Institution"
+        country: "Country"
+        award_year: "Year"
+      comment:
+        comment_body: "Body"
+        author_name: "Author name"
+      manager:
+        full_name: "Full name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
       tour:
         title: "Tour title"
         artist_country: "Artist country"
@@ -68,6 +107,12 @@ en:
         tech_sheet: "Technical sheet"
         price_normal: "Normal price"
         price_braaam: "Braaam price (reduced)"
+        tour_start_date: "Start date"
+        tour_end_date: "End date"
+        status: "Status"
+        creator: "Organiser"
+        created_at: "Created at"
+        updated_at: "Updated at"
       company:
         name: "Company name"
         reference_person_full_name: "Full name of the reference person"
@@ -81,3 +126,5 @@ en:
         vat_number: "VAT Number"
         ape: "APE Number"
         siret: "Siret Number"
+        created_at: "Created at"
+        updated_at: "Updated at"

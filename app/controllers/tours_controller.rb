@@ -6,17 +6,15 @@ class ToursController < ApplicationController
   # GET /tours.json
   def index
     # today and in future with a cover_image
-    @tours = Tour.index_collection
+    @tours_summer = Tour.summer.index_collection
+    @tours_winter = Tour.winter.index_collection
   end
 
   # GET /tours/1
   # GET /tours/1.json
   def show
-    # collection of today and future tours for the bottom of the show page
-    # DO NOT USE ORDER('booking_dates.day ASC')
-    # -- order and limit conflict with includes
-    # using limit 3 for now since show page has space for multiples of 3
-    @tours = Tour.show_collection(@tour.id).limit(6)
+    @tours = Tour.summer.show_collection(@tour.id) if @tour.summer_tour?
+    @tours = Tour.winter.show_collection(@tour.id) if @tour.winter_tour?
     @comments = @tour.comments.order(created_at: :desc)
   end
 

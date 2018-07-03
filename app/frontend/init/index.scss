@@ -20,6 +20,26 @@ body {
   color: $primary-gray;
 }
 
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+
 // this should probably be in a separate file
 .flex {
   display: flex;
@@ -143,6 +163,21 @@ body {
 .red:hover {
   background: color(#EB5757 shade(20%));
 }
+
+// TABLES FOR ADMIN
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color:#f5f5f5;}
 
 @media screen and (max-width: 479px) {
   .btn {
