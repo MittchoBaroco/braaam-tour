@@ -1,5 +1,8 @@
 .admin-body {
-  padding-left: 20px;
-  flex: 1 1 auto;
-  flex-direction: column;
+  padding-right: 5px;
+  padding-left: 5px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
