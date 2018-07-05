@@ -59,7 +59,7 @@ class Tour < ApplicationRecord
   scope :future,  -> { after(Date.today) }
   scope :past,    -> { before(Date.today) }
   scope :current, -> { after(Date.today - 1) }
-  scope :index_collection, -> { current.with_image }
+  scope :index_collection, -> { current.distinct.with_image }
   scope :show_collection, -> (id){ current.with_image.where.not(id: id) }
   scope :with_image, -> { joins("INNER JOIN active_storage_attachments ON active_storage_attachments.record_id = tours.id AND active_storage_attachments.record_type = 'Tour'") }
 

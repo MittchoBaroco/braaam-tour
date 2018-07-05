@@ -19,7 +19,7 @@
 <p><strong><%= Tour.human_attribute_name("updated_at") %></strong>: <%= @tour.updated_at %></p>
 <%= c "admin/sub_title", text: t("admin.files") %>
 <p><strong><%= Tour.human_attribute_name("cover_image") %></strong>:<br> <%= link_to image_tag(@tour.cover_image.representation(resize: '200x200')), @tour.cover_image if @tour.cover_image.attached? %></p>
-<p><strong><%= Tour.human_attribute_name("tech_sheet") %></strong>:<br> <%= link_to image_tag(@tour.tech_sheet.representation(resize: '200x200')), @tour.tech_sheet if @tour.tech_sheet.attached? %></p>
+<p><strong><%= Tour.human_attribute_name("tech_sheet") %></strong>:<br> <%= link_to 'fiche technique', @tour.tech_sheet if @tour.tech_sheet.attached? %></p>
 <%= c "admin/sub_title", text: "Dates" %>
 <% unless @tour.booking_dates.empty? %>
   <% @tour.booking_dates.each do |date| %>
