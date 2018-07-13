@@ -9,7 +9,7 @@
 
       <div class="admin-header--container--navigation--menu">
         <% if manager_signed_in? %>
-          <p class="admin-header--container--navigation--menu--dropbtn"><%= current_manager.full_name %></p>
+          <p class="admin-header--container--navigation--menu--dropbtn"><%= current_manager.full_name %> | <%= link_to t(".sign_out"), destroy_manager_session_path, method: :delete %></p>
         <% end %>
       </div>
     </nav>

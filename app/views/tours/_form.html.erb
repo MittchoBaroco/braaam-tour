@@ -31,6 +31,8 @@
   <div class="field">
     <%= form.label :cover_image %><br>
     <%= form.file_field :cover_image, class: "form-control" %>
+    <br><br>
+    <%= image_tag @tour.cover_image.representation(resize: '200x200') if @tour.cover_image.attached? %>
   </div>
 
   <div class="field">
@@ -56,6 +58,8 @@
   <div class="field">
     <%= form.label :tech_sheet %><br>
     <%= form.file_field :tech_sheet, class: "form-control" %>
+    <br><br>
+    <%= link_to Tour.human_attribute_name("tech_sheet"), @tour.tech_sheet if @tour.tech_sheet.attached? %>
   </div>
 
   <div class="field">

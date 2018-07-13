@@ -1,5 +1,5 @@
 fr:
-  header_component:
+  admin_header_component:
     french: français
     english: anglais
     bookings: "Mes réservations"

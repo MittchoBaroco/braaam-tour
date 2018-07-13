@@ -61,7 +61,7 @@
       <%= form.label :tech_sheet %>
       <%= form.file_field :tech_sheet, class: "form-control" %>
       <br><br>
-      <%= link_to 'fiche technique', @tour.tech_sheet if @tour.tech_sheet.attached? %>
+      <%= link_to Tour.human_attribute_name("tech_sheet"), @tour.tech_sheet if @tour.tech_sheet.attached? %>
     </div>
 
     <div class="field">
