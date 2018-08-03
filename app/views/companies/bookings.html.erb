@@ -3,7 +3,7 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <% @bookings.each do |tour| %>
-    <h2><%= tour.title %></h2>
+    <h2><%= tour.tour_artist_name %> - <%= tour.title %></h2>
     <div><%= tour.tour_caption %></div>
     <div><%= c "price", money: tour.price_braaam %></div>
     <% tour.booking_dates.where(id: current_company.booking_dates.pluck(:id)).each do |date| %>

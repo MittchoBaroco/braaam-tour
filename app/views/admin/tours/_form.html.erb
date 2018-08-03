@@ -59,7 +59,7 @@
 
     <div class="field">
       <%= form.label :tour_staff_number %>
-      <%= form.number_field :tour_staff_number %>
+      <%= form.number_field :tour_staff_number, class: "input" %>
     </div>
 
     <div class="field">
@@ -84,12 +84,12 @@
     <legend>Artist contact:</legend>
     <div class="field">
       <%= form.label :tour_artist_email %>
-      <%= form.email_field :tour_artist_email %>
+      <%= form.email_field :tour_artist_email, class: "input" %>
     </div>
 
     <div class="field">
       <%= form.label :tour_artist_phone %>
-      <%= form.phone_field :tour_artist_phone %>
+      <%= form.phone_field :tour_artist_phone, class: "input" %>
     </div>
   </fieldset>
 

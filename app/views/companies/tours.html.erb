@@ -1,9 +1,9 @@
 <%= c "container" do %>
-  <%= c "tour/title", text: t("my_bookings") %>
+  <%= c "tour/title", text: t("my_tours") %>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <% @tours.each do |tour| %>
-    <h2><%= tour.title %></h2>
+    <h2><%= tour.tour_artist_name %> - <%= tour.title %></h2>
     <div><%= tour.tour_caption %></div>
     <div>
       <%= l( tour.booking_dates.first.day, format: :short ) %> -
