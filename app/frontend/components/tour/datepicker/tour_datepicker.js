@@ -7,7 +7,6 @@ import 'fullcalendar/dist/locale/fr.js';
 import 'fullcalendar/dist/locale/en-gb.js';
 import "./tour_datepicker.css";
 
-
 $( document ).ready(function() {
   $('#calendar').fullCalendar({
     height: "auto",
@@ -35,6 +34,28 @@ $( document ).ready(function() {
       }
     }
   });
+
+  if (!isBlank($('#calendar').data("booking-dates"))) {
+    for(var i = 0; i < $('#calendar').data("booking-dates").length; i++) {
+      var obj = $('#calendar').data("booking-dates")[i];
+
+      $("*").find(`[data-date='${obj.day}']`).css('background-color', '#3D76AF');
+
+      var random = Math.floor((Math.random() * 9999999999999) + 1000000000000);
+      $('<input>').attr({
+          type: 'hidden',
+          id: 'tour_booking_dates_attributes_'+ random +'_day',
+          name: 'tour[booking_dates_attributes]['+ random +'][day]',
+          value: obj.day
+      }).appendTo($('#calendar').data("target"));
+      $('<input>').attr({
+          type: 'hidden',
+          id: 'tour_booking_dates_attributes_'+ random +'_close',
+          name: 'tour[booking_dates_attributes]['+ random +'][close]',
+          value: 0
+      }).appendTo($('#calendar').data("target"));
+    }
+  }
 });
 
 function getLocale() {
@@ -43,4 +64,8 @@ function getLocale() {
   } else {
     return $('#calendar').data("locale");
   }
+}
+
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
 }

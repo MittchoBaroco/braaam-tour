@@ -106,7 +106,7 @@ des végétariens on notera tout cela dans le contrat, là encore, reste cool.</
   </div>
 
   <br>
-  <%= c "tour/datepicker", form_target: "#tour_form", disable_edit: defined?(edit) && edit %>
+  <%= c "tour/datepicker", form_target: "#tour_form", booking_dates: @tour.booking_dates.to_json, disable_edit: defined?(edit) && edit %>
 
   <br>
   <div class="action">
