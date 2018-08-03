@@ -1,5 +1,5 @@
 <%= c "container" do %>
-  <div class="tour-index">
+  <div class="tour-index" id="<%= @title.to_s %>">
     <%= c "tour/title", text: t('tour_index_summer_title') if @title == :summer%>
     <%= c "tour/title", text: t('tour_index_winter_title') if @title == :winter%>
     <div class="tour-index--grid">
