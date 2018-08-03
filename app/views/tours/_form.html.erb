@@ -2,8 +2,7 @@
   <% if @tour.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@tour.errors.count, "error") %> prohibited
-        this tour from being saved:
+        <%= pluralize(@tour.errors.count, "erreur") %> empêche cette tournée d'être sauvgardé
       </h2>
       <ul>
         <% @tour.errors.full_messages.each do |msg| %>
@@ -14,35 +13,45 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :tour_artist_name, Tour.human_attribute_name("tour_artist_name") + " *" %>
+    <%= form.text_field :tour_artist_name, class: "input", required: true %>
+  </div>
+
+  <div class="field">
     <%= form.label :title, Tour.human_attribute_name("title") + " *" %>
     <%= form.text_field :title, class: "input", required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :artist_country, Tour.human_attribute_name("artist_country") + " *" %>
-    <%= form.text_field :artist_country, class: "input", required: true %>
-  </div>
-
-  <div class="field">
     <%= form.label :tour_caption, Tour.human_attribute_name("tour_caption") + " *" %>
     <%= form.text_field :tour_caption, class: "input", required: true %>
+    <small style="display: block;margin-top: 10px;">Courte description ou série de mots clés pour les quelques lignes de présentation visibles sur la Home Page.</small>
   </div>
 
   <div class="field">
     <%= form.label :cover_image %><br>
     <%= form.file_field :cover_image, class: "form-control" %>
-    <br><br>
+    <small style="display: block;margin-top: 10px;">Choisis une belle image du spectacle (si tu mets une croûte les autres
+auront pas envie de se joindre à la tournée que tu proposes).</small>
+    <%= "<br><br>".htmlsafe if @tour.cover_image.attached? %>
     <%= image_tag @tour.cover_image.representation(resize: '200x200') if @tour.cover_image.attached? %>
   </div>
 
   <div class="field">
     <%= form.label :description, Tour.human_attribute_name("description") + " *" %><br>
     <%= form.text_area :description, style: "height: 100px; width: 100%; border-color: #cccccc", required: true %>
+    <small style="display: block;margin-top: 10px;">Ici tu peux te lâcher un peu plus dans la description… (si tu n’as pas le temps tu
+    fais un splendide copié collé ...Le mieux c’est de dire pourquoi tu défends
+    ce spectacle avec tes mots...Et chez BRAAAM on aime les fautes
+    d’ortografes...)</small>
   </div>
 
   <div class="field">
     <%= form.label :video_uri %>
     <%= form.text_field :video_uri, class: "input" %>
+    <small style="display: block;margin-top: 10px;">Copie colle un lien youtube  du spectacle que tu proposes en tournées.
+    Choisis une vidéo stable et de bonne qualité....Si l’image tremble comme la
+    main a papy qui mange une soupe ca risque de ne pas être très vendeur.</small>
   </div>
 
   <div class="field">
@@ -53,6 +62,15 @@
   <div class="field">
     <%= form.label :catering %>
     <%= form.check_box :catering %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tour_staff_number, Tour.human_attribute_name("tour_staff_number") + " *" %>
+    <%= form.number_field :tour_staff_number, class: "input", required: true, min: 0, step: 1 %>
+    <small style="display: block;margin-top: 10px;">Y compris le staff, techniciens etc...En
+gros combien de personnes les autres sta(ons devront faire dormir et
+manger...Ha oui un ar(ste est un être humain qui mange et qui dort. Si il y a
+des végétariens on notera tout cela dans le contrat, là encore, reste cool.</small>
   </div>
 
   <div class="field">
@@ -70,8 +88,24 @@
   <div class="field">
     <%= form.label :price_braaam, Tour.human_attribute_name("price_braaam") + " *" %>
     <%= form.number_field :price_braaam, value: @tour.price_braaam.to_f, min: 0, step: 0.01, class: "input", required: true %>
+    <small style="display: block;margin-top: 10px;">Evidement, le but de proposer une tournée c’est aussi de négocier un
+    cachet intéressant avec l’ariste. Quel est le prix spécial de la tournée que tu proposes?</small>
   </div>
 
+  <br>
+  <h2><%= t("artist_contact_infos") %></h2>
+
+  <div class="field">
+    <%= form.label :tour_artist_email, Tour.human_attribute_name("tour_artist_email") + " *" %>
+    <%= form.email_field :tour_artist_email, class: "input", required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tour_artist_phone %>
+    <%= form.phone_field :tour_artist_phone, class: "input" %>
+  </div>
+
+  <br>
   <%= c "tour/datepicker", form_target: "#tour_form", disable_edit: defined?(edit) && edit %>
 
   <br>

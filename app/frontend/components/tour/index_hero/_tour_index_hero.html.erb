@@ -1,0 +1,8 @@
+<div class="tour-index-hero">
+  <%= c "container" do %>
+    <h1 class="tour-index-hero--text"><%= t(".hero") %></h1>
+    <a href="#summer" class="btn"><%= t(".see_summer") %></a>
+    <a href="#winter" class="btn"><%= t(".see_winter") %></a>
+    <%= link_to t(".new_tour"), new_tour_path, class: "btn" %>
+  <% end %>
+</div>

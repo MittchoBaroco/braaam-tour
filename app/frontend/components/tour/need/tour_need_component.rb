@@ -54,6 +54,11 @@ module TourNeedComponent
         icon_value: (c "fontawesome_icon", icon: "fas fa-file fa-lg"),
         text_value: link_to(text_value, @value, target: '_blank').html_safe
       }
+    when "staff_number"
+      {
+        icon_value: (c "fontawesome_icon", icon: "fas fa-users fa-lg"),
+        text_value: t(".staff_member", count: @value)
+      }
     end
   end
 end

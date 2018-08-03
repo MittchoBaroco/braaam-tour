@@ -3,20 +3,24 @@
 <%= c "admin/title", text: (Tour.model_name.human + " : " + @tour.title) %>
 <%= c "admin/sub_title", text: t("admin.basic_info") %>
 <p><strong><%= Tour.human_attribute_name("id") %></strong>: <%= @tour.id %></p>
+<p><strong><%= Tour.human_attribute_name("tour_artist_name") %></strong>: <%= @tour.tour_artist_name %></p>
 <p><strong><%= Tour.human_attribute_name("title") %></strong>: <%= @tour.title %></p>
-<p><strong><%= Tour.human_attribute_name("artist_country") %></strong>: <%= @tour.artist_country %></p>
 <p><strong><%= Tour.human_attribute_name("description") %></strong>: <%= @tour.description %></p>
 <p><strong><%= Tour.human_attribute_name("tour_caption") %></strong>: <%= @tour.tour_caption %></p>
-<p><strong><%= Tour.human_attribute_name("price_braaam") %></strong>: <%= @tour.price_braaam %></p>
 <p><strong><%= Tour.human_attribute_name("price_normal") %></strong>: <%= @tour.price_normal %></p>
+<p><strong><%= Tour.human_attribute_name("price_braaam") %></strong>: <%= @tour.price_braaam %></p>
 <p><strong><%= Tour.human_attribute_name("tour_start_date") %></strong>: <%= l(@tour.tour_start_date) unless @tour.tour_start_date.blank?  %></p>
 <p><strong><%= Tour.human_attribute_name("tour_end_date") %></strong>: <%= l(@tour.tour_end_date) unless @tour.tour_end_date.blank?  %></p>
 <p><strong><%= Tour.human_attribute_name("organiser") %></strong>: <%= @tour.creator_name %></p>
 <p><strong><%= Tour.human_attribute_name("housing") %></strong>: <%= @tour.housing %></p>
 <p><strong><%= Tour.human_attribute_name("catering") %></strong>: <%= @tour.catering %></p>
+<p><strong><%= Tour.human_attribute_name("tour_staff_number") %></strong>: <%= @tour.tour_staff_number %></p>
 <p><strong><%= Tour.human_attribute_name("video_uri") %></strong>: <%= link_to @tour.video_uri %></p>
 <p><strong><%= Tour.human_attribute_name("created_at") %></strong>: <%= @tour.created_at %></p>
 <p><strong><%= Tour.human_attribute_name("updated_at") %></strong>: <%= @tour.updated_at %></p>
+<%= c "admin/sub_title", text: t("artist_contact_infos") %>
+<p><strong><%= Tour.human_attribute_name("tour_artist_email") %></strong>: <%= @tour.tour_artist_email %></p>
+<p><strong><%= Tour.human_attribute_name("tour_artist_phone") %></strong>: <%= @tour.tour_artist_phone %></p>
 <%= c "admin/sub_title", text: t("admin.files") %>
 <p><strong><%= Tour.human_attribute_name("cover_image") %></strong>:<br> <%= link_to image_tag(@tour.cover_image.representation(resize: '200x200')), @tour.cover_image if @tour.cover_image.attached? %></p>
 <p><strong><%= Tour.human_attribute_name("tech_sheet") %></strong>:<br> <%= link_to 'fiche technique', @tour.tech_sheet if @tour.tech_sheet.attached? %></p>

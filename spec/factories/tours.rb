@@ -16,24 +16,20 @@ video_samples = [
 FactoryBot.define do
   factory :tour do
     title        { Faker::Book.title }
+    tour_artist_name { Faker::Company.name }
     description  { Faker::ChuckNorris.fact }
-    artist_country{ [Faker::Address.country, Faker::Address.country_code].sample }
     tour_caption { Faker::Seinfeld.quote }
-    # cover_image  { Rack::Test::UploadedFile.new(
-    #                   Rails.root.join('spec', 'photos', 'AgilityDefined.png'),
-    #                   'image/png') }
-    # video_uri    { video_samples.sample }
     housing      { Faker::Boolean.boolean }
     catering     { Faker::Boolean.boolean }
     currency     = Tour::CURRENCIES.sample
     base_cents   = Faker::Number.between(500, 10000)
     discount     = (base_cents * Faker::Number.between(75,90) / 100).round(2)
     braaam_amt   = base_cents - discount
-    # rails money format changed - must use string - how to add currency now?
     price_normal { base_cents.to_s }
     price_braaam { braaam_amt.to_s }
-    # price_normal { Money.new(base_cents, currency) }
-    # price_braaam { Money.new(braaam_amt, currency) }
+    tour_artist_email { Faker::Internet.email }
+    tour_artist_phone { Faker::PhoneNumber.cell_phone }
+    tour_staff_number { Faker::Number.between(1, 10) }
   end
 
   factory :tour_w_image, parent: :tour do

@@ -42,7 +42,7 @@ class Tour < ApplicationRecord
                           reject_if: :all_blank, allow_destroy: true
 
   validates :tour_caption,  presence: true, length: { minimum: 2 }
-  validates :artist_country,presence: true, length: { minimum: 2 }
+  validates :tour_artist_name, presence: true, length: { minimum: 2 }
   validates :title,       presence: true, length: { minimum: 2 }
   validates :description, presence: true, length: { minimum: 2 }
   # validate url
@@ -51,6 +51,9 @@ class Tour < ApplicationRecord
                                     message: "please enter a valid url" }
   validates :housing,     inclusion: { in: [ true, false ] }
   validates :catering,    inclusion: { in: [ true, false ] }
+
+  validates :tour_artist_email, presence: true, length: { minimum: 6 }
+  validates :tour_staff_number, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validates :tour_start_date, presence: true, if: :has_booking_days?
   validates :tour_end_date, presence: true, if: :has_booking_days?

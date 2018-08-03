@@ -46,6 +46,7 @@ en:
   send_me_password_instruction: "Send me reset password instructions"
   forgot_password: "Forgot your password?"
   proposed_by: "Proposed by"
+  artist_contact_infos: "Artist contact informations"
   admin:
     sign_in: "Admin Sign in"
     add_tour: "Add a tour"
@@ -96,14 +97,15 @@ en:
         password: "Password"
         password_confirmation: "Password confirmation"
       tour:
+        tour_artist_name: "Artist name"
         title: "Tour title"
-        artist_country: "Artist country"
         tour_caption: "Tour caption"
         cover_image: "Cover picture"
         description: "Description"
         video_uri: "Video link (youtube)"
         housing: "Need of housing"
         catering: "Need of catering"
+        tour_staff_number: "Staff number"
         tech_sheet: "Technical sheet"
         price_normal: "Normal price"
         price_braaam: "Braaam price (reduced)"
@@ -113,6 +115,8 @@ en:
         creator: "Organiser"
         created_at: "Created at"
         updated_at: "Updated at"
+        tour_artist_email: "Artist email"
+        tour_artist_phone: "Artist phone number"
       company:
         name: "Company name"
         reference_person_full_name: "Full name of the reference person"

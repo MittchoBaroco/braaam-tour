@@ -13,7 +13,7 @@
 
 .grid--item {
   width: 23%;
-  margin: 0 2% 0 0;
+  margin: 15px 2% 0 0;
   line-height: 17px;
 
   &--link {
@@ -32,10 +32,16 @@
     /* margin-top: 2.5px; */
   }
 
-  &--title {
+  &--artist_name {
     font-weight: bold;
     padding-top: 2px;
     text-transform: uppercase;
+  }
+
+  &--title {
+    font-weight: bold;
+    padding-top: 2px;
+    /* text-transform: uppercase; */
   }
 
   &--caption {

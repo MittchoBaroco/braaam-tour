@@ -6,7 +6,7 @@
 
       <%= c "column", size: 8 do %>
 
-        <%= c "tour/title", text: @tour.title_with_country %>
+        <%= c "tour/title", text: @tour.tour_artist_name, small: @tour.title %>
         <%= c "tour/proposed_by", text: @tour.creator_name %>
         <%= c "tour/description", text: @tour.description %>
         <%= c "tour/call_to_action" %>
@@ -73,6 +73,7 @@
             <%= c "tour/need", value: url_for(@tour.tech_sheet), type: "tech_file" if @tour.need_tech_help? %>
             <%= c "tour/need", value: @tour.housing, type: "housing" %>
             <%= c "tour/need", value: @tour.catering, type: "catering" %>
+            <%= c "tour/need", value: @tour.tour_staff_number, type: "staff_number" %>
             <!-- <%= c "tour/need", value: true, type: "transport" %> -->
 
           <% end %>

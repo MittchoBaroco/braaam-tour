@@ -46,6 +46,7 @@ fr:
   send_me_password_instruction: "Envoyez-moi les instructions de réinitialisation"
   forgot_password: "Mot de passe oublié?"
   proposed_by: "Proposé par"
+  artist_contact_infos: "Informations de contact de l'artiste ou son représentant"
   admin:
     sign_in: "Connexion Administrateur"
     add_tour: "Ajouter une tournée"
@@ -229,14 +230,15 @@ fr:
       manager: Administrateur
     attributes:
       tour:
-        title: "Titre de la tournée"
-        artist_country: "Pays de l'artiste"
+        tour_artist_name: "Nom de l'artiste \"coup de coeur\""
+        title: "Nom du spectacle"
         tour_caption: "Légende"
         cover_image: "Image de couverture"
         description: "Description"
         video_uri: "Lien de la video (youtube)"
         housing: "Besoin d'hébergement"
         catering: "Besoin de restauration"
+        tour_staff_number: "Nombre de personnes en tournée"
         tech_sheet: "Fiche technique"
         price_normal: "Prix normale"
         price_braaam: "Prix Braaam (réduit)"
@@ -246,6 +248,8 @@ fr:
         creator: "Organisateur"
         created_at: "Créer le"
         updated_at: "Mise à jour le"
+        tour_artist_email: "Email"
+        tour_artist_phone: "Numero de téléphone"
       booking_date:
         day: "Date"
         close: "Bloqué"
