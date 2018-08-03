@@ -10,6 +10,7 @@ import "./tour_datepicker.css";
 
 $( document ).ready(function() {
   $('#calendar').fullCalendar({
+    height: "auto",
     locale: getLocale(),
     dayClick: function(date, jsEvent, view) {
       if ($(this).css('background-color') != "rgb(61, 118, 175)") {
