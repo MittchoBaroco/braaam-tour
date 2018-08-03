@@ -1,3 +1,6 @@
 <h1 class="tour-title">
   <%= @text %>
+  <% unless @small.blank? %>
+    <small><%= @small %></small>
+  <% end %>
 </h1>

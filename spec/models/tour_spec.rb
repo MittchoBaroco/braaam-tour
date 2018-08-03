@@ -38,7 +38,9 @@ RSpec.describe Tour, type: :model do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:tour_caption) }
-    it { should validate_presence_of(:artist_country) }
+    it { should validate_presence_of(:tour_artist_name) }
+    it { should validate_presence_of(:tour_artist_email) }
+    it { should validate_presence_of(:tour_staff_number) }
 
     describe "presence of tour_start_date" do
       context "without booking days associate" do
@@ -75,7 +77,10 @@ RSpec.describe Tour, type: :model do
     it { should validate_length_of(:title).is_at_least(2) }
     it { should validate_length_of(:description).is_at_least(2) }
     it { should validate_length_of(:tour_caption).is_at_least(2) }
-    it { should validate_length_of(:artist_country).is_at_least(2) }
+    it { should validate_length_of(:tour_artist_name).is_at_least(2) }
+    it { should validate_length_of(:tour_artist_email).is_at_least(6) }
+
+    it { should validate_numericality_of(:tour_staff_number).only_integer.is_greater_than_or_equal_to(0) }
 
     it { should allow_value(%w(true false)).for(:housing) }
     it { should allow_value(%w(true false)).for(:catering) }

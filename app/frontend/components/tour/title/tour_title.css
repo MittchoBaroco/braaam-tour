@@ -4,4 +4,8 @@
   font-size: 38px;
   line-height: 44px;
   font-weight: bold;
+
+  small {
+    font-weight: normal;
+  }
 }

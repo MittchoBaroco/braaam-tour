@@ -15,13 +15,13 @@
     <legend>Base:</legend>
 
     <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title, class: "input" %>
+      <%= form.label :tour_artist_name %>
+      <%= form.text_field :tour_artist_name, class: "input" %>
     </div>
 
     <div class="field">
-      <%= form.label :artist_country %>
-      <%= form.text_field :artist_country, class: "input" %>
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "input" %>
     </div>
 
     <div class="field">
@@ -58,6 +58,11 @@
     </div>
 
     <div class="field">
+      <%= form.label :tour_staff_number %>
+      <%= form.number_field :tour_staff_number %>
+    </div>
+
+    <div class="field">
       <%= form.label :tech_sheet %>
       <%= form.file_field :tech_sheet, class: "form-control" %>
       <br><br>
@@ -72,6 +77,19 @@
     <div class="field">
       <%= form.label :price_braaam %>
       <%= form.number_field :price_braaam, value: @tour.price_braaam.to_f, min: 0, step: 0.01, class: "input" %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Artist contact:</legend>
+    <div class="field">
+      <%= form.label :tour_artist_email %>
+      <%= form.email_field :tour_artist_email %>
+    </div>
+
+    <div class="field">
+      <%= form.label :tour_artist_phone %>
+      <%= form.phone_field :tour_artist_phone %>
     </div>
   </fieldset>
 

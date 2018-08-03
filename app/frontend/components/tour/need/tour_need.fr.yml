@@ -9,3 +9,6 @@ fr:
     true_transport: "transport inclus"
     false_transport: "transport non inclus"
     open_tech_file: "ouvrir la fiche technique"
+    staff_member:
+      one: "1 personne en tournée"
+      other: "%{count} personnes en tournée"

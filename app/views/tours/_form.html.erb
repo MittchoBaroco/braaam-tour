@@ -14,13 +14,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title, Tour.human_attribute_name("title") + " *" %>
-    <%= form.text_field :title, class: "input", required: true %>
+    <%= form.label :tour_artist_name, Tour.human_attribute_name("tour_artist_name") + " *" %>
+    <%= form.text_field :tour_artist_name, class: "input", required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :artist_country, Tour.human_attribute_name("artist_country") + " *" %>
-    <%= form.text_field :artist_country, class: "input", required: true %>
+    <%= form.label :title, Tour.human_attribute_name("title") + " *" %>
+    <%= form.text_field :title, class: "input", required: true %>
   </div>
 
   <div class="field">
@@ -56,6 +56,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :tour_staff_number, Tour.human_attribute_name("tour_staff_number") + " *" %>
+    <%= form.number_field :tour_staff_number, class: "input", required: true, min: 0, step: 1 %>
+  </div>
+
+  <div class="field">
     <%= form.label :tech_sheet %><br>
     <%= form.file_field :tech_sheet, class: "form-control" %>
     <br><br>
@@ -72,6 +77,20 @@
     <%= form.number_field :price_braaam, value: @tour.price_braaam.to_f, min: 0, step: 0.01, class: "input", required: true %>
   </div>
 
+  <br>
+  <h2><%= t("artist_contact_infos") %></h2>
+
+  <div class="field">
+    <%= form.label :tour_artist_email, Tour.human_attribute_name("tour_artist_email") + " *" %>
+    <%= form.email_field :tour_artist_email, class: "input", required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tour_artist_phone %>
+    <%= form.phone_field :tour_artist_phone, class: "input" %>
+  </div>
+
+  <br>
   <%= c "tour/datepicker", form_target: "#tour_form", disable_edit: defined?(edit) && edit %>
 
   <br>

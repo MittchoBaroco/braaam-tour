@@ -10,6 +10,7 @@
 <table>
   <thead>
     <tr>
+      <th><%= Tour.human_attribute_name("tour_artist_name") %></th>
       <th><%= Tour.human_attribute_name("title") %></th>
       <th><%= Tour.human_attribute_name("tour_start_date") %></th>
       <th><%= Tour.human_attribute_name("tour_end_date") %></th>
@@ -22,6 +23,7 @@
   <tbody>
     <% @tours.each do |tour| %>
       <tr>
+        <td><%= tour.tour_artist_name %></td>
         <td><%= tour.title %></td>
         <td><%= l(tour.tour_start_date) unless tour.tour_start_date.blank? %></td>
         <td><%= l(tour.tour_end_date) unless tour.tour_end_date.blank?  %></td>

@@ -14,11 +14,14 @@
                 <% end %>
               </div>
               <div class="grid--item--text">
-                <div class="grid--item--title">
-                  <%= tour.title_with_country %>
+                <div class="grid--item--artist_name">
+                  <%= tour.tour_artist_name %>
                 </div>
                 <div class="grid--item--caption">
                   <%= tour.tour_caption %>
+                </div>
+                <div class="grid--item--title">
+                  <%= tour.title %>
                 </div>
                 <div class="grid--item--dates">
                   <% unless tour.booking_dates.empty? %>
@@ -32,7 +35,7 @@
                   </div>
                 <% end %>
                 <div class="grid--item--proposed_by">
-                  <%= t "proposed_by" %> <%= tour.creator_name %>
+                  <%= t "proposed_by" %> <strong><%= tour.creator_name %></strong>
                 </div>
               </div>
             <% end %>
