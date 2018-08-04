@@ -9,7 +9,6 @@
         <%= c "tour/title", text: @tour.tour_artist_name, small: @tour.title %>
         <%= c "tour/proposed_by", text: @tour.creator_name %>
         <%= c "tour/description", text: @tour.description %>
-        <%= c "tour/call_to_action" %>
 
         <% unless @tour.video_uri.blank? %>
 
@@ -81,6 +80,7 @@
             <% @tour.booking_dates.each do |date| %>
               <%= c "tour/booking_btn", date: date %>
             <% end %>
+            <%= c "tour/call_to_action" %>
           <% end %>
           <% if company_signed_in? %>
             <%= c "tour/section_side", type: "prices" do %>
