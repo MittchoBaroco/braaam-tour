@@ -65,6 +65,7 @@ fr:
     no_dates: "Il n'y a aucune date enregistré"
     no_awards: "Il n'y a aucune récompenses enregistré"
     visit_public_page: "Voir l'annonce public"
+    back_to_site: "Retour au site"
   booking_mailer:
     booking_confirmation:
       subject: "Confirmation de réservation pour %{tour_name}"

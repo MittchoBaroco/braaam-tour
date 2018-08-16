@@ -65,6 +65,7 @@ en:
     no_dates: "There is no dates saved"
     no_awards: "There is no awards saved"
     visit_public_page: "Visit public page"
+    back_to_site: "Back to public website"
   time:
     formats:
       short: "%e %b"
