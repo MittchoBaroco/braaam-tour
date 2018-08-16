@@ -1,6 +1,6 @@
 class Admin::ToursController < ApplicationController
   before_action :authenticate_manager!
-  before_action :set_tour, only: [:show, :edit, :update, :destroy]
+  before_action :set_tour, only: [:show, :edit, :update, :destroy, :highlight]
   layout "admin"
 
   # GET admin/tours
@@ -83,6 +83,20 @@ class Admin::ToursController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_tours_url, notice: 'Tour was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # PATCH/PUT admin/tours/highlight/1
+  # PATCH/PUT admin/tours/highlight/1.json
+  def highlight
+    respond_to do |format|
+      if @tour.update_attribute(:highlighted_at, DateTime.now)
+        format.html { redirect_to [:admin, @tour], notice: 'Tour was successfully highlighted.' }
+        format.json { render :show, status: :ok, location: @tour }
+      else
+        format.html { render :edit }
+        format.json { render json: @tour.errors, status: :unprocessable_entity }
+      end
     end
   end
 

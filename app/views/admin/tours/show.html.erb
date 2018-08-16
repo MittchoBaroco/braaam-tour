@@ -18,6 +18,7 @@
 <p><strong><%= Tour.human_attribute_name("video_uri") %></strong>: <%= link_to @tour.video_uri %></p>
 <p><strong><%= Tour.human_attribute_name("created_at") %></strong>: <%= @tour.created_at %></p>
 <p><strong><%= Tour.human_attribute_name("updated_at") %></strong>: <%= @tour.updated_at %></p>
+<p><strong><%= Tour.human_attribute_name("highlighted_at") %></strong>: <%= @tour.highlighted_at %></p>
 <%= c "admin/sub_title", text: t("artist_contact_infos") %>
 <p><strong><%= Tour.human_attribute_name("tour_artist_email") %></strong>: <%= @tour.tour_artist_email %></p>
 <p><strong><%= Tour.human_attribute_name("tour_artist_phone") %></strong>: <%= @tour.tour_artist_phone %></p>
@@ -63,6 +64,7 @@
   <p><%= t("admin.no_comments") %></p>
 <% end %>
 <%= link_to t("admin.visit_public_page"), tour_path(@tour), class: "btn" %>
+<%= link_to t("admin.highlight"), highlight_tour_path(@tour), :method=> :put, class: "btn" %>
 <%= link_to t("admin.edit"), edit_admin_tour_path(@tour), class: "btn" %>
 <%= link_to t("admin.back"), admin_tours_path, class: "btn" %>
 <br><br>
