@@ -1,0 +1,39 @@
+<div class="braaam-highlights">
+  <%= c "container" do %>
+    <div class="braaam-highlights--slider">
+      <% @tours.each do |tour| %>
+        <div class="braaam-highlights--card">
+          <% if tour.cover_image.attached? %>
+            <div class="braaam-highlights--card--img-wrapper" style="background-image: url(<%= url_for tour.cover_image %>) !important;">
+            </div>
+          <% end %>
+          <div class="braaam-highlights--card--flex-wrapper">
+            <div class="braaam-highlights--card--flex-wrapper--left">
+              <div class="braaam-highlights--card--flex-wrapper--left--card-title">
+                braaam highlights
+              </div>
+              <div class="braaam-highlights--card--flex-wrapper--left--artist-name">
+                <%= tour.tour_artist_name %>
+              </div>
+              <div class="braaam-highlights--card--flex-wrapper--left--tour-title">
+                <%= tour.title %>
+              </div>
+              <div class="braaam-highlights--card--flex-wrapper--left--tour-description">
+                <%= tour.tour_caption %>
+              </div>
+              <div class="braaam-highlights--card--flex-wrapper--left--tour-dates">
+                <% unless tour.booking_dates.empty? %>
+                  <%= t("from_date") %> <%= l( tour.booking_dates.first.day, format: :short ) %> <%= t("to_date") %>
+                  <%= l( tour.booking_dates.last.day, format: :short ) %>
+                <% end %>
+              </div>
+            </div>
+            <div class="braaam-highlights--card--flex-wrapper--right">
+              <%= link_to "Voir l'annonce", tour, class: 'btn', style: "margin-right: 20px" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

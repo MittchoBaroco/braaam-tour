@@ -12,7 +12,8 @@
     "npm": "^6.0.0",
     "postcss-color-function": "^4.0.1",
     "postcss-nested": "^3.0.0",
-    "rails-ujs": "^5.1.5"
+    "rails-ujs": "^5.1.5",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.11.1"

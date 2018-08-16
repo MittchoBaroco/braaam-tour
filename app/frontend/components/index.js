@@ -1,5 +1,6 @@
 import "components/admin";
 import "components/booking";
+import "components/braaam_highlights/braaam_highlights";
 import "components/column/column";
 import "components/container/container";import "components/row/row";
 import "components/date/date";

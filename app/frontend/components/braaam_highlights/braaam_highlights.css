@@ -1,0 +1,75 @@
+.braaam-highlights {
+  margin-top: 40px;
+  &--card {
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    margin: 10px;
+
+    &--img-wrapper {
+      display: block;
+      width: 100%;
+      height: auto;
+      position: relative;
+      overflow: hidden;
+      padding-top: 56.25%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    &--flex-wrapper {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+
+      &--left {
+        margin-left: 15px;
+
+        &--card-title {
+          color: #09529b;
+          text-transform: uppercase;
+          font-weight: bold;
+          padding: 10px 0;
+          margin-top: 10px;
+        }
+
+        &--artist-name {
+          text-transform: uppercase;
+          font-weight: bold;
+          color: #000;
+        }
+
+        &--tour-title {
+          font-weight: bold;
+          color: #000;
+        }
+
+        &--tour-description {
+          color: #000;
+        }
+
+        &--tour-dates {
+          color: #09529b
+        }
+      }
+
+      &--right {
+        -webkit-align-self: center;
+        -ms-flex-item-align: center;
+        align-self: center;
+      }
+    }
+  }
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #09529b !important;
+}
