@@ -4,7 +4,7 @@
       <% @tours.each do |tour| %>
         <div class="braaam-highlights--card">
           <% if tour.cover_image.attached? %>
-            <div class="braaam-highlights--card--img-wrapper" style="background-image: url(<%= url_for tour.cover_image %>) !important;">
+            <div class="braaam-highlights--card--img-wrapper" style="background-image: url(<%= polymorphic_url tour.cover_image %>) !important;">
             </div>
           <% end %>
           <div class="braaam-highlights--card--flex-wrapper">
