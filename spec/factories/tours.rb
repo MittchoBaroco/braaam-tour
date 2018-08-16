@@ -49,4 +49,8 @@ FactoryBot.define do
       create_list :award, 3, tour: tour   # has_many
     end
   end
+
+  trait :highlighted do
+    highlighted_at { DateTime.now }
+  end
 end
