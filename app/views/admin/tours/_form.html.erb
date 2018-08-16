@@ -78,6 +78,11 @@
       <%= form.label :price_braaam %>
       <%= form.number_field :price_braaam, value: @tour.price_braaam.to_f, min: 0, step: 0.01, class: "input" %>
     </div>
+
+    <div class="field">
+      <%= form.label :highlighted_at %>
+      <%= form.text_field :highlighted_at, class: "input" %>
+    </div>
   </fieldset>
 
   <fieldset>

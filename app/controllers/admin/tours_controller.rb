@@ -111,7 +111,7 @@ class Admin::ToursController < ApplicationController
       params.require(:tour).permit(
         :title, :description, :video_uri, :housing, :catering, :tour_artist_name,
         :cover_image, :tech_sheet, :tour_caption, :price_normal, :price_braaam,
-        :tour_staff_number, :tour_artist_email, :tour_artist_phone,
+        :tour_staff_number, :tour_artist_email, :tour_artist_phone, :highlighted_at,
         awards_attributes: [:caption, :institution, :country, :award_year, :id, :_destroy],
         booking_dates_attributes: [:day, :company, :close, :id, :_destroy],
         comments_attributes: [:comment_body, :author_name, :id, :_destroy]
