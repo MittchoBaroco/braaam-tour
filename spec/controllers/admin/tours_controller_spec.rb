@@ -33,7 +33,7 @@ RSpec.describe Admin::ToursController, type: :controller do
         get :new
         expect(response).to redirect_to( new_manager_session_path )
       end
-      it "from GET #show to login page" do
+      it "from GET #edit to login page" do
         get :edit, params: {id: tour.to_param}
         expect(response).to redirect_to( new_manager_session_path )
       end
@@ -41,12 +41,20 @@ RSpec.describe Admin::ToursController, type: :controller do
         post :create, params: {tour: valid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
-      it "from PUT #show to login page" do
+      it "from PUT #update to login page" do
         put :update, params: {id: tour.to_param, tour: valid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
-      it "from PATCH #show to login page" do
+      it "from PATCH #update to login page" do
         patch :update, params: {id: tour.to_param, tour: valid_attributes}
+        expect(response).to redirect_to( new_manager_session_path )
+      end
+      it "from PUT #highlight to login page" do
+        put :highlight, params: {id: tour.to_param, tour: valid_attributes}
+        expect(response).to redirect_to( new_manager_session_path )
+      end
+      it "from PATCH #highlight to login page" do
+        patch :highlight, params: {id: tour.to_param, tour: valid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
       it "from DELETE #destroy to login page" do
@@ -167,6 +175,19 @@ RSpec.describe Admin::ToursController, type: :controller do
                         session: valid_session
           expect(response).to be_successful
         end
+      end
+    end
+    describe "PUT #highlight" do
+      it "marks the tour as highlighted" do
+        put :highlight, params: {id: tour.to_param, tour: new_attributes},
+                      session: valid_session
+        tour.reload
+        expect( tour.highlighted_at ).not_to be_blank
+      end
+      it "redirects to the tour" do
+        put :highlight, params: {id: tour.to_param, tour: valid_attributes},
+                      session: valid_session
+        expect(response).to redirect_to( admin_tour_path(tour) )
       end
     end
     describe "DELETE #destroy" do

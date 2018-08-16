@@ -28,10 +28,6 @@ RSpec.describe Tour, type: :model do
     it 'has a valid Factory' do
       expect(tour_today).to be_valid
     end
-    # QUESTION: There is not any awards here - what is different from 'has a valid factory'?
-    # it 'has a valid Factory with awards' do
-    #   expect(tour_in_week).to be_valid
-    # end
   end
 
   context "Check company validations" do
@@ -157,6 +153,33 @@ RSpec.describe Tour, type: :model do
       response = Tour.show_collection(tour_tomorrow.id).map{|t| t.title}
       correct  = [tour_today.title]
       expect(response).to eq( correct )
+    end
+  end
+
+  context "highlighted" do
+    tours = [
+      FactoryBot.create(:tour, :highlighted, title: "highlighted 1"),
+      FactoryBot.create(:tour, :highlighted, title: "highlighted 2"),
+      FactoryBot.create(:tour, :highlighted, title: "highlighted 3")
+    ]
+    it "shows the correct highlighted tours" do
+      active_record_titles = Tour.highlighted.pluck(:title)
+
+      expect(active_record_titles).to eq(["highlighted 3", "highlighted 2", "highlighted 1"])
+    end
+
+    it "shows the correct highlighted tours if a old one is refresh" do
+      Tour.find_by(title: "highlighted 1").update(highlighted_at: DateTime.now)
+      active_record_titles = Tour.highlighted.pluck(:title)
+
+      expect(active_record_titles).to eq(["highlighted 1", "highlighted 3", "highlighted 2"])
+    end
+
+    it "shows the correct highlighted tours if a new one is mark" do
+      FactoryBot.create(:tour, :highlighted, title: "highlighted 4")
+      active_record_titles = Tour.highlighted.pluck(:title)
+
+      expect(active_record_titles).to eq(["highlighted 4", "highlighted 3", "highlighted 2"])
     end
   end
 
