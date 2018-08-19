@@ -65,7 +65,11 @@
   <p><%= t("admin.no_comments") %></p>
 <% end %>
 <%= link_to t("admin.visit_public_page"), tour_path(@tour), class: "btn" %>
-<%= link_to t("admin.highlight"), highlight_tour_path(@tour), :method=> :put, class: "btn" %>
+<% if @tour.highlighted? %>
+  <%= link_to t("admin.remove_highlight"), admin_remove_highlight_tour_path(@tour), :method=> :put, class: "btn red" %>
+<% else %>
+  <%= link_to t("admin.highlight"), admin_highlight_tour_path(@tour), :method=> :put, class: "btn" %>
+<% end %>
 <%= link_to t("admin.edit"), edit_admin_tour_path(@tour), class: "btn" %>
 <%= link_to t("admin.back"), admin_tours_path, class: "btn" %>
 <br><br>

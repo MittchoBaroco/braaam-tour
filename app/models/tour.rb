@@ -107,6 +107,10 @@ class Tour < ApplicationRecord
     return I18n.t("activerecord.attributes.tour.statuses.highlight") if highlighted_at.present?
   end
 
+  def highlighted?
+    highlighted_at.present? and Tour.highlighted.pluck(:id).include? id
+  end
+
   def season
     infos = { year: self.tour_start_date.year.to_s }
     infos[:season] = "summer" if self.summer_tour?

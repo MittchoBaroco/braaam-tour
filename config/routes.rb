@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   patch 'admin/booking_dates/signup/:id', to: 'admin/booking_dates#signup'
   put   'admin/booking_dates/cancel/:id', to: 'admin/booking_dates#cancel'
   patch 'admin/booking_dates/cancel/:id', to: 'admin/booking_dates#cancel'
-  put   'admin/tours/highlight/:id',      to: 'admin/tours#highlight', as: "highlight_tour"
+  put   'admin/tours/highlight/:id',      to: 'admin/tours#highlight', as: "admin_highlight_tour"
   patch 'admin/tours/highlight/:id',      to: 'admin/tours#highlight'
+  put   'admin/tours/remove_highlight/:id',      to: 'admin/tours#remove_highlight', as: "admin_remove_highlight_tour"
+  patch 'admin/tours/remove_highlight/:id',      to: 'admin/tours#remove_highlight'
   root to: "tours#index"
 end

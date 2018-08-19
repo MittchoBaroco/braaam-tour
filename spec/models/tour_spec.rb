@@ -209,6 +209,10 @@ RSpec.describe Tour, type: :model do
     it "return past highlight if highlighted_at is present and ID is not in scope" do
       expect(highlight_tours.first.status).to eq("Past Highlight")
     end
+
+    it "return true if tour is highlighted?" do
+      expect(highlight_tours.last.highlighted?).to eq(true)
+    end
   end
 
   context "methods" do

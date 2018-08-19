@@ -55,6 +55,7 @@ fr:
     show: "voir"
     edit: "modifier"
     highlight: "Braaam highlight"
+    remove_highlight: "Supprimer Braaam highlight"
     delete: "supprimer"
     back: "retour"
     basic_info: "Infos de base"
