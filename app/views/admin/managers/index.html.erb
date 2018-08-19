@@ -24,23 +24,3 @@
     <% end %>
   </tbody>
 </table>
-
-<hr>
-
-<% @tours.each do |tour| %>
-  <strong><%= tour.title %></strong>
-  <% if tour.cover_image.attached? %>
-    background image
-    <div class="braaam-highlights--card--img-wrapper" style="width: 100px; height: 100px;background-image: url(<%= polymorphic_url tour.cover_image %>) !important;">
-    </div>
-
-    Image tag
-    <%= image_tag tour.cover_image.variant(resize: "400x400>") %>
-    <%= image_tag tour.cover_image %>
-  <% else %>
-    No Image
-  <% end %>
-  <br>
-  <hr>
-  <br>
-<% end %>

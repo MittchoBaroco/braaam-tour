@@ -7,7 +7,6 @@ class Admin::ManagersController < ApplicationController
   # GET admin/managers.json
   def index
     @managers = Manager.all
-    @tours = Tour.all
   end
 
   # GET admin/managers/1
