@@ -6,7 +6,7 @@ class Admin::ToursController < ApplicationController
   # GET admin/tours
   # GET admin/tours.json
   def index
-    @tours = Tour.all
+    @tours = Tour.all.sort_by { |t| t.status(format: :number).to_i }
   end
 
   # GET admin/tours/1
