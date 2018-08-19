@@ -3,6 +3,7 @@
 <%= c "admin/title", text: (Tour.model_name.human + " : " + @tour.title) %>
 <%= c "admin/sub_title", text: t("admin.basic_info") %>
 <p><strong><%= Tour.human_attribute_name("id") %></strong>: <%= @tour.id %></p>
+<p><strong><%= Tour.human_attribute_name("status") %></strong>: <%= @tour.status %></p>
 <p><strong><%= Tour.human_attribute_name("tour_artist_name") %></strong>: <%= @tour.tour_artist_name %></p>
 <p><strong><%= Tour.human_attribute_name("title") %></strong>: <%= @tour.title %></p>
 <p><strong><%= Tour.human_attribute_name("description") %></strong>: <%= @tour.description %></p>

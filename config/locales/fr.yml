@@ -252,6 +252,12 @@ fr:
         updated_at: "Mise à jour le"
         tour_artist_email: "Email"
         tour_artist_phone: "Numero de téléphone"
+        statuses:
+          future: "Futur"
+          current: "En cours"
+          past: "Archivé"
+          highlight: "Highlight"
+          old_highlight: "Ancien Highlight"
       booking_date:
         day: "Date"
         close: "Bloqué"

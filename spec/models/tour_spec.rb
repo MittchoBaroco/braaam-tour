@@ -6,7 +6,6 @@ RSpec.describe Tour, type: :model do
   let!(:tour_today_tomorrow) { FactoryBot.create(:tour, title: "Today & Tomorrow") }
   let!(:tour_tomorrow)       { FactoryBot.create(:tour_w_image, title: "Tomorrow") }
   let!(:tour_today)          { FactoryBot.create(:tour_w_image, title: "Today") }
-  # let!(:tour_yesterday)    { FactoryBot.create(:tour, title: "Yesterday") }
 
   let!(:date_in_week)       { FactoryBot.create(:booking_date,
                               day: (Date.today + 7.day),
@@ -21,9 +20,16 @@ RSpec.describe Tour, type: :model do
                               day: (Date.tomorrow), tour_id: tour_tomorrow.id) }
   let!(:date_today)         { FactoryBot.create(:booking_date,
                               day: (Date.today), tour_id: tour_today.id) }
-  # let!(:date_yesterday)   { FactoryBot.create(:booking_date,
-  #                                             day: (Date.yesterday),
-  #                                             tour_id: tour_yesterday.id) }
+
+  let!(:highlight_tours)    {
+    [
+      FactoryBot.create(:tour, :highlighted, title: "highlighted 1"),
+      FactoryBot.create(:tour, :highlighted, title: "highlighted 2"),
+      FactoryBot.create(:tour, :highlighted, title: "highlighted 3"),
+      FactoryBot.create(:tour, :highlighted, title: "highlighted 4")
+    ]
+  }
+
   context "verify factories" do
     it 'has a valid Factory' do
       expect(tour_today).to be_valid
@@ -157,29 +163,51 @@ RSpec.describe Tour, type: :model do
   end
 
   context "highlighted" do
-    tours = [
-      FactoryBot.create(:tour, :highlighted, title: "highlighted 1"),
-      FactoryBot.create(:tour, :highlighted, title: "highlighted 2"),
-      FactoryBot.create(:tour, :highlighted, title: "highlighted 3")
-    ]
     it "shows the correct highlighted tours" do
       active_record_titles = Tour.highlighted.pluck(:title)
 
-      expect(active_record_titles).to eq(["highlighted 3", "highlighted 2", "highlighted 1"])
+      expect(active_record_titles).to eq(["highlighted 4", "highlighted 3", "highlighted 2"])
     end
 
     it "shows the correct highlighted tours if a old one is refresh" do
       Tour.find_by(title: "highlighted 1").update(highlighted_at: DateTime.now)
       active_record_titles = Tour.highlighted.pluck(:title)
 
-      expect(active_record_titles).to eq(["highlighted 1", "highlighted 3", "highlighted 2"])
+      expect(active_record_titles).to eq(["highlighted 1", "highlighted 4", "highlighted 3"])
     end
 
     it "shows the correct highlighted tours if a new one is mark" do
-      FactoryBot.create(:tour, :highlighted, title: "highlighted 4")
       active_record_titles = Tour.highlighted.pluck(:title)
 
       expect(active_record_titles).to eq(["highlighted 4", "highlighted 3", "highlighted 2"])
+    end
+  end
+
+  context "status" do
+    it "return future if start date is future from today" do
+      tour = FactoryBot.create(:tour)
+      tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today + 1.day)))
+      tour.reload
+      expect(tour.status).to eq("Future")
+    end
+
+    it "return on going if start date is today or past and end date is today or future" do
+      tour = FactoryBot.create(:tour)
+      tour.booking_dates.create(FactoryBot.attributes_for(:booking_date, day: (Date.today)))
+      tour.reload
+      expect(tour.status).to eq("On going")
+    end
+
+    # it "return archived if end date is past" do
+    #   expect(tour_yesterday.status).to eq("Archived")
+    # end
+
+    it "return highlighted if highlighted_at is present" do
+      expect(highlight_tours.last.status).to eq("Highlighted")
+    end
+
+    it "return past highlight if highlighted_at is present and ID is not in scope" do
+      expect(highlight_tours.first.status).to eq("Past Highlight")
     end
   end
 

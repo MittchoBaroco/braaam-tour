@@ -96,7 +96,15 @@ class Tour < ApplicationRecord
   end
 
   def has_booking_days?
-    !(self.booking_dates.pluck(:id).blank?)
+    self.booking_dates.present?
+  end
+
+  def status
+    return I18n.t("activerecord.attributes.tour.statuses.future") if tour_start_date.present? and tour_start_date > Date.today
+    return I18n.t("activerecord.attributes.tour.statuses.current") if tour_start_date.present? and tour_start_date <= Date.today and tour_end_date >= Date.today
+    return I18n.t("activerecord.attributes.tour.statuses.past") if tour_start_date.present? and tour_end_date > Date.today
+    return I18n.t("activerecord.attributes.tour.statuses.old_highlight") if highlighted_at.present? and not Tour.highlighted.pluck(:id).include? id
+    return I18n.t("activerecord.attributes.tour.statuses.highlight") if highlighted_at.present?
   end
 
   def season

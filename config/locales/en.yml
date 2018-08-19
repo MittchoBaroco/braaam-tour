@@ -119,6 +119,12 @@ en:
         updated_at: "Updated at"
         tour_artist_email: "Artist email"
         tour_artist_phone: "Artist phone number"
+        statuses:
+          future: "Future"
+          current: "On going"
+          past: "Archived"
+          highlight: "Highlighted"
+          old_highlight: "Past Highlight"
       company:
         name: "Company name"
         reference_person_full_name: "Full name of the reference person"
