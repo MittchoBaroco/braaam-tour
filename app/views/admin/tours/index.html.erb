@@ -28,7 +28,7 @@
         <td><%= l(tour.tour_start_date) unless tour.tour_start_date.blank? %></td>
         <td><%= l(tour.tour_end_date) unless tour.tour_end_date.blank?  %></td>
         <td><%= tour.creator_name %></td>
-        <td>tour.status</td>
+        <td><%= tour.status %></td>
         <td><%= link_to t("admin.show"), [:admin, tour], class: "btn" %> <%= link_to t("admin.edit"), edit_admin_tour_path(tour), class: "btn" %> <%= link_to t("admin.delete"), [:admin, tour], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></td>
       </tr>
     <% end %>

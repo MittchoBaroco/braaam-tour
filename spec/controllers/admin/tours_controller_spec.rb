@@ -57,6 +57,10 @@ RSpec.describe Admin::ToursController, type: :controller do
         patch :highlight, params: {id: tour.to_param, tour: valid_attributes}
         expect(response).to redirect_to( new_manager_session_path )
       end
+      it "from PATCH #remove_highlight to login page" do
+        patch :remove_highlight, params: {id: tour.to_param, tour: valid_attributes}
+        expect(response).to redirect_to( new_manager_session_path )
+      end
       it "from DELETE #destroy to login page" do
         delete :destroy, params: {id: tour.to_param}
         expect(response).to redirect_to( new_manager_session_path )
@@ -186,6 +190,19 @@ RSpec.describe Admin::ToursController, type: :controller do
       end
       it "redirects to the tour" do
         put :highlight, params: {id: tour.to_param, tour: valid_attributes},
+                      session: valid_session
+        expect(response).to redirect_to( admin_tour_path(tour) )
+      end
+    end
+    describe "PUT #remove_highlight" do
+      it "remove the marks highlighted" do
+        put :remove_highlight, params: {id: tour.to_param, tour: new_attributes},
+                      session: valid_session
+        tour.reload
+        expect( tour.highlighted_at ).to be_blank
+      end
+      it "redirects to the tour" do
+        put :remove_highlight, params: {id: tour.to_param, tour: valid_attributes},
                       session: valid_session
         expect(response).to redirect_to( admin_tour_path(tour) )
       end
