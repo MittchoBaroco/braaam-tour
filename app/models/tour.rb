@@ -96,7 +96,7 @@ class Tour < ApplicationRecord
   end
 
   def has_booking_days?
-    self.booking_dates.present?
+    !(self.booking_dates.pluck(:id).blank?)
   end
 
   def status(args = {format: :text})
