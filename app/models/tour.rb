@@ -102,18 +102,18 @@ class Tour < ApplicationRecord
   def status(args = {format: :text})
     case args[:format]
     when :number
-      return 3 if tour_start_date.present? and tour_start_date > Date.today
-      return 5 if tour_end_date.present? and tour_end_date < Date.today
-      return 2 if tour_start_date.present? and tour_start_date <= Date.today and tour_end_date >= Date.today
       return 4 if highlighted_at.present? and not Tour.highlighted.pluck(:id).include? id
       return 1 if highlighted_at.present?
+      return 2 if tour_start_date.present? and tour_start_date <= Date.today and tour_end_date >= Date.today
+      return 3 if tour_start_date.present? and tour_start_date > Date.today
+      return 5 if tour_end_date.present? and tour_end_date < Date.today
       return 6 # catch nil status and put it at the end
     when :text
-      return I18n.t("activerecord.attributes.tour.statuses.future") if tour_start_date.present? and tour_start_date > Date.today
-      return I18n.t("activerecord.attributes.tour.statuses.past") if tour_end_date.present? and tour_end_date < Date.today
-      return I18n.t("activerecord.attributes.tour.statuses.current") if tour_start_date.present? and tour_start_date <= Date.today and tour_end_date >= Date.today
       return I18n.t("activerecord.attributes.tour.statuses.old_highlight") if highlighted_at.present? and not Tour.highlighted.pluck(:id).include? id
       return I18n.t("activerecord.attributes.tour.statuses.highlight") if highlighted_at.present?
+      return I18n.t("activerecord.attributes.tour.statuses.current") if tour_start_date.present? and tour_start_date <= Date.today and tour_end_date >= Date.today
+      return I18n.t("activerecord.attributes.tour.statuses.future") if tour_start_date.present? and tour_start_date > Date.today
+      return I18n.t("activerecord.attributes.tour.statuses.past") if tour_end_date.present? and tour_end_date < Date.today
     end
   end
 

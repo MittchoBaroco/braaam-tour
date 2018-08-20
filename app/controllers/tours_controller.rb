@@ -29,7 +29,7 @@ class ToursController < ApplicationController
     @tour.creator = current_company
 
     #fix currency for franch locale
-    if I18n.locale.eql?(:fr)
+    if I18n.locale.eql?(:fr) and Rails.env.eql?("development")
       correct_money_normal = tour_params[:price_normal].gsub(".", ",")
       correct_money_braaam = tour_params[:price_braaam].gsub(".", ",")
       @tour.price_normal = correct_money_normal
@@ -56,7 +56,7 @@ class ToursController < ApplicationController
     @tour.assign_attributes(tour_params)
 
     #fix currency for franch locale
-    if I18n.locale.eql?(:fr)
+    if I18n.locale.eql?(:fr) and Rails.env.eql?("development")
       correct_money_normal = tour_params[:price_normal].gsub(".", ",")
       correct_money_braaam = tour_params[:price_braaam].gsub(".", ",")
       @tour.price_normal = correct_money_normal
