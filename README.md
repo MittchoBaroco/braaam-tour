@@ -46,25 +46,7 @@ please set master key in RAILS_MASTER_KEY env var as explain in config/environme
 rails 5.2.0.rc1
 ruby 2.5.0
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Legal
 
-Things you may want to cover:
+This software is the property of Jean-damien Zaccariotto and Container4 Sàrl, all rights reserved.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
