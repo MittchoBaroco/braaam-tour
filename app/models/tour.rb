@@ -69,8 +69,8 @@ class Tour < ApplicationRecord
   scope :after,  -> (date) { where('tour_start_date > ? OR tour_end_date > ?', date, date).order(:tour_start_date).order(:title) }
   scope :before, -> (date) { where('tour_start_date < ? OR tour_end_date < ?', date, date).order(:tour_start_date).order(:title) }
 
-  scope :summer, -> { where('tour_start_date >= ? and tour_start_date <= ?', Date.strptime("01-Apr-18", "%d-%b-%y"), Date.strptime("30-Oct-18", "%d-%b-%y")) }
-  scope :winter, -> { where('tour_start_date >= ? and tour_start_date <= ?', Date.strptime("01-Nov-18", "%d-%b-%y"), Date.strptime("30-Mar-19", "%d-%b-%y")) }
+  scope :summer, -> { where('tour_start_date >= ? and tour_start_date <= ?', Date.strptime(ApplicationController.helpers.summer_dates.first, "%d-%b-%y"), Date.strptime(ApplicationController.helpers.summer_dates.last, "%d-%b-%y")) }
+  scope :winter, -> { where('tour_start_date >= ? and tour_start_date <= ?', Date.strptime(ApplicationController.helpers.winter_dates.first, "%d-%b-%y"), Date.strptime(ApplicationController.helpers.winter_dates.last, "%d-%b-%y")) }
 
   scope :highlighted, -> { limit(3).where.not(highlighted_at: '').order(highlighted_at: :desc) }
 
@@ -129,10 +129,10 @@ class Tour < ApplicationRecord
   end
 
   def summer_tour?
-    self.tour_start_date >= Date.strptime("01-Apr-#{Date.today.year.to_s[2..4]}", "%d-%b-%y") and self.tour_start_date <= Date.strptime("30-Oct-#{Date.today.year.to_s[2..4]}", "%d-%b-%y")
+    self.tour_start_date >= Date.strptime(ApplicationController.helpers.summer_dates.first, "%d-%b-%y") and self.tour_start_date <= Date.strptime(ApplicationController.helpers.summer_dates.last, "%d-%b-%y")
   end
 
   def winter_tour?
-    self.tour_start_date >= Date.strptime("01-Nov-#{Date.today.year.to_s[2..4]}", "%d-%b-%y") and self.tour_start_date <= Date.strptime("30-Mar-#{((Date.today.year) + 1).to_s[2..4]}", "%d-%b-%y")
+    self.tour_start_date >= Date.strptime(ApplicationController.helpers.winter_dates.first, "%d-%b-%y") and self.tour_start_date <= Date.strptime(ApplicationController.helpers.winter_dates.last, "%d-%b-%y")
   end
 end
