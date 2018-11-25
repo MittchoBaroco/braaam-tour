@@ -1,12 +1,5 @@
 # README
 
-## TODO:
-* get rails credentil key
-* create .rbenv-vars file with key
-* validations for the Tour image (present and file types)
-* configure amazon uploads for production - in credentials enc
-* figure how to pass scss varaibles to components
-
 ## Start your development servers
 
 * getting started
@@ -41,30 +34,8 @@ overmind start -f Procfile.dev
 # production
 ## heroku
 please set master key in RAILS_MASTER_KEY env var as explain in config/environment/production.yml line 19
+then edit credentials files and set correct AWS S3 bucket for pictures
 
 ## Versions
 rails 5.2.0.rc1
 ruby 2.5.0
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
