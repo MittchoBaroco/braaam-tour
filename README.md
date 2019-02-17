@@ -39,3 +39,7 @@ then edit credentials files and set correct AWS S3 bucket for pictures
 ## Versions
 rails 5.2.0.rc1
 ruby 2.5.0
+
+# Legal
+
+This software is the property of Jean-damien Zaccariotto, all rights reserved.
