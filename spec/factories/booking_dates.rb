@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :booking_date do
     day     { Faker::Date.between(Date.today, 1.year.from_now) }
     tour    { FactoryHelpers.get_tour() }
-    close   false
+    close   { false }
   end
 
   factory  :booked_date, parent: :booking_date do
@@ -10,7 +10,7 @@ FactoryBot.define do
   end
 
   trait :closed do
-    close true
+    close { true }
   end
 
   trait :booked do
