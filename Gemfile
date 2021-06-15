@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.0'
+ruby '2.6.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # gem 'rails', '~> 5.2.0.rc1'
@@ -62,7 +62,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   # gem 'shoulda-matchers', '~> 3.1'
   # need a feature from the master branch. .optional
-  gem 'shoulda-matchers', git: "https://github.com/thoughtbot/shoulda-matchers"
+  gem 'shoulda-matchers'
 end
 
 group :development do
